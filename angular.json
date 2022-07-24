@@ -1,32 +1,32 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "src",
+  "newProjectRoot": "packages",
   "projects": {
     "angular2-toaster": {
       "projectType": "library",
-      "root": "src/angular2-toaster",
-      "sourceRoot": "src/angular2-toaster/src",
+      "root": "packages/angular2-toaster",
+      "sourceRoot": "packages/angular2-toaster/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "src/angular2-toaster/tsconfig.lib.json",
-            "project": "src/angular2-toaster/ng-package.json"
+            "tsConfig": "packages/angular2-toaster/tsconfig.lib.json",
+            "project": "packages/angular2-toaster/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "src/angular2-toaster/tsconfig.lib.prod.json"
+              "tsConfig": "packages/angular2-toaster/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/angular2-toaster/src/test.ts",
-            "tsConfig": "src/angular2-toaster/tsconfig.spec.json",
-            "karmaConfig": "src/angular2-toaster/karma.conf.js"
+            "main": "packages/angular2-toaster/src/test.ts",
+            "tsConfig": "packages/angular2-toaster/tsconfig.spec.json",
+            "karmaConfig": "packages/angular2-toaster/karma.conf.js"
           }
         }
       }
@@ -38,24 +38,24 @@
           "style": "scss"
         }
       },
-      "root": "src/demo",
-      "sourceRoot": "src/demo/src",
+      "root": "packages/demo",
+      "sourceRoot": "packages/demo/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/demo",
-            "index": "src/demo/src/index.html",
-            "main": "src/demo/src/main.ts",
-            "polyfills": "src/demo/src/polyfills.ts",
-            "tsConfig": "src/demo/tsconfig.app.json",
+            "index": "packages/demo/src/index.html",
+            "main": "package/demo/src/main.ts",
+            "polyfills": "packages/demo/src/polyfills.ts",
+            "tsConfig": "packages/demo/tsconfig.app.json",
             "assets": [
-              "src/demo/src/favicon.ico",
-              "src/demo/src/assets"
+              "packages/demo/src/favicon.ico",
+              "packages/demo/src/assets"
             ],
             "styles": [
-              "src/demo/src/styles.scss"
+              "packages/demo/src/styles.scss"
             ],
             "scripts": [],
             "vendorChunk": true,
@@ -69,8 +69,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/demo/src/environments/environment.ts",
-                  "with": "src/demo/src/environments/environment.prod.ts"
+                  "replace": "packages/demo/src/environments/environment.ts",
+                  "with": "packages/demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -116,16 +116,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/demo/src/test.ts",
-            "polyfills": "src/demo/src/polyfills.ts",
-            "tsConfig": "src/demo/tsconfig.spec.json",
-            "karmaConfig": "src/demo/karma.conf.js",
+            "main": "packages/demo/src/test.ts",
+            "polyfills": "packages/demo/src/polyfills.ts",
+            "tsConfig": "packages/demo/tsconfig.spec.json",
+            "karmaConfig": "packages/demo/karma.conf.js",
             "assets": [
-              "src/demo/src/favicon.ico",
-              "src/demo/src/assets"
+              "packages/demo/src/favicon.ico",
+              "packages/demo/src/assets"
             ],
             "styles": [
-              "src/demo/src/styles.scss"
+              "packages/demo/src/styles.scss"
             ],
             "scripts": []
           }
@@ -133,7 +133,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "src/demo/e2e/protractor.conf.js",
+            "protractorConfig": "packages/demo/e2e/protractor.conf.js",
             "devServerTarget": "demo:serve"
           },
           "configurations": {
