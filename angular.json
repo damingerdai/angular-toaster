@@ -28,6 +28,15 @@
             "tsConfig": "packages/angular2-toaster/tsconfig.spec.json",
             "karmaConfig": "packages/angular2-toaster/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/angular2-toaster/**/*.ts",
+              "packages/angular2-toaster/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -141,12 +150,22 @@
               "devServerTarget": "demo:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/demo/**/*.ts",
+              "packages/demo/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "defaultProject": "angular2-toaster",
   "cli": {
-    "analytics": "10a22c2d-0a0a-46ae-a82a-cd74f58ee60e"
+    "analytics": "10a22c2d-0a0a-46ae-a82a-cd74f58ee60e",
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }
