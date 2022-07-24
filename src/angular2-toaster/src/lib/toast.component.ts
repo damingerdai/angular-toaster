@@ -5,7 +5,6 @@ import {
     ViewChild, 
     ViewContainerRef, 
     EventEmitter,
-    ComponentFactoryResolver, 
     ChangeDetectorRef, 
     OnInit, 
     AfterViewInit, 
@@ -60,7 +59,7 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
     private removeMouseOverListener: () => void;
 
     constructor(
-      private componentFactoryResolver: ComponentFactoryResolver,
+      private viewContainerRef: ViewContainerRef,
       private changeDetectorRef: ChangeDetectorRef,
       private ngZone: NgZone,
       private element: ElementRef,
@@ -83,9 +82,9 @@ export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
+        console.log(this.toast);
         if (this.toast.bodyOutputType === this.bodyOutputType.Component) {
-            const component = this.componentFactoryResolver.resolveComponentFactory(this.toast.body);
-            const componentInstance: any = this.componentBody.createComponent(component, undefined, this.componentBody.injector);
+            const componentInstance: any = this.viewContainerRef.createComponent(this.toast.body, undefined, this.componentBody.injector)
             componentInstance.instance.toast = this.toast;
             this.changeDetectorRef.detectChanges();
         }
