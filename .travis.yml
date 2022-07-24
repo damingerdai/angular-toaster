@@ -11,6 +11,6 @@ before_install:
 install: 
   - npm install
 script:
-  - ng test angular2-toaster --watch=false --code-coverage
+  - ng test angular-toaster --watch=false --code-coverage
 after_script:
-  - "cat ./coverage/angular2-toaster/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  - "cat ./coverage/angular-toaster/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

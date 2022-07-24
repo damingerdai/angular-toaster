@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import {
   ToasterModule
-} from '../../../angular2-toaster/src/public-api'
+} from '../../../angular-toaster/src/public-api'
 
 @NgModule({
   declarations: [

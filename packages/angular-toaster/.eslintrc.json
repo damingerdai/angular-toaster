@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "packages/angular2-toaster/tsconfig.lib.json",
-          "packages/angular2-toaster/tsconfig.spec.json"
+          "packages/angular-toaster/tsconfig.lib.json",
+          "packages/angular-toaster/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

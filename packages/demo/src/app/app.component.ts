@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { 
   ToasterConfig, IToasterConfig, ToasterService, Toast, ToastType, DefaultTypeClasses, DefaultIconClasses
-} from '../../../angular2-toaster/src/public-api';
+} from '../../../angular-toaster/src/public-api';
 
 @Component({
   selector: 'app-root',

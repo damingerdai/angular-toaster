@@ -1,5 +1,5 @@
 {
-  "name": "angular2-toaster",
+  "name": "root",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,12 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build angular2-toaster --configuration production",
+    "build:lib": "ng build angular-toaster --configuration production",
     "clean": "rimraf dist",
-    "sass": "sass packages/angular2-toaster/src/lib/toaster.scss dist/angular2-toaster/toaster.css",
-    "uglifycss": "esbuild --bundle packages/angular2-toaster/src/lib/toaster.css --outfile=dist/angular2-toaster/toaster.min.css --minify  --sourcemap=external",
-    "copy": "cpx LICENSE dist/angular2-toaster && cpx README.md dist/angular2-toaster && yarn copystyles",
-    "copystyles": "cpx \"packages/angular2-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular2-toaster",
+    "sass": "sass packages/angular-toaster/src/lib/toaster.scss dist/angular-toaster/toaster.css",
+    "uglifycss": "esbuild --bundle packages/angular-toaster/src/lib/toaster.css --outfile=dist/angular-toaster/toaster.min.css --minify  --sourcemap=external",
+    "copy": "cpx LICENSE dist/angular-toaster && cpx README.md dist/angular-toaster && yarn copystyles",
+    "copystyles": "cpx \"packages/angular-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular-toaster",
     "package": "yarn clean && yarn build:lib && yarn sass && yarn uglifycss && yarn copy"
   },
   "private": true,

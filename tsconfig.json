@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "angular2-toaster": [
-        "dist/angular2-toaster/angular2-toaster",
-        "dist/angular2-toaster"
+      "angular-toaster": [
+        "dist/angular-toaster/angular-toaster",
+        "dist/angular-toaster"
       ]
     }
   }

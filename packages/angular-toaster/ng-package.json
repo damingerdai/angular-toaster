@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/angular2-toaster",
+  "dest": "../../dist/angular-toaster",
   "lib": {
     "entryFile": "src/public-api.ts"
   }

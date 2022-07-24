@@ -1,5 +1,5 @@
 /*
- * Public API Surface of angular2-toaster
+ * Public API Surface of angular-toaster
  */
 
 export * from './lib/toaster-container.component';

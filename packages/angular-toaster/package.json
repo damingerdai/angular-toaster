@@ -1,15 +1,15 @@
 {
-  "name": "angular2-toaster",
+  "name": "angular-toaster",
   "description": "An Angular Toaster Notification library based on AngularJS-Toaster",
   "version": "11.0.1",
   "author": "Stabzs",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stabzs/Angular2-Toaster.git"
+    "url": "https://github.com/stabzs/angular-toaster.git"
   },
   "bugs": {
-    "url": "https://github.com/stabzs/Angular2-Toaster/issues"
+    "url": "https://github.com/stabzs/angular-toaster/issues"
   },
   "keywords": [
     "angular",
@@ -17,7 +17,7 @@
     "angular11",
     "angularjs-toaster",
     "angular-toaster",
-    "angular2-toaster",
+    "angular-toaster",
     "toast",
     "toaster",
     "notification",

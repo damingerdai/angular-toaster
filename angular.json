@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "packages",
   "projects": {
-    "angular2-toaster": {
+    "angular-toaster": {
       "projectType": "library",
-      "root": "packages/angular2-toaster",
-      "sourceRoot": "packages/angular2-toaster/src",
+      "root": "packages/angular-toaster",
+      "sourceRoot": "packages/angular-toaster/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "packages/angular2-toaster/tsconfig.lib.json",
-            "project": "packages/angular2-toaster/ng-package.json"
+            "tsConfig": "packages/angular-toaster/tsconfig.lib.json",
+            "project": "packages/angular-toaster/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "packages/angular2-toaster/tsconfig.lib.prod.json"
+              "tsConfig": "packages/angular-toaster/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "packages/angular2-toaster/src/test.ts",
-            "tsConfig": "packages/angular2-toaster/tsconfig.spec.json",
-            "karmaConfig": "packages/angular2-toaster/karma.conf.js"
+            "main": "packages/angular-toaster/src/test.ts",
+            "tsConfig": "packages/angular-toaster/tsconfig.spec.json",
+            "karmaConfig": "packages/angular-toaster/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "packages/angular2-toaster/**/*.ts",
-              "packages/angular2-toaster/**/*.html"
+              "packages/angular-toaster/**/*.ts",
+              "packages/angular-toaster/**/*.html"
             ]
           }
         }
@@ -163,7 +163,7 @@
       }
     }
   },
-  "defaultProject": "angular2-toaster",
+  "defaultProject": "angular-toaster",
   "cli": {
     "analytics": "10a22c2d-0a0a-46ae-a82a-cd74f58ee60e",
     "defaultCollection": "@angular-eslint/schematics"

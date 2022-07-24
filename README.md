@@ -1,12 +1,12 @@
-# Angular2-Toaster
+# angular-toaster
 
-**angular2-toaster** is an asynchronous, non-blocking, Ahead of Time Compilation-supported Angular Toaster Notification library 
+**angular-toaster** is an asynchronous, non-blocking, Ahead of Time Compilation-supported Angular Toaster Notification library 
 largely based off of [AngularJS-Toaster](https://github.com/jirikavi/AngularJS-Toaster).
 
-[![npm](https://img.shields.io/npm/v/angular2-toaster.svg?maxAge=3600?800=true)](https://www.npmjs.com/package/angular2-toaster)
-[![npm](https://img.shields.io/npm/dt/angular2-toaster.svg?cache=true)](https://www.npmjs.com/package/angular2-toaster)
-[![Build Status](https://travis-ci.org/Stabzs/Angular2-Toaster.svg?branch=master)](https://travis-ci.org/Stabzs/Angular2-Toaster)
-[![Coverage Status](https://coveralls.io/repos/github/Stabzs/Angular2-Toaster/badge.svg?branch=master&b=11.0.0)](https://coveralls.io/github/Stabzs/Angular2-Toaster?branch=master)
+[![npm](https://img.shields.io/npm/v/angular-toaster.svg?maxAge=3600?800=true)](https://www.npmjs.com/package/angular-toaster)
+[![npm](https://img.shields.io/npm/dt/angular-toaster.svg?cache=true)](https://www.npmjs.com/package/angular-toaster)
+[![Build Status](https://travis-ci.org/Stabzs/angular-toaster.svg?branch=master)](https://travis-ci.org/Stabzs/angular-toaster)
+[![Coverage Status](https://coveralls.io/repos/github/Stabzs/angular-toaster/badge.svg?branch=master&b=11.0.0)](https://coveralls.io/github/Stabzs/angular-toaster?branch=master)
 
 Version ^11.0.0 has a number of new features, type definitions, and breaking changes.  Please review the 
 [CHANGELOG](CHANGELOG.md/#11.0.0) for a list of features and breaking changes before upgrading.
@@ -28,28 +28,28 @@ A dynamic Angular and Typescript demo can be found at
 ## Installation:
 
 ```bash
-npm install angular2-toaster
+npm install angular-toaster
 ```
 
 ## Import CSS
 
 ### Copy or Link CSS
 ```html
-<link rel="stylesheet" type="text/css" href="/node_modules/angular2-toaster/toaster.css" />
+<link rel="stylesheet" type="text/css" href="/node_modules/angular-toaster/toaster.css" />
 ```
 or
 ```html
-<link rel="stylesheet" type="text/css" href="/node_modules/angular2-toaster/toaster.min.css" />
+<link rel="stylesheet" type="text/css" href="/node_modules/angular-toaster/toaster.min.css" />
 ```
 
 ### Import CSS with Sass or Less
 ```scss
-@import 'node_modules/angular2-toaster/toaster';
+@import 'node_modules/angular-toaster/toaster';
 ```
 
 ### Compile the Library's SCSS
 ```scss
-@import 'node_modules/angular2-toaster/toaster';
+@import 'node_modules/angular-toaster/toaster';
 ```
 
 
@@ -57,7 +57,7 @@ or
 
 ### Import via SystemJS
 Within the `map` property of the `systemjs.config` file, add mappings for angular, rxjs 
-(which is a dependency), and the angular2-toaster bundled umd file:
+(which is a dependency), and the angular-toaster bundled umd file:
 
 ```javascript
 map: {
@@ -66,7 +66,7 @@ map: {
       // ...
       // other libraries
       'rxjs':  'npm:rxjs',
-      'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js'
+      'angular-toaster': 'npm:angular-toaster/bundles/angular-toaster.umd.js'
 ```
 
 ### Import via Webpack
@@ -78,7 +78,7 @@ Simply follow the `Getting Started` instructions to import the library.
 ```typescript
 import {NgModule, Component} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
+import {ToasterModule, ToasterService} from 'angular-toaster';
 import {Root} from './root.component'
 
 @NgModule({
@@ -115,7 +115,7 @@ For subsequent inclusions, use `ToasterModule.forChild()` to provide the `Toaste
 ```typescript
 import {Component} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToasterContainerComponent, ToasterService} from 'angular2-toaster';
+import {ToasterContainerComponent, ToasterService} from 'angular-toaster';
 
 @Component({
     selector: 'root',
@@ -147,7 +147,7 @@ bootstrap(Root);
 ```typescript
 import {Component} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToasterModule, ToasterService, ToasterConfig} from 'angular2-toaster';
+import {ToasterModule, ToasterService, ToasterConfig} from 'angular-toaster';
 
 @Component({
     selector: 'root',
@@ -232,7 +232,7 @@ To add animations:
     ```typescript
     import {NgModule, Component} from '@angular/core';
     import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-    import {ToasterModule} from 'angular2-toaster';
+    import {ToasterModule} from 'angular-toaster';
     
     @NgModule({
         imports: [BrowserAnimationsModule, ToasterModule],
@@ -240,12 +240,12 @@ To add animations:
     ```
 
 If you want to avoid bringing in an additional module solely for the sake of animations, you can 
-explicitly configure `angular2-toaster` to ignore animations.  To do so, import the 
+explicitly configure `angular-toaster` to ignore animations.  To do so, import the 
 `NoopAnimationsModule` instead:
 
 ```typescript
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {ToasterModule} from 'angular2-toaster';
+import {ToasterModule} from 'angular-toaster';
     
 @NgModule({
     imports: [NoopAnimationsModule, ToasterModule],
@@ -286,7 +286,7 @@ value corresponds to a custom class:
 In the case where either are not provided, the toast type will fall back to the `defaultToastType` which 
 defaults to `info`.**
 ```typescript
-import {DefaultTypeClasses, DefaultIconClasses} from 'angular2-toaster';
+import {DefaultTypeClasses, DefaultIconClasses} from 'angular-toaster';
 type ExtendedToastType = ('partial-success') & ToastType;
 
 template: 
@@ -517,7 +517,7 @@ is not provided, it will be defaulted to 'Default'.
  
 * TrustedHtml: The `body` argument will be parsed and rendered as html content.
   ```typescript
-  import {BodyOutputType} from 'angular2-toaster';
+  import {BodyOutputType} from 'angular-toaster';
   var toast : Toast = {
       type: 'error',
       title: 'Title text',
@@ -531,7 +531,7 @@ is not provided, it will be defaulted to 'Default'.
 * Component: The `body` argument is the name of the component class to be rendered as the content 
 of the toast.
   ```typescript
-  import {BodyOutputType} from 'angular2-toaster';
+  import {BodyOutputType} from 'angular-toaster';
   
   @Component({
     selector: 'dynamic-component',
@@ -615,12 +615,12 @@ this.toasterService.pop(toast);
 
 
 # Building the Source
-In order to build Angular2-Toaster for development, you will need to have Git and Node.js installed.
+In order to build angular-toaster for development, you will need to have Git and Node.js installed.
 
 Clone a copy of the repo:
 
 ```bash
-git clone https://github.com/stabzs/Angular2-Toaster.git
+git clone https://github.com/stabzs/angular-toaster.git
 ```
 
 In the cloned directory, run:
@@ -635,7 +635,7 @@ npm run build
 
 Run Karma test instance with coverage report:
 ```bash
-ng test angular2-toaster --code-coverage
+ng test angular-toaster --code-coverage
 ```
 
 # Frequently Asked Questions and Issues
