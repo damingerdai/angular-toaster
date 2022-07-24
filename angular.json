@@ -162,6 +162,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular2-toaster"
+    }
+  },
+  "defaultProject": "angular2-toaster",
+  "cli": {
+    "analytics": "10a22c2d-0a0a-46ae-a82a-cd74f58ee60e"
+  }
 }
