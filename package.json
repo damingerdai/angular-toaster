@@ -8,10 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "ng build --configuration production && npm run sass && npm run uglifycss && npm run copy",
+    "build:lib": "ng build --configuration production && npm run sass && npm run uglifycss && npm run copy",
     "sass": "sass packages/angular2-toaster/src/lib/toaster.scss packages/angular2-toaster/src/lib/toaster.css",
-    "sass:min": "esbuild --bundle app.css --outfile=out.css",
-    "uglifycss": "node_modules/.bin/uglifycss packages/angular2-toaster/src/lib/toaster.css > packages/angular2-toaster/src/lib/toaster.min.css",
+    "uglifycss": "esbuild --bundle packages/angular2-toaster/src/lib/toaster.css --outfile=dist/angular2-toaster/toaster.min.css --minify  --sourcemap=external",
     "copy": "cpx LICENSE dist/angular2-toaster && cpx README.md dist/angular2-toaster && npm run copystyles",
     "copystyles": "cpx \"packages/angular2-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular2-toaster"
   },
@@ -52,6 +51,6 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.6.4",
-    "uglifycss": "0.0.29"
+    "esbuild": "0.14.22"
   }
 }
