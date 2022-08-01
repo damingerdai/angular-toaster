@@ -46,6 +46,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.js"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 6
+      }
     }
   ]
 }

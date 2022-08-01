@@ -19,6 +19,7 @@ import { BodyOutputType } from './bodyOutputType';
 import { ToasterConfig } from './toaster-config';
 
 @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[toastComp]',
     template: `
         <div class="toast-content">

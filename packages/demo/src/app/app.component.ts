@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { 
   ToasterConfig, IToasterConfig, ToasterService, Toast, ToastType, DefaultTypeClasses, DefaultIconClasses
 } from '../../../angular-toaster/src/public-api';
@@ -8,7 +8,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'demo';
 
   extendedTypeClasses = { ...DefaultTypeClasses, ...{ customtype: 'toast-success' }};
