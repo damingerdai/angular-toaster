@@ -22,7 +22,7 @@ import { ToasterConfig } from './toaster-config';
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[toastComp]',
     template: `
-        <div class="toast-content">
+        <div class="angular-toast-content">
             <div [ngClass]="titleClass">{{toast.title}}</div>
             <div [ngClass]="messageClass" [ngSwitch]="toast.bodyOutputType">
                 <div *ngSwitchCase="bodyOutputType.Component" #componentBody></div>
@@ -30,11 +30,11 @@ import { ToasterConfig } from './toaster-config';
                 <div *ngSwitchCase="bodyOutputType.Default">{{toast.body}}</div>
             </div>
         </div>
-        <button class="toast-close-button" *ngIf="toast.showCloseButton" (click)="click($event, toast)"
+        <button class="angular-toast-close-button" *ngIf="toast.showCloseButton" (click)="click($event, toast)"
             [innerHTML]="toast.closeHtml | trustHtml">
         </button>
         <div *ngIf="toast.progressBar">
-            <div class="toast-progress-bar" [style.width]="progressBarWidth + '%'"></div>
+            <div class="angular-toast-progress-bar" [style.width]="progressBarWidth + '%'"></div>
         </div>`
 })
 export class ToastComponent implements OnInit, AfterViewInit, OnDestroy {

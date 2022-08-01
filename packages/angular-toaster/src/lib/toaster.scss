@@ -36,7 +36,7 @@ $toaster-icons: map-merge((
 $toaster-margin: 12px !default;
 
 // Toast styles
-.toast {
+.angular-toast {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -46,7 +46,7 @@ $toaster-margin: 12px !default;
 }
 
 @each $color, $value in $toaster-colors {
-  .toast-#{$color} {
+  .angular-toast-#{$color} {
     background-color: $value;
   }
 }
@@ -58,21 +58,21 @@ $toaster-margin: 12px !default;
   }
 }
 
-.toaster-icon {
+.angular-toaster-icon {
   font-weight: normal;
   color: $toaster-text-color;
 }
 
-.toast-content {
+.angular-toast-content {
   flex-grow: 1;
   padding: 15px 15px 15px 50px;
 }
 
-.toast-title {
+.angular-toast-title {
   font-weight: bold;
 }
 
-.toast-message {
+.angular-toast-message {
   word-wrap: break-word;
 
   & a,
@@ -86,7 +86,7 @@ $toaster-margin: 12px !default;
   }
 } 
 
-.toast-close-button {
+.angular-toast-close-button {
   align-self: flex-start;
   padding: 3px;
   font-size: 23px;
@@ -116,7 +116,7 @@ $toaster-margin: 12px !default;
   }
 }
 
-.toast-progress-bar {
+.angular-toast-progress-bar {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -128,42 +128,42 @@ $toaster-margin: 12px !default;
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
  If you want the anchor version, it requires `href="#"`.*/
-button.toast-close-button {
-  @extend .toast-close-button;
+button.angular-toast-close-button {
+  @extend .angular-toast-close-button;
 }
 
 // Toast Container styles
-.toast-container {
+.angular-toast-container {
   position: fixed;
   z-index: 999999;
   /*overrides*/
   pointer-events: auto;
 }
-.toast-container.toast-center,
-.toast-container.toast-top-center,
-.toast-container.toast-bottom-center{
+.angular-toast-container.angular-toast-center,
+.angular-toast-container.angular-toast-top-center,
+.angular-toast-container.angular-toast-bottom-center{
   width: 100%;
   pointer-events: none;
   left: 0;
   right: 0;
 }
-.toast-container.toast-center > div,
-.toast-container.toast-top-center > div,
-.toast-container.toast-bottom-center > div{
+.angular-toast-container.angular-toast-center > div,
+.angular-toast-container.angular-toast-top-center > div,
+.angular-toast-container.angular-toast-bottom-center > div{
   margin: 6px auto;
   pointer-events: auto;
 }
-.toast-container.toast-center > button,
-.toast-container.toast-top-center > button,
-.toast-container.toast-bottom-center > button{
+.angular-toast-container.angular-toast-center > button,
+.angular-toast-container.angular-toast-top-center > button,
+.angular-toast-container.angular-toast-bottom-center > button{
   pointer-events: auto;
 }
-.toast-container * {
+.angular-toast-container * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.toast-container > div {
+.angular-toast-container > div {
   margin: 0 0 6px;
   width: 300px;
   border-radius: 3px 3px 3px 3px;
@@ -173,51 +173,51 @@ button.toast-close-button {
   color: $toaster-text-color;
   opacity: 0.8;
 }
-.toast-container > :hover {
+.angular-toast-container > :hover {
   box-shadow: 0 0 12px #000000;
   opacity: 1;
   cursor: pointer;
 }
 
-.toast-container.toast-top-full-width > div,
-.toast-container.toast-bottom-full-width > div {
+.angular-toast-container.angular-toast-top-full-width > div,
+.angular-toast-container.angular-toast-bottom-full-width > div {
   width: 96%;
   margin: auto;
 }
 
 // Toast Container Positions
-.toast-top-full-width {
+.angular-toast-top-full-width {
   top: 0;
   right: 0;
   width: 100%;
 }
-.toast-bottom-full-width {
+.angular-toast-bottom-full-width {
   bottom: 0;
   right: 0;
   width: 100%;
 }
-.toast-top-left {
+.angular-toast-top-left {
   top: $toaster-margin;
   left: $toaster-margin;
 }
-.toast-top-center {
+.angular-toast-top-center {
   top: $toaster-margin;
 }
-.toast-top-right {
+.angular-toast-top-right {
   top: $toaster-margin;
   right: $toaster-margin;
 }
-.toast-bottom-right {
+.angular-toast-bottom-right {
   right: $toaster-margin;
   bottom: $toaster-margin;
 }
-.toast-bottom-center {
+.angular-toast-bottom-center {
   bottom: $toaster-margin;
 }
-.toast-bottom-left {
+.angular-toast-bottom-left {
   bottom: $toaster-margin;
   left: $toaster-margin;
 }
-.toast-center {
+.angular-toast-center {
   top: 45%;
 }

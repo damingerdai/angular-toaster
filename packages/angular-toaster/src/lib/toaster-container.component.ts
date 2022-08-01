@@ -13,8 +13,8 @@ import { Toast } from './toast';
 @Component({
     selector: 'toaster-container',
     template: `
-        <div class="toast-container" [ngClass]="[toasterconfig.positionClass]">
-            <div toastComp *ngFor="let toast of toasts" class="toast" [toast]="toast"
+        <div class="angular-toast-container" [ngClass]="[toasterconfig.positionClass]">
+            <div toastComp *ngFor="let toast of toasts" class="angular-toast" [toast]="toast"
                 [toasterconfig]="toasterconfig"
                 [@toastState]="toasterconfig.animation"
                 [titleClass]="toasterconfig.titleClass"

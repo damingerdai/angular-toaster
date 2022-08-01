@@ -3,11 +3,11 @@ import { BodyOutputType } from './bodyOutputType';
 import { ToastType } from './toast';
 
 export const DefaultTypeClasses : { [key in ToastType]? : string } = {
-    error: 'toast-error',
-    info: 'toast-info',
-    wait: 'toast-wait',
-    success: 'toast-success',
-    warning: 'toast-warning'
+    error: 'angular-toast-error',
+    info: 'angular-toast-info',
+    wait: 'angular-toast-wait',
+    success: 'angular-toast-success',
+    warning: 'angular-toast-warning'
 };
 
 export const DefaultIconClasses : { [key in ToastType]? : string } = {
@@ -31,9 +31,9 @@ export interface IToasterConfig {
     bodyTemplate?: string;
     defaultToastType?: ToastType;
     // Options (see CSS):
-    // 'toast-top-full-width', 'toast-bottom-full-width', 'toast-center',
-    // 'toast-top-left', 'toast-top-center', 'toast-top-right',
-    // 'toast-bottom-left', 'toast-bottom-center', 'toast-bottom-right',
+    // 'angular-toast-top-full-width', 'angular-toast-bottom-full-width', 'angular-toast-center',
+    // 'angular-toast-top-left', 'angular-toast-top-center', 'angular-toast-top-right',
+    // 'angular-toast-bottom-left', 'angular-toast-bottom-center', 'angular-toast-bottom-right',
     positionClass?: string;
     titleClass?: string;
     messageClass?: string;
@@ -57,9 +57,9 @@ export class ToasterConfig implements IToasterConfig {
     bodyTemplate: string;
     defaultToastType: ToastType;
     // Options (see CSS):
-    // 'toast-top-full-width', 'toast-bottom-full-width', 'toast-center',
-    // 'toast-top-left', 'toast-top-center', 'toast-top-right',
-    // 'toast-bottom-left', 'toast-bottom-center', 'toast-bottom-right',
+    // 'angular-toast-top-full-width', 'angular-toast-bottom-full-width', 'angular-toast-center',
+    // 'angular-toast-top-left', 'angular-toast-top-center', 'angular-toast-top-right',
+    // 'angular-toast-bottom-left', 'angular-toast-bottom-center', 'angular-toast-bottom-right',
     positionClass: string;
     titleClass: string;
     messageClass: string;
@@ -81,9 +81,9 @@ export class ToasterConfig implements IToasterConfig {
         this.bodyOutputType = configOverrides.bodyOutputType || BodyOutputType.Default;
         this.bodyTemplate = configOverrides.bodyTemplate || 'toasterBodyTmpl.html';
         this.defaultToastType = configOverrides.defaultToastType || 'info';
-        this.positionClass = configOverrides.positionClass || 'toast-top-right';
-        this.titleClass = configOverrides.titleClass || 'toast-title';
-        this.messageClass = configOverrides.messageClass || 'toast-message';
+        this.positionClass = configOverrides.positionClass || 'angular-toast-top-right';
+        this.titleClass = configOverrides.titleClass || 'angular-toast-title';
+        this.messageClass = configOverrides.messageClass || 'angular-toast-message';
         this.animation = configOverrides.animation || '';
         this.preventDuplicates = configOverrides.preventDuplicates != null ? configOverrides.preventDuplicates : false;
         this.mouseoverTimerStop = configOverrides.mouseoverTimerStop != null ? configOverrides.mouseoverTimerStop : false;
