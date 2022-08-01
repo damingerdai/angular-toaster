@@ -2,21 +2,25 @@
   "name": "angular-toaster",
   "description": "An Angular Toaster Notification library based on AngularJS-Toaster",
   "version": "1.0.0",
-  "author": "Stabzs",
+  "author": "Arthur",
+  "contributors": [
+    {
+      "name": "Arthur Ming",
+      "email": "mingguobin@live.com",
+      "url": "https://damingerdai.github.io/"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stabzs/angular-toaster.git"
+    "url": "https://github.com/damingerdai/angular-toaster.git"
   },
   "bugs": {
-    "url": "https://github.com/stabzs/angular-toaster/issues"
+    "url": "https://github.com/damingerdai/angular-toaster/issues"
   },
   "keywords": [
     "angular",
-    "angular10",
-    "angular11",
     "angularjs-toaster",
-    "angular-toaster",
     "angular-toaster",
     "toast",
     "toaster",
