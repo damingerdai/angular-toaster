@@ -11,39 +11,28 @@ import {
 export class AppComponent implements AfterViewInit {
   title = 'demo';
 
-  extendedTypeClasses = { ...DefaultTypeClasses, ...{ customtype: 'toast-success' }};
+  extendedTypeClasses = { ...DefaultTypeClasses, ...{ customtype: 'angular-toast-success' }};
   extendedIconClasses = { ...DefaultIconClasses, ...{ customtype: 'icon-error' }};
 
-  appConfig: IToasterConfig = new ToasterConfig({
-    animation: 'fade', newestOnTop: true, positionClass: 'toast-bottom-right', 
+
+  config: IToasterConfig = new ToasterConfig({
+    animation: 'fade', newestOnTop: true, positionClass: 'angular-toast-bottom-right', 
     toastContainerId: 1, timeout: 0, showCloseButton: true, // mouseoverTimerStop: true
     typeClasses: <ExtendedToastType>this.extendedTypeClasses, 
     iconClasses: <ExtendedToastType>this.extendedIconClasses
   });
 
-  testConfig: IToasterConfig = new ToasterConfig({
-    animation: 'fade', newestOnTop: true, positionClass: 'toast-bottom-left', 
-    toastContainerId: 1, timeout: 0, showCloseButton: true, mouseoverTimerStop: true,
-    typeClasses: <ExtendedToastType>{
-      customtype: 'toast-success',
-      error: 'toast-error',
-      info: 'toast-info',
-      wait: 'toast-wait',
-      success: 'toast-success',
-      warning: 'toast-warning'
-    }, 
-    iconClasses: <ExtendedToastType>{
-      customtype: 'icon-error',
-      error: 'icon-error',
-      info: 'icon-info',
-      wait: 'icon-wait',
-      success: 'icon-success',
-      warning: 'icon-warning'
-    }
-    // titleClass: 'title-1'
-  });
-
   constructor (public toasterService: ToasterService) { }
+
+  show(type: ToastType) {
+		this.toasterService.pop({
+			type,
+			title: 'Hello world!',
+			body: 'Toastr fun!',
+			timeout: 10000
+		});
+	}
+
 
   popToast() {
     let toast = this.toasterService.pop({
