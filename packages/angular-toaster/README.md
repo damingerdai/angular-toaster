@@ -5,6 +5,7 @@ largely based off of the fork of [Angular2-Toaster](github.com/stabzs/Angular2-T
 
 [![npm](https://img.shields.io/npm/v/angular-toaster.svg?maxAge=3600?800=true)](https://www.npmjs.com/package/angular-toaster)
 [![npm](https://img.shields.io/npm/dt/angular-toaster.svg?cache=true)](https://www.npmjs.com/package/angular-toaster)
+[![Build Status](https://github.com/damingerdai/angular-toaster/actions/workflows/ci.yaml/badge.svg?branch=develop)](https://github.com/damingerdai/angular-toaster/actions/workflows/ci.yaml)
 
 Version ^11.0.0 has a number of new features, type definitions, and breaking changes.  Please review the 
 [CHANGELOG](CHANGELOG.md/#11.0.0) for a list of features and breaking changes before upgrading.
