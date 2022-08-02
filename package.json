@@ -57,6 +57,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
+    "angular-cli-ghpages": "^1.0.3",
     "colors": "^1.4.0",
     "conventional-changelog-cli": "^2.2.2",
     "coveralls": "3.1.0",

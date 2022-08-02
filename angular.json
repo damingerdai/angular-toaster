@@ -159,6 +159,14 @@
               "packages/demo/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://damingerdai.github.io/angular-toaster/",
+            "name": "Angular-Toaster",
+            "email": "mingguobin@live.com"
+          }
         }
       }
     }
