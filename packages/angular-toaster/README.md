@@ -1,26 +1,18 @@
 # angular-toaster
 
 **angular-toaster** is an asynchronous, non-blocking, Ahead of Time Compilation-supported Angular Toaster Notification library 
-largely based off of [AngularJS-Toaster](https://github.com/jirikavi/AngularJS-Toaster).
+largely based off of the fork of [Angular2-Toaster](github.com/stabzs/Angular2-Toaster).
 
 [![npm](https://img.shields.io/npm/v/angular-toaster.svg?maxAge=3600?800=true)](https://www.npmjs.com/package/angular-toaster)
 [![npm](https://img.shields.io/npm/dt/angular-toaster.svg?cache=true)](https://www.npmjs.com/package/angular-toaster)
-[![Build Status](https://travis-ci.org/Stabzs/angular-toaster.svg?branch=master)](https://travis-ci.org/Stabzs/angular-toaster)
-[![Coverage Status](https://coveralls.io/repos/github/Stabzs/angular-toaster/badge.svg?branch=master&b=11.0.0)](https://coveralls.io/github/Stabzs/angular-toaster?branch=master)
 
 Version ^11.0.0 has a number of new features, type definitions, and breaking changes.  Please review the 
 [CHANGELOG](CHANGELOG.md/#11.0.0) for a list of features and breaking changes before upgrading.
 
-Version ^5.0.0 requires either `.forRoot()` or `.forChild()` `ToasterModule` inclusion.  Please 
-read the 5.x.x release notes and the `Getting Started` section before upgrading.
-
-Version ^4.0.0 now supports @angular/animations, which is a breaking change. 
-Please read both the Getting Started and Animations sections before upgrading.
-
 
 # Demo
 A dynamic Angular and Typescript demo can be found at 
-[this plunker](http://plnkr.co/edit/hkENUhos6q9fhiOHprXO?p=preview).
+[github package](https://damingerdai.github.io/angular-toaster/).
 
 
 # Getting Started
@@ -28,7 +20,7 @@ A dynamic Angular and Typescript demo can be found at
 ## Installation:
 
 ```bash
-npm install angular-toaster
+npm install angular-toaster (or yarn add angular-toaster)
 ```
 
 ## Import CSS
@@ -217,46 +209,6 @@ removed.
 var toast = this.toasterService.pop('success', 'title', 'body');
 this.toasterService.clear(toast.toastId, toast.toastContainerId);
 ```
-
-
-## Animations
-Starting with version `4.0.0` and greater, Animation configuration is required, as described in the 
-`Getting Started` section.
-
-To add animations: 
-
-- Install the `@angular/animations` npm package via 
-`npm install @angular/animations`.
-- Add the `BrowserAnimationsModule` to your root module
-
-    ```typescript
-    import {NgModule, Component} from '@angular/core';
-    import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-    import {ToasterModule} from 'angular-toaster';
-    
-    @NgModule({
-        imports: [BrowserAnimationsModule, ToasterModule],
-        ...
-    ```
-
-If you want to avoid bringing in an additional module solely for the sake of animations, you can 
-explicitly configure `angular-toaster` to ignore animations.  To do so, import the 
-`NoopAnimationsModule` instead:
-
-```typescript
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {ToasterModule} from 'angular-toaster';
-    
-@NgModule({
-    imports: [NoopAnimationsModule, ToasterModule],
-    ...
-```
-
-Angular Animations require [browsers](http://caniuse.com/#feat=web-animation) that support the [Web Animations Standard](https://w3c.github.io/web-animations/).
-
-If you need to target a non-supported browser, a [polyfill](https://github.com/web-animations/web-animations-js) is required.
-
-
 # Configurable Options
 ### Toast Types
 By default, five toast types are defined via the `ToastType` type: 'error, 'info', 'wait', 'success', and 'warning'.
@@ -563,7 +515,7 @@ The progress bar has two directions: `decreasing` or right-to-left and `increasi
 to `decreasing`, it can be overridden per toast:
 
 ```typescript
-var toast: Toast = {
+const toast: Toast = {
   type: 'success',
   progressBar: true,
   progressBarDirection: 'increasing'  
@@ -620,17 +572,17 @@ In order to build angular-toaster for development, you will need to have Git and
 Clone a copy of the repo:
 
 ```bash
-git clone https://github.com/stabzs/angular-toaster.git
+git clone https://github.com/damingerdai/angular-toaster.git
 ```
 
 In the cloned directory, run:
 ```bash
-npm install
+yarn
 ```
 
 Run Angular AoT compiler:
 ```bash
-npm run build
+yarn build
 ```
 
 Run Karma test instance with coverage report:
@@ -664,17 +616,6 @@ export class AppErrorHandler implements ErrorHandler {
 ```
 (See this great [Stack Overflow Answer]( https://stackoverflow.com/questions/44975477/angular2-ng-toasty-errorhandler) for more details).
 
-
-## Author
-[Stabzs](stabzssoftware@gmail.com)
-
-## Credits
-Rewritten from https://github.com/jirikavi/AngularJS-Toaster
-
-Inspired by http://codeseven.github.io/toastr/demo.html.
-
-## Copyright
-Copyright © 2016-2020 Stabzs.
 
 
 ## Licence
