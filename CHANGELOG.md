@@ -1,3 +1,14 @@
+# [1.1.0](https://github.com/damingerdai/angular-toaster/compare/v1.0.0...v1.1.0) (2022-08-02)
+
+
+### Features
+
+* bump angular eslint from 13.3.11 to 14.1.0 ([12bfc9e](https://github.com/damingerdai/angular-toaster/commit/12bfc9e9241971837b56b2ebf8b0e9a8a384fe53))
+* bump angular from 13.3.11 to 14.1.0 ([1deaacf](https://github.com/damingerdai/angular-toaster/commit/1deaacf29dcabccb7e7018ac27d36403276d599e))
+* update class name prefix from `toast` to `angular-toast` ([660eb95](https://github.com/damingerdai/angular-toaster/commit/660eb95523686c11be65f19d19ecaddea1aeae62))
+
+
+
 # [1.0.0](https://github.com/damingerdai/angular-toaster/commits/v1.0.0) (2022-08-01)
 
 
