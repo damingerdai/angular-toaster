@@ -7,7 +7,7 @@ const shelljs = require("shelljs");
 const { fetchTargets } = require("./utils");
 
 async function buildTarget(target) {
-  const { code } = shelljs.exec(`ng build ${target}`);
+  const { code } = shelljs.exec(`ng build ${target} --configuration production`);
   if (code !== 0) {
     throw new Error(`fail to compile the ${target}`);
   }
