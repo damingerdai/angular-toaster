@@ -156,8 +156,8 @@ async function main() {
   if (!(await confirmUpdateTargetVersion(targetVersion, targets))) {
     return;
   }
-//   step("\n run unit test");
-//   run("yarn test:lib:ci");
+  //   step("\n run unit test");
+  //   run("yarn test:lib:ci");
 
   step("\n update version");
   updatePackages(targetVersion, targets);
@@ -168,19 +168,22 @@ async function main() {
   step("\n generate changelog");
   run("yarn changelog");
 
-    step("\n commit");
-    run("git add package.json");
-    targets.forEach((target) =>
+  step("\n commit");
+  run("git add package.json");
+  targets
+    .filter((target) => target.projectType === "library")
+    .map((f) => fetchPackage(f))
+    .forEach((target) =>
       run(`git add ${path.resolve(target.location, "package.json")}`)
     );
-    run("git add CHANGELOG.md");
-    run(`git commit -m "chore(release): v${targetVersion}"`);
+  run("git add CHANGELOG.md");
+  run(`git commit -m "chore(release): v${targetVersion}"`);
 
-    step("\n tag");
-    run(`git tag "v${targetVersion}"`);
+  step("\n tag");
+  run(`git tag "v${targetVersion}"`);
 
-    step("\n publish github");
-    publishGithub(targetVersion);
+  step("\n publish github");
+  publishGithub(targetVersion);
 }
 
 if (require.main === module) {
