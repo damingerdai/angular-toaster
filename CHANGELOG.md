@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/damingerdai/angular-toaster/compare/v1.1.0...v1.2.0) (2023-05-08)
+
+
+### Features
+
+* bump angular from 14.1.0 to 15.0.3 ([ca4235f](https://github.com/damingerdai/angular-toaster/commit/ca4235f066b1974f5d83917cb6da4086df06c6ed))
+
+
+
 # [1.1.0](https://github.com/damingerdai/angular-toaster/compare/v1.0.0...v1.1.0) (2022-08-02)
 
 
