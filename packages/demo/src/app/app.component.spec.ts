@@ -1,9 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
+import {
+  ToasterModule
+} from '../../../angular-toaster/src/public-api'
+
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        ToasterModule.forRoot(),
+      ],
       declarations: [
         AppComponent
       ],
