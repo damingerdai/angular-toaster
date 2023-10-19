@@ -19,7 +19,7 @@
     "copy": "cpx LICENSE dist/angular-toaster && cpx packages/angular-toaster/README.md dist/angular-toaster && yarn copystyles",
     "copystyles": "cpx \"packages/angular-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular-toaster",
     "package": "yarn clean && yarn build:lib && yarn sass && yarn uglifycss && yarn copy",
-    "prerelease": "yarn build",
+    "prerelease": "yarn clean && yarn build:lib && yarn sass && yarn uglifycss && yarn copy && yarn build:demo",
     "release": "node scripts/release.js",
     "release:alpha": "node scripts/release.js --preId alpha",
     "release:beta": "node scripts/release.js --preId beta"
