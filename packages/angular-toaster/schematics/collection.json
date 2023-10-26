@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Add angular-toaster to the project.",
+      "schema": "./ng-add/schema.json",
+      "factory": "./ng-add/index"
+    },
+    "setup-css": {
+      "description": "Installs the CSS file after the ng-add dependencies have been installed.",
+      "schema": "./ng-add/schema.json",
+      "factory": "./ng-add/setup-css"
+    }
+  }
+}
