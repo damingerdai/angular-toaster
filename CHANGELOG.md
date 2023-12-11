@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/damingerdai/angular-toaster/compare/v1.2.0...v1.3.0) (2023-12-11)
+
+
+### Features
+
+* add ng-add schematics support ([a66ef4c](https://github.com/damingerdai/angular-toaster/commit/a66ef4cf07b70fbf64a5469922515ab9d6b21a2a))
+* bump angular from 15.0.3 to 16.0.0 ([dc2ad6a](https://github.com/damingerdai/angular-toaster/commit/dc2ad6ac44ea4d417098e9875ec5fd8b497c48bc))
+
+
+
 # [1.2.0](https://github.com/damingerdai/angular-toaster/compare/v1.1.0...v1.2.0) (2023-05-08)
 
 
