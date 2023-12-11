@@ -29,22 +29,22 @@
   "private": true,
   "dependencies": {
     "@angular-devkit/schematics": "^16.2.7",
-    "@angular/animations": "^16.2.8",
-    "@angular/common": "^16.2.8",
-    "@angular/compiler": "^16.2.8",
-    "@angular/core": "^16.2.8",
+    "@angular/animations": "^17.0.6",
+    "@angular/common": "^17.0.6",
+    "@angular/compiler": "^17.0.6",
+    "@angular/core": "^17.0.6",
     "@angular/cdk": "^16.2.8",
-    "@angular/forms": "^16.2.8",
-    "@angular/localize": "^16.2.8",
-    "@angular/platform-browser": "^16.2.8",
-    "@angular/platform-browser-dynamic": "^16.2.8",
-    "@angular/router": "^16.2.8",
+    "@angular/forms": "^17.0.6",
+    "@angular/localize": "^17.0.6",
+    "@angular/platform-browser": "^17.0.6",
+    "@angular/platform-browser-dynamic": "^17.0.6",
+    "@angular/router": "^17.0.6",
     "@ng-bootstrap/ng-bootstrap": "15.0.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.14.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.5",
@@ -54,7 +54,7 @@
     "@angular-eslint/schematics": "16.2.0",
     "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "^16.2.5",
-    "@angular/compiler-cli": "^16.2.8",
+    "@angular/compiler-cli": "^17.0.6",
     "@changesets/cli": "^2.24.0",
     "@schematics/angular": "^16.2.7",
     "@types/jasmine": "4.3.1",
@@ -86,6 +86,6 @@
     "semver": "^7.3.7",
     "shelljs": "^0.8.5",
     "ts-node": "10.7.0",
-    "typescript": "~5.0.4"
+    "typescript": "~5.2.2"
   }
 }
