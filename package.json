@@ -13,6 +13,7 @@
     "build:demo": "ng build demo",
     "build:lib": "ng build angular-toaster --configuration production",
     "build:schematics": "tsc -p ./packages/angular-toaster/schematics/tsconfig.json --outDir dist/angular-toaster/schematics",
+    "test:lib": "ng test angular-toaster",
     "test:lib:ci": "ng test angular-toaster  --browsers=ChromeHeadless --watch=false --code-coverage && cat ./coverage/angular-toaster/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "clean": "rimraf dist",
     "sass": "sass packages/angular-toaster/src/lib/toaster.scss dist/angular-toaster/toaster.css",
