@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/damingerdai/angular-toaster/compare/v1.3.0...v1.4.0) (2024-02-08)
+
+
+### Features
+
+* add nodejs v20 support ([a78723c](https://github.com/damingerdai/angular-toaster/commit/a78723c9f82446da87f7944ee05326368c0b37f3))
+* bump @schematics/angular to v17 ([57f42e0](https://github.com/damingerdai/angular-toaster/commit/57f42e0fa52af17ee7a99c29e08dec3736befb53))
+* bump angular cli from 16.2.5 to 17.0.6 ([3ca94fc](https://github.com/damingerdai/angular-toaster/commit/3ca94fcba35d7a2417053bf4716712bb8b3e790a))
+* bump angular eslint from 16.2.0 to 17.2.1 ([c873f8f](https://github.com/damingerdai/angular-toaster/commit/c873f8fb3653dc627718d7b04cf7c57fe16da599))
+* bump angular from 16.2.0 to 17.0.6 ([9e4828e](https://github.com/damingerdai/angular-toaster/commit/9e4828eced785199985909c95c6e85f05200c88e))
+* bump angular from 16.2.9 to 17.0.3 ([9c161d6](https://github.com/damingerdai/angular-toaster/commit/9c161d6ac77fcc0eb954ae585699029b1912f8ee))
+
+
+
 # [1.3.0](https://github.com/damingerdai/angular-toaster/compare/v1.2.0...v1.3.0) (2023-12-11)
 
 
