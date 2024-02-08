@@ -1934,10 +1934,10 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@ng-bootstrap/ng-bootstrap@15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-15.0.0.tgz#e4314a1b9a1ff218d0fff5c2f0f69c91ef1e6095"
-  integrity sha512-BA/SI7sURpKwIex6bj2ujL+xUh8oYMrc5POdGC8sVe+yX3NRS0xNbozI6oke6pL2PpYq+/zaJTmuEJsEMCplZA==
+"@ng-bootstrap/ng-bootstrap@16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-16.0.0.tgz#f2d3679bae59106efbab3469514143c7b7a70d44"
+  integrity sha512-+FJ3e6cX9DW2t7021Ji3oz433rk3+4jLfqzU+Jyx6/vJz1dIOaML3EAY6lYuW4TLiXgMPOMvs6KzPFALGh4Lag==
   dependencies:
     tslib "^2.3.0"
 
