@@ -1,6 +1,5 @@
 import { chain, Rule } from '@angular-devkit/schematics';
-import { getProjectFromWorkspace } from '@angular/cdk/schematics';
-import { getProjectTargetOptions } from '@angular/cdk/schematics';
+import { getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema } from './schema';
 
