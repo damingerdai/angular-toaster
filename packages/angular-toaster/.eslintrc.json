@@ -20,7 +20,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "toast",
+            "prefix": "toaster",
             "style": "camelCase"
           }
         ],
@@ -28,7 +28,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "toast",
+            "prefix": ["toaster", "angular-toaster"],
             "style": "kebab-case"
           }
         ]
@@ -37,6 +37,9 @@
     {
       "files": [
         "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
     }

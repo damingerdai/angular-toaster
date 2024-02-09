@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { InjectionToken } from "@angular/core";
 
 export type ToastType = 'success' | 'info' | 'warning' | 'wait' | 'error';
-export type OnActionCallback = (toast: Toast) => void;
+export type OnActionCallback = (_toast: Toast) => void;
 export type ProgressBarDirection = 'decreasing' | 'increasing';
 
 export enum BodyOutputType {

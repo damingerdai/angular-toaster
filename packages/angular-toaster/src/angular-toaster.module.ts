@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { IToasterConfig, ToasterConfigInjectionToken, defaultToasterConfig } from "./angular-toaster-config";;
+import { IToasterConfig, ToasterConfigInjectionToken, defaultToasterConfig } from "./angular-toaster-config";
 import { TrustHtmlPipe } from "./trust-html.pipe";
 import { ToasterContainerComponent } from "./angular-toaster-container.component";
 import { ToasterComponent } from "./angular-toaster.component";

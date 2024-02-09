@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DefaultTypeClasses, DefaultIconClasses, IToasterConfig, ToasterConfig, Toast, ToastType, ToasterService, ToasterModule } from 'angular-toaster';
 
@@ -14,7 +14,7 @@ type ExtendedToastType = ('customtype' | 'bad value') & ToastType;
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'dev-app';
 
   extendedTypeClasses = { ...DefaultTypeClasses, ...{ customtype: 'angular-toast-success' }};
@@ -28,7 +28,9 @@ export class AppComponent {
     iconClasses: <ExtendedToastType>this.extendedIconClasses
   });
 
-  constructor (public toasterService: ToasterService) { }
+  public toasterService: ToasterService = inject(ToasterService); 
+
+  constructor () { }
 
   show(type: ToastType) {
 		this.toasterService.pop({
@@ -62,13 +64,13 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    // console.log('entering view init');
-    // const t = 'bad value';
-    // const toast: Toast = {
-    //   type: <ExtendedToastType>t,
-    //   body: 'I am init toast'
-    // };
-    // this.toasterService.pop(toast);
+    console.log('entering view init');
+    const t = 'bad value';
+    const toast: Toast = {
+      type: <ExtendedToastType>t,
+      body: 'I am init toast'
+    };
+    this.toasterService.pop(toast);
   }
 
   toto() {
