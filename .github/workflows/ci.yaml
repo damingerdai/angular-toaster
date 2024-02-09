@@ -41,5 +41,7 @@ jobs:
         run: yarn build
       - name: Lint check
         run: yarn lint
+      - name: Schematics check
+        run: yarn test:schematics
       - name: Unit Test
         run: yarn test:lib:ci || true

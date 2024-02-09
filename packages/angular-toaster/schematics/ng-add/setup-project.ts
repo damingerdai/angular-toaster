@@ -16,7 +16,7 @@ export default function (options: Schema): Rule {
             );
             return;
         }
-        chain([addAngularToaster(options), insertCSSDependency(options)])
+        return chain([addAngularToaster(options), insertCSSDependency(options)])
     };
 }
 
@@ -25,7 +25,7 @@ function addAngularToaster(options: Schema) {
         const workspace = await getWorkspace(host);
         const project = getProjectFromWorkspace(workspace, options.project);
         const mainFilePath = getProjectMainFile(project);
-
+        console.log('isStandaloneApp(host, mainFilePath', isStandaloneApp(host, mainFilePath));
         if (isStandaloneApp(host, mainFilePath)) {
             context.logger.warn(
                 `project '${options.project}' is an angular standalone application. angular toaster will support standalone mode.`,
@@ -33,6 +33,8 @@ function addAngularToaster(options: Schema) {
         } else {
             addAngularToasterToNoStandaloneApp(host, project, mainFilePath, context);
         }
+
+        return;
     };
 }
 
@@ -49,7 +51,7 @@ function addAngularToasterToNoStandaloneApp(host: Tree, project: ProjectDefiniti
       } else {
         addModuleImportToRootModule(
           host,
-          angularToasterModulue,
+          `${angularToasterModulue}.forRoot()`,
           libName,
           project,
         );
@@ -57,7 +59,7 @@ function addAngularToasterToNoStandaloneApp(host: Tree, project: ProjectDefiniti
 }
 
 function insertCSSDependency(options: Schema): Rule {
-    const themePath = `angular-toaster/toaster.css`;
+    const themePath = './node_modules/angular-toaster/toaster.css';
     
     return chain([
       addThemeStyleToTarget(options.project, 'build', themePath),
@@ -69,6 +71,7 @@ function insertCSSDependency(options: Schema): Rule {
     return updateWorkspace(workspace => {
       // TODO: Types have separate declarations of a private property '_validateNam
       const project = getProjectFromWorkspace(workspace as any, projectName);
+      
       const targetOptions = getProjectTargetOptions(project, targetName);
       const styles = targetOptions!['styles'] as (string | { input: string })[];
   
@@ -79,6 +82,6 @@ function insertCSSDependency(options: Schema): Rule {
           return;
       }
   
-      styles.unshift(assetPath);
+      styles.push(assetPath);
     });
   }
