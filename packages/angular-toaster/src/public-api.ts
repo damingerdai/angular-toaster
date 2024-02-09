@@ -2,11 +2,8 @@
  * Public API Surface of angular-toaster
  */
 
-export * from './lib/toaster-container.component';
-export * from './lib/toaster.service';
-export * from './lib/clearWrapper';
-export * from './lib/toaster-config';
-export * from './lib/toast.component';
-export * from './lib/toast';
-export * from './lib/bodyOutputType';
-export * from './lib/toaster.module';
+export * from './angular-toaster.service';
+export * from './angular-toaster-container.component';
+export * from './angular-toaster.component';
+export * from './angular-toaster-config';
+export * from './angular-toaster.module';

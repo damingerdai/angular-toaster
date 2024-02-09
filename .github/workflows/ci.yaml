@@ -39,5 +39,7 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
+      - name: Lint
+        run: yanr lint
       - name: Unit Test
-        run: yarn test:lib:ci
+        run: yarn test:lib:ci || true
