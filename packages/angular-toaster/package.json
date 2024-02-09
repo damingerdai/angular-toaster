@@ -35,6 +35,9 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
+  "ng-add": {
+    "save": "dependencies"
+  },
   "sideEffects": false,
   "schematics": "./schematics/collection.json"
 }
