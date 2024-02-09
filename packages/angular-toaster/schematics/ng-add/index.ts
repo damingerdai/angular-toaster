@@ -1,4 +1,3 @@
-import { workspaces } from '@angular-devkit/core';
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask, RunSchematicTask } from '@angular-devkit/schematics/tasks';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';

@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-selector */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -411,7 +412,7 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     toasterContainer.ngOnInit();
 
     let status = 'not updated';
-    const toast: Toast = { type: 'info', title: 'default', onHideCallback: (toastInstance) => status = 'updated' };
+    const toast: Toast = { type: 'info', title: 'default', onHideCallback: () => status = 'updated' };
     toasterService.pop(toast);
     toasterService.clear(toast.toastId);
 

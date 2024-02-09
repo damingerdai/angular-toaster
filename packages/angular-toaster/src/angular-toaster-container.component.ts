@@ -15,7 +15,6 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
   private _toasterconfig: IToasterConfig;
 
   @Input() public set toasterconfig(_toasterconfig: IToasterConfig) {
-    //this._toasterconfig = new ToasterConfig(_toasterconfig);
     this._toasterconfig =
     (this._defaultToasterConfig
       ? { ...defaultToasterConfig, ...this._defaultToasterConfig, ..._toasterconfig }
@@ -34,10 +33,10 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
   private clearToastsSubscriber!: Subscription;
 
   constructor(
+    // eslint-disable-next-line no-unused-vars
     @Optional() @Inject(ToasterConfigInjectionToken) private _defaultToasterConfig: IToasterConfig
   ) {
     this._toasterconfig = (this._defaultToasterConfig ? { ...defaultToasterConfig, ...this._defaultToasterConfig } : defaultToasterConfig) as Required<IToasterConfig>;
-    ;
   }
 
   ngOnInit(): void {
@@ -70,7 +69,7 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
 
   removeToast(toast: Toast) {
     const index = this.toasts.indexOf(toast);
-    if (index < 0) { return };
+    if (index < 0) { return }
 
     const toastId = this.toastIdOrDefault(toast);
 
@@ -115,7 +114,7 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
 
   private addToast(toast: Toast) {
     if (toast.toastContainerId && this.toasterconfig.toastContainerId
-      && toast.toastContainerId !== this.toasterconfig.toastContainerId) { return };
+      && toast.toastContainerId !== this.toasterconfig.toastContainerId) { return }
 
     if (!toast.type
       || !this.toasterconfig.typeClasses?.[toast.type]
