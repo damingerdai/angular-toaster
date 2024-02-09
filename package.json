@@ -29,7 +29,8 @@
     "prerelease": "yarn clean && yarn build:lib && yarn sass && yarn uglifycss && yarn copy && yarn build:dev-app",
     "release": "node scripts/release.js",
     "release:alpha": "node scripts/release.js --preId alpha",
-    "release:beta": "node scripts/release.js --preId beta"
+    "release:beta": "node scripts/release.js --preId beta",
+    "prepare": "husky || true"
   },
   "private": true,
   "dependencies": {
@@ -77,6 +78,7 @@
     "esbuild": "0.14.22",
     "eslint": "^8.56.0",
     "fs-extra": "^10.1.0",
+    "husky": "^9.0.10",
     "jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

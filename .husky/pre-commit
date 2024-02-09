@@ -1,0 +1,1 @@
+ng lint angular-toaster && ng lint dev-app
