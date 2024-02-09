@@ -12,21 +12,26 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "packages/angular-toaster/tsconfig.lib.json",
             "project": "packages/angular-toaster/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "packages/angular-toaster/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/angular-toaster/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "packages/angular-toaster/src/test.ts",
             "tsConfig": "packages/angular-toaster/tsconfig.spec.json",
-            "karmaConfig": "packages/angular-toaster/karma.conf.js"
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         },
         "lint": {
@@ -40,132 +45,101 @@
         }
       }
     },
-    "demo": {
+    "dev-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "packages/demo",
-      "sourceRoot": "packages/demo/src",
+      "root": "packages/dev-app",
+      "sourceRoot": "packages/dev-app/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/demo",
-            "index": "packages/demo/src/index.html",
-            "main": "packages/demo/src/main.ts",
-            "polyfills": "packages/demo/src/polyfills.ts",
-            "tsConfig": "packages/demo/tsconfig.app.json",
+            "outputPath": "dist/dev-app",
+            "index": "packages/dev-app/src/index.html",
+            "browser": "packages/dev-app/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "packages/dev-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "packages/demo/src/favicon.ico",
-              "packages/demo/src/assets"
+              "packages/dev-app/src/favicon.ico",
+              "packages/dev-app/src/assets"
             ],
             "styles": [
-              "packages/demo/src/styles.scss"
+              "packages/dev-app/src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "server": "packages/dev-app/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "packages/dev-app/server.ts"
+            }
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "packages/demo/src/environments/environment.ts",
-                  "with": "packages/demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "demo:build"
-          },
           "configurations": {
             "production": {
-              "buildTarget": "demo:build:production"
+              "buildTarget": "dev-app:build:production"
+            },
+            "development": {
+              "buildTarget": "dev-app:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "demo:build"
+            "buildTarget": "dev-app:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "packages/demo/src/test.ts",
-            "polyfills": "packages/demo/src/polyfills.ts",
-            "tsConfig": "packages/demo/tsconfig.spec.json",
-            "karmaConfig": "packages/demo/karma.conf.js",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "packages/dev-app/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "packages/demo/src/favicon.ico",
-              "packages/demo/src/assets"
+              "packages/dev-app/src/favicon.ico",
+              "packages/dev-app/src/assets"
             ],
             "styles": [
-              "packages/demo/src/styles.scss"
+              "packages/dev-app/src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "packages/demo/e2e/protractor.conf.js",
-            "devServerTarget": "demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "demo:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/demo/**/*.ts",
-              "packages/demo/**/*.html"
-            ]
-          }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "baseHref": "https://damingerdai.github.io/angular-toaster/",
-            "name": "Angular-Toaster",
-            "email": "mingguobin@live.com"
           }
         }
       }
@@ -185,4 +159,5 @@
       "setParserOptionsProject": true
     }
   }
+
 }

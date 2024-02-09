@@ -1,0 +1,27 @@
+<div class="angular-toast-content">
+  <div [ngClass]="titleClass">{{toast.title}}</div>
+  <div [ngClass]="messageClass" [ngSwitch]="toast.bodyOutputType">
+    @switch (toast.bodyOutputType) {
+    @case (bodyOutputType.Component) {
+    <div #componentBody></div>
+    }
+    @case (bodyOutputType.TrustedHtml) {
+    <div [innerHTML]="toast.body | trustHtml"></div>
+    }
+    @case (bodyOutputType.Default) {
+    <div>{{toast.body}}</div>
+    }
+    }
+  </div>
+</div>
+@if (toast.showCloseButton) {
+<button class="angular-toast-close-button" (click)="click($event, toast)" [innerHTML]="toast.closeHtml | trustHtml">
+</button>
+
+}
+@if (toast.progressBar) {
+<div>
+  <div class="angular-toast-progress-bar" [style.width]="progressBarWidth + '%'"></div>
+</div>
+
+}
