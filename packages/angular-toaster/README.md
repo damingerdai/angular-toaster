@@ -18,6 +18,22 @@ A dynamic Angular and Typescript demo can be found at
 
 # Getting Started
 
+## schematics
+
+Use the Angular CLI's install [schematics](https://angular.io/guide/schematics) to set up [angular-toaster](https://www.npmjs.com/package/angular-toaster) by running the following command:
+
+```
+ng add angular-toaster
+```
+
+The `ng add` command will install [angular-toaster](https://www.npmjs.com/package/angular-toaster) and additionally perform the following configurations:
+
+* Add `angular-toaster` to *package.json*
+* Add `angular-toaster/toaster.css` to *angular.json*
+* Auto import `ToasterModule` into `AppModule`
+
+> This feature need angular 9+.
+
 ## Installation:
 
 ```bash
@@ -64,7 +80,6 @@ map: {
 
 ### Import via Webpack
 Simply follow the `Getting Started` instructions to import the library.
-
 
 
 ## Getting Started With Default Configuration - NgModule (Recommended):
