@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/damingerdai/angular-toaster/compare/v1.4.0...v1.5.0) (2024-02-09)
+
+
+### Bug Fixes
+
+* fix sass build error ([4c93ea0](https://github.com/damingerdai/angular-toaster/commit/4c93ea01c058a3ede27db0dc4a299d0491662283))
+
+
+### Features
+
+* fix lint error and run lint check in CI/CD ([#7](https://github.com/damingerdai/angular-toaster/issues/7)) ([fc2e757](https://github.com/damingerdai/angular-toaster/commit/fc2e7576fb6737a0bad163becd0f6cf13afe5e55))
+
+
+
 # [1.4.0](https://github.com/damingerdai/angular-toaster/compare/v1.3.0...v1.4.0) (2024-02-08)
 
 
