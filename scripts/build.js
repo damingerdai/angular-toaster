@@ -22,7 +22,7 @@ async function cssTask() {
     throw new Error(`fail to compile the scss`);
   }
   const minifyTask = shelljs.exec(
-    `node_modules/.bin/esbuild --bundle packages/angular-toaster/src/toaster.css --outfile=dist/angular-toaster/toaster.min.css --minify  --sourcemap=external`
+    `node_modules/.bin/esbuild --bundle dist/angular-toaster/toaster.css --outfile=dist/angular-toaster/toaster.min.css --minify  --sourcemap=external`
   );
   if (minifyTask.code !== 0) {
     throw new Error(`fail to minify the css`);
@@ -31,7 +31,9 @@ async function cssTask() {
 
 async function copyTask() {
   const copyJob = shelljs.exec(`
-    node_modules/.bin/cpx LICENSE dist/angular-toaster && node_modules/.bin/cpx packages/angular-toaster/README.md dist/angular-toaster && node_modules/.bin/cpx \"packages/angular-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular-toaster
+    node_modules/.bin/cpx LICENSE dist/angular-toaster \
+    && node_modules/.bin/cpx packages/angular-toaster/README.md dist/angular-toaster \
+    && node_modules/.bin/cpx packages/angular-toaster/src/toaster.scss dist/angular-toaster \
     `);
   if (copyJob.code !== 0) {
     throw new Error(`fail to copy`);
