@@ -16,13 +16,13 @@ async function buildTarget(target) {
 
 async function cssTask() {
   const sassTask = shelljs.exec(
-    `node_modules/.bin/sass packages/angular-toaster/src/lib/toaster.scss dist/angular-toaster/toaster.css`
+    `node_modules/.bin/sass packages/angular-toaster/src/toaster.scss dist/angular-toaster/toaster.css`
   );
   if (sassTask.code !== 0) {
     throw new Error(`fail to compile the scss`);
   }
   const minifyTask = shelljs.exec(
-    `node_modules/.bin/esbuild --bundle packages/angular-toaster/src/lib/toaster.css --outfile=dist/angular-toaster/toaster.min.css --minify  --sourcemap=external`
+    `node_modules/.bin/esbuild --bundle packages/angular-toaster/src/toaster.css --outfile=dist/angular-toaster/toaster.min.css --minify  --sourcemap=external`
   );
   if (minifyTask.code !== 0) {
     throw new Error(`fail to minify the css`);
