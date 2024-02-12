@@ -39,19 +39,6 @@ describe('angular toaster schematic unit test', () => {
         );
     });
 
-    // xit('should update package.json', async () => {
-    //     const options = { ...defaultOptions };
-    //     const tree = await schematicRunner.runSchematic('ng-add', options, appTree);
-    //     const packageJson = JSON.parse(tree.readContent('/package.json'));
-    //     expect(schematicRunner.tasks.some(task => task.name === 'node-package'))
-    //         .withContext('Expected the package manager to be scheduled in order to update lock files.')
-    //         .toBe(true);
-    //     expect(schematicRunner.tasks.some(task => task.name === 'run-schematic'))
-    //         .withContext('Expected the setup-project schematic to be scheduled.')
-    //         .toBe(true);
-    //     expect(packageJson.dependencies['angular-toaster']).toBe(`~${require('../../package.json').version}`);
-    // });
-
     it('should update app module', async () => {
         const options = { ...defaultOptions };
         const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
