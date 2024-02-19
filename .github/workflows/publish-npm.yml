@@ -52,3 +52,16 @@ jobs:
             Please refer to [CHANGELOG.md](https://github.com/damingerdai/angular-toaster/blob/develop/CHANGELOG.md) for details.
           draft: false
           prerelease: false
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 20.X
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.10.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      - run: npm install yarn -g
+      - run: yarn && yarn ng deploy
