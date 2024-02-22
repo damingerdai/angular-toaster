@@ -65,7 +65,7 @@
     "@angular/cli": "^17.2.0",
     "@angular/compiler-cli": "^17.2.2",
     "@changesets/cli": "^2.24.0",
-    "@schematics/angular": "^17.1.1",
+    "@schematics/angular": "^17.2.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
@@ -98,3 +98,4 @@
     "typescript": "~5.2.2"
   }
 }
+
