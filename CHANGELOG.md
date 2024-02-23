@@ -1,3 +1,13 @@
+## [1.5.1](https://github.com/damingerdai/angular-toaster/compare/v1.5.0...v1.5.1) (2024-02-23)
+
+
+### Features
+
+* bump angular 17.2.0 ([5e0af93](https://github.com/damingerdai/angular-toaster/commit/5e0af93d480abd4a409c7607eb9c4754cacf0d00))
+* bump angular schematics v17.2.0 ([5170cb9](https://github.com/damingerdai/angular-toaster/commit/5170cb9d375566c4b2fd9a06df19b58dca174934))
+
+
+
 # [1.5.0](https://github.com/damingerdai/angular-toaster/compare/v1.4.0...v1.5.0) (2024-02-09)
 
 
