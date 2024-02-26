@@ -1,6 +1,6 @@
 <div class="angular-toast-content">
   <div [ngClass]="titleClass">{{toast.title}}</div>
-  <div [ngClass]="messageClass" [ngSwitch]="toast.bodyOutputType">
+  <div [ngClass]="messageClass">
     @switch (toast.bodyOutputType) {
     @case (bodyOutputType.Component) {
     <div #componentBody></div>
@@ -17,7 +17,6 @@
 @if (toast.showCloseButton) {
 <button class="angular-toast-close-button" (click)="click($event, toast)" [innerHTML]="toast.closeHtml | trustHtml">
 </button>
-
 }
 @if (toast.progressBar) {
 <div>

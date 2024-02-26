@@ -1,30 +1,19 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { IToasterConfig, ToasterConfigInjectionToken, defaultToasterConfig } from "./angular-toaster-config";
-import { TrustHtmlPipe } from "./trust-html.pipe";
+import { IToasterConfig } from "./angular-toaster-config";
 import { ToasterContainerComponent } from "./angular-toaster-container.component";
 import { ToasterComponent } from "./angular-toaster.component";
 import { ToasterService } from "./angular-toaster.service";
-
-const toasterConfigProvider = (config?: IToasterConfig) => {
-  return {
-    provide: ToasterConfigInjectionToken, useFactory: () => {
-      const defaultConfig: IToasterConfig = config ? { ...defaultToasterConfig, ...config } : defaultToasterConfig;
-      return defaultConfig;
-    }
-  }
-}
+import { toasterConfigProvider } from "./angular-toaster.injectors";
 
 
 @NgModule({
   imports: [
     CommonModule,
-  ],
-  declarations: [
-    ToasterContainerComponent,
     ToasterComponent,
-    TrustHtmlPipe
+    ToasterContainerComponent,
   ],
+  declarations: [],
   exports: [
     ToasterContainerComponent,
     ToasterComponent

@@ -128,7 +128,7 @@ export const Transitions = [
               })),
               animate('0.15s ease-out', style({
                   opacity: 0,
-                  'background-image': ''
+                  //'background-image': ''
               })),
               animate('0.3s 20ms ease-out', style({
                   height: 0

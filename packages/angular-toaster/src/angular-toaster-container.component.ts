@@ -1,14 +1,22 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { IClearWrapper, IToasterConfig, Toast, ToasterConfigInjectionToken, defaultToasterConfig } from './angular-toaster-config';
 import { ToasterService } from './angular-toaster.service';
 import { Transitions } from './angular-toaster-animations';
+import { ToasterComponent } from './angular-toaster.component';
 
 @Component({
   selector: `toaster-container, angular-toaster-container, div[toaster-container], div[angular-toaster-container]`,
   templateUrl: './angular-toaster-container.component.html',
   styleUrl: './angular-toaster-container.component.css',
-  animations: Transitions
+  animations: Transitions,
+  standalone: true,
+  imports: [
+    NgClass,
+
+    ToasterComponent,
+  ]
 })
 export class ToasterContainerComponent implements OnInit, OnDestroy {
 

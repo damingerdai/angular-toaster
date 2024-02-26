@@ -1,11 +1,37 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, Renderer2, ViewChild, ViewContainerRef, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+  inject
+} from '@angular/core';
+import { NgClass } from '@angular/common';
 import { BodyOutputType, IToasterConfig, Toast } from './angular-toaster-config';
+import { TrustHtmlPipe } from './trust-html.pipe';
+
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[toastComp]',
   templateUrl: './angular-toaster.component.html',
-  styleUrls: ['./angular-toaster.component.css']
+  styleUrls: ['./angular-toaster.component.css'],
+  standalone: true,
+  imports: [
+    NgClass,
+
+    TrustHtmlPipe,
+
+  ]
 })
 export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
 
