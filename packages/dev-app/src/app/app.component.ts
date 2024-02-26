@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DefaultTypeClasses, DefaultIconClasses, IToasterConfig, ToasterConfig, Toast, ToastType, ToasterService, ToasterModule } from 'angular-toaster';
+import { DefaultTypeClasses, DefaultIconClasses, IToasterConfig, ToasterConfig, Toast, ToastType, ToasterService, ToasterContainerComponent } from 'angular-toaster';
 
 type ExtendedToastType = ('customtype' | 'bad value') & ToastType;
 
@@ -9,7 +9,7 @@ type ExtendedToastType = ('customtype' | 'bad value') & ToastType;
   standalone: true,
   imports: [
     RouterOutlet,
-    ToasterModule,
+    ToasterContainerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -70,7 +70,7 @@ export class AppComponent implements AfterViewInit {
       type: <ExtendedToastType>t,
       body: 'I am init toast'
     };
-    this.toasterService.pop(toast);
+    this.toasterService.popAsync(toast);
   }
 
   toto() {
