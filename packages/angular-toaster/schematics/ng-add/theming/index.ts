@@ -1,7 +1,7 @@
 import { chain, Rule, Tree, SchematicContext } from '@angular-devkit/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema } from '../schema';
-import { getProjectFromWorkspace, getProjectTargetOptions } from '../../utils';
+import { getProjectFromWorkspace, getProjectTargetOptions } from '../../utils/project';
 
 
 export function addThemeToAppStyles(options: Schema): Rule {

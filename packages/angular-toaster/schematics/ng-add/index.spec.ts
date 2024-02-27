@@ -39,29 +39,60 @@ describe('angular toaster schematic unit test', () => {
         );
     });
 
-    it('should update app module', async () => {
-        const options = { ...defaultOptions };
-        const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
-        const content = tree.readContent('/projects/angular-toaster-app/src/app/app.module.ts');
-        expect(content)
-            .withContext('Expected the ToasterModule to be imported.')
-            .toMatch(/import\s+{\s*ToasterModule\s*}\s+from\s+'angular-toaster'/);
-        expect(content)
-            .withContext('Expected the ToasterModule to be added to the imports array.')
-            .toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+ToasterModule\.forRoot\(\)\r?\n/m,);
+    describe('when project is not a standalone application', () => {
+        it('should update app module', async () => {
+            const options = { ...defaultOptions };
+            const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
+            const content = tree.readContent('/projects/angular-toaster-app/src/app/app.module.ts');
+            expect(content)
+                .withContext('Expected the ToasterModule to be imported.')
+                .toMatch(/import\s+{\s*ToasterModule\s*}\s+from\s+'angular-toaster'/);
+            expect(content)
+                .withContext('Expected the ToasterModule to be added to the imports array.')
+                .toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+ToasterModule\.forRoot\(\)\r?\n/m,);
+        });
+
+        it('should update angular styles', async () => {
+            const options = { ...defaultOptions };
+            const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
+            const angularJsonContent = tree.readContent('/angular.json');
+            const angularJson = JSON.parse(angularJsonContent);
+            const angularToasterApp = angularJson.projects['angular-toaster-app'];
+            const architect = angularToasterApp.architect;
+            const buildArchitect = architect.build;
+            const testArchitect = architect.test;
+
+            expect(buildArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
+            expect(testArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
+        });
     });
 
-    it('should update angular styles', async () => {
-        const options = { ...defaultOptions };
-        const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
-        const angularJsonContent = tree.readContent('/angular.json');
-        const angularJson = JSON.parse(angularJsonContent);
-        const angularToasterApp = angularJson.projects['angular-toaster-app'];
-        const architect = angularToasterApp.architect;
-        const buildArchitect = architect.build;
-        const testArchitect = architect.test;
 
-        expect(buildArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
-        expect(testArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
+    describe('when project is a standalone application', () => {
+        it('should update app config', async () => {
+            const options = { ...defaultOptions, project: 'angular-toaster-standalone-app' };
+            const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
+            const content = tree.readContent('/projects/angular-toaster-standalone-app/src/app/app.config.ts');
+            expect(content)
+                .withContext('Expected the provideAngularToaster to be imported.')
+                .toMatch(/import\s+{\s*provideAngularToaster\s*}\s+from\s+'angular-toaster'/);
+            expect(content)
+                .withContext('Expected the provideAngularToaster to be added to the providers array.')
+                .toMatch(/providers:\s*\[\s*.*?provideAngularToaster\(\)/);
+        });
+
+        it('should update angular styles', async () => {
+            const options = { ...defaultOptions, project: 'angular-toaster-standalone-app' };
+            const tree = await schematicRunner.runSchematic('ng-add-setup-project', options, appTree);
+            const angularJsonContent = tree.readContent('/angular.json');
+            const angularJson = JSON.parse(angularJsonContent);
+            const angularToasterApp = angularJson.projects['angular-toaster-standalone-app'];
+            const architect = angularToasterApp.architect;
+            const buildArchitect = architect.build;
+            const testArchitect = architect.test;
+
+            expect(buildArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
+            expect(testArchitect.options.styles).withContext('Expect the theme css import styles').toContain('./node_modules/angular-toaster/toaster.css');
+        });
     });
 });
