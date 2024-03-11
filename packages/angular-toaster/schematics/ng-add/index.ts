@@ -10,6 +10,6 @@ export default function (options: Schema): Rule {
       [
         installTaskId,
       ]);
-    _context.logger.log("info", '✅️ Added "ngx-apexcharts"');
+    _context.logger.log("info", '✅️ Added "angular-toaster"');
   };
 }
