@@ -1,3 +1,13 @@
+## [1.5.2](https://github.com/damingerdai/angular-toaster/compare/v1.5.1...v1.5.2) (2024-03-11)
+
+
+### Features
+
+* migrate to standalone component ([#9](https://github.com/damingerdai/angular-toaster/issues/9)) ([1764d5f](https://github.com/damingerdai/angular-toaster/commit/1764d5f634b381b3dc9c45d9c1709768c2e5052a))
+* ng-add schematic support standalone application ([#11](https://github.com/damingerdai/angular-toaster/issues/11)) ([ecd963c](https://github.com/damingerdai/angular-toaster/commit/ecd963c27ea7a75dd33e5294fb444c551387b900))
+
+
+
 ## [1.5.1](https://github.com/damingerdai/angular-toaster/compare/v1.5.0...v1.5.1) (2024-02-23)
 
 
