@@ -1,14 +1,13 @@
 import { chain, Rule, Tree, SchematicContext } from '@angular-devkit/schematics';
-import { addSymbolToNgModuleMetadata, insertImport } from '@schematics/angular/utility/ast-utils';
 import { getAppModulePath, isStandaloneApp } from '@schematics/angular/utility/ng-ast-utils';
 import { addRootProvider } from '@schematics/angular/utility';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { ProjectDefinition, getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema } from './schema';
 import { addThemeToAppStyles } from './theming';
-import { parseSourceFile } from '../utils/ast';
-import { applyChangesToFile } from '../utils/change';
+import { addModuleImportToRootModule } from '../utils/ast';
 import { getProjectFromWorkspace, getProjectMainFile } from '../utils/project';
+import { hasNgModuleImport } from '../utils/ng-module-imports';
 
 
 
@@ -32,27 +31,32 @@ function addAngularToaster(options: Schema) {
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     const mainFilePath = getProjectMainFile(project);
-    if (project?.extensions['projectType'] === ProjectType.Application) {
-      if (isStandaloneApp(host, mainFilePath)) {
-        return addAngularToasterToStandaloneApp(options.project);
-      } else {
-        return addAngularToasterToNoStandaloneApp(mainFilePath);
-      }
+    if (isStandaloneApp(host, mainFilePath)) {
+      return addAngularToasterToStandaloneApp(options.project);
+    } else {
+      return addAngularToasterToNoStandaloneApp(project, mainFilePath);
     }
-    return;
   };
 }
 
-function addAngularToasterToNoStandaloneApp(mainFile: string) {
-  return (host: Tree) => {
+function addAngularToasterToNoStandaloneApp(project: ProjectDefinition, mainFile: string,) {
+  return (host: Tree, context: SchematicContext) => {
     const angularToasterModulue = 'ToasterModule';
+    const angularToasterModulueForRoot = `${angularToasterModulue}.forRoot()`
     const libName = 'angular-toaster';
     const appModulePath = getAppModulePath(host, mainFile);
-    const moduleSource = parseSourceFile(host, appModulePath);
-    applyChangesToFile(host, appModulePath, [
-      insertImport(moduleSource, appModulePath, angularToasterModulue, libName),
-      ...addSymbolToNgModuleMetadata(moduleSource, appModulePath, 'imports', `${angularToasterModulue}.forRoot()`, null)
-    ]);
+    if (hasNgModuleImport(host, appModulePath, angularToasterModulue)) {
+      context.logger.warn(
+        `Could not set up "${angularToasterModulue}" ` +
+        `because "${angularToasterModulue}" is already imported.`,
+      );
+    }
+    addModuleImportToRootModule(
+      host,
+      angularToasterModulueForRoot,
+      libName,
+      project,
+    );
 
     return host;
   }
