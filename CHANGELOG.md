@@ -1,3 +1,14 @@
+# [1.6.0](https://github.com/damingerdai/angular-toaster/compare/v1.5.2...v1.6.0) (2024-08-06)
+
+
+### Features
+
+* bump @schematics/angular to v18 ([f7c28ce](https://github.com/damingerdai/angular-toaster/commit/f7c28ce1d2dd2c8a69a1e4d9a1e93ed298a91cee))
+* bump angular 18 ([e517c2f](https://github.com/damingerdai/angular-toaster/commit/e517c2fa54ef21ba1ef235cccd46b2fd51b0ff62))
+* set angular-toaster support angualr mini version v18 ([2b409a7](https://github.com/damingerdai/angular-toaster/commit/2b409a745baf3c5983debeeef27446b906f5727b))
+
+
+
 ## [1.5.2](https://github.com/damingerdai/angular-toaster/compare/v1.5.1...v1.5.2) (2024-03-11)
 
 
