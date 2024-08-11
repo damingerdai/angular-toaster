@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/damingerdai/angular-toaster/compare/v1.6.0...v1.6.1) (2024-08-11)
+
+
+### Bug Fixes
+
+* **schematics:** add collection.json into schematics file ([e975df5](https://github.com/damingerdai/angular-toaster/commit/e975df5f6ebd34f5c76297601bf54db93bef693a))
+
+
+
 # [1.6.0](https://github.com/damingerdai/angular-toaster/compare/v1.5.2...v1.6.0) (2024-08-06)
 
 
