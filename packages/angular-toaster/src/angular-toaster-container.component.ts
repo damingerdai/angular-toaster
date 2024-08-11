@@ -110,8 +110,6 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
   // private functions
   private registerSubscribers() {
     this.addToastSubscriber = this.toasterService.addToast.subscribe((toast: Toast) => {
-      console.log('addToastSubscriber');
-      console.log(toast);
       this.addToast(toast);
     });
 
