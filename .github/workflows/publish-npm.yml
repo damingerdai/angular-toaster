@@ -32,6 +32,7 @@ jobs:
       - run: npm install -g yarn
       - run: yarn
       - run: yarn package
+      - run: yarn copyfile
       - run: cd dist/angular-toaster && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
