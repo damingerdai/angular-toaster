@@ -1,3 +1,12 @@
+# [1.7.0-beta.1](https://github.com/damingerdai/angular-toaster/compare/v1.7.0-beta.0...v1.7.0-beta.1) (2025-05-03)
+
+
+### Features
+
+* bump @schematics/angular to v19 ([fa9cf20](https://github.com/damingerdai/angular-toaster/commit/fa9cf207ed236fac1eabdd497f2d9c1154eb110c))
+
+
+
 # [1.7.0-beta.0](https://github.com/damingerdai/angular-toaster/compare/v1.6.1...v1.7.0-beta.0) (2025-05-03)
 
 
