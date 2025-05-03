@@ -5,9 +5,10 @@ import { DefaultTypeClasses, DefaultIconClasses, IToasterConfig, ToasterConfig, 
 type ExtendedToastType = ('customtype' | 'bad value') & ToastType;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    standalone: false
 })
 export class AppComponent implements AfterViewInit {
   title = 'dev-module-app';

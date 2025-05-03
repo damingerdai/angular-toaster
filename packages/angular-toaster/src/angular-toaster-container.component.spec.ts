@@ -13,8 +13,9 @@ type ExtendedToastType = ('customtype' | '') & ToastType;
 
 
 @Component({
-  selector: 'test-component',
-  template: '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
+    selector: 'test-component',
+    template: '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
+    standalone: false
 })
 export class TestComponent {
   toasterService: ToasterService;
@@ -38,8 +39,9 @@ export class TestComponent {
 export class TestComponentModule { }
 
 @Component({
-  selector: 'test-dynamic-component',
-  template: `<div>loaded via component</div>`
+    selector: 'test-dynamic-component',
+    template: `<div>loaded via component</div>`,
+    standalone: false
 })
 export class TestDynamicComponent { }
 @NgModule({
@@ -50,8 +52,9 @@ export class TestDynamicComponent { }
 export class TestDynamicComponentModule { }
 
 @Component({
-  selector: 'bound-dynamic-component',
-  template: '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click"></button></div>'
+    selector: 'bound-dynamic-component',
+    template: '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click"></button></div>',
+    standalone: false
 })
 export class TestBoundDynamicComponent {
   someValue = 'Some value';

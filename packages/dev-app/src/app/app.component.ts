@@ -5,14 +5,13 @@ import { DefaultTypeClasses, DefaultIconClasses, IToasterConfig, ToasterConfig, 
 type ExtendedToastType = ('customtype' | 'bad value') & ToastType;
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    ToasterContainerComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        ToasterContainerComponent,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit {
   title = 'dev-app';

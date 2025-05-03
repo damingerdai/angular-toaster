@@ -7,16 +7,14 @@ import { Transitions } from './angular-toaster-animations';
 import { ToasterComponent } from './angular-toaster.component';
 
 @Component({
-  selector: `toaster-container, angular-toaster-container, div[toaster-container], div[angular-toaster-container]`,
-  templateUrl: './angular-toaster-container.component.html',
-  styleUrl: './angular-toaster-container.component.css',
-  animations: Transitions,
-  standalone: true,
-  imports: [
-    NgClass,
-
-    ToasterComponent,
-  ]
+    selector: `toaster-container, angular-toaster-container, div[toaster-container], div[angular-toaster-container]`,
+    templateUrl: './angular-toaster-container.component.html',
+    styleUrl: './angular-toaster-container.component.css',
+    animations: Transitions,
+    imports: [
+        NgClass,
+        ToasterComponent,
+    ]
 })
 export class ToasterContainerComponent implements OnInit, OnDestroy {
 

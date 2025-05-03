@@ -21,17 +21,14 @@ import { TrustHtmlPipe } from './trust-html.pipe';
 
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[toastComp]',
-  templateUrl: './angular-toaster.component.html',
-  styleUrls: ['./angular-toaster.component.css'],
-  standalone: true,
-  imports: [
-    NgClass,
-
-    TrustHtmlPipe,
-
-  ]
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[toastComp]',
+    templateUrl: './angular-toaster.component.html',
+    styleUrls: ['./angular-toaster.component.css'],
+    imports: [
+        NgClass,
+        TrustHtmlPipe,
+    ]
 })
 export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
 
