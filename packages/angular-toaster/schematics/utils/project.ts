@@ -1,58 +1,73 @@
-import { JsonValue, Path, workspaces } from '@angular-devkit/core';
-import { SchematicsException } from '@angular-devkit/schematics';
+import { JsonValue, Path } from "@angular-devkit/core";
+import { SchematicsException } from "@angular-devkit/schematics";
+import { ProjectDefinition, TargetDefinition, WorkspaceDefinition } from '@schematics/angular/utility';
 
 /** Resolves the architect options for the build target of the given project. */
 export function getProjectTargetOptions(
-  project: workspaces.ProjectDefinition,
+  project: ProjectDefinition,
   buildTarget: string
 ): Record<string, JsonValue | undefined> {
   const options = project.targets?.get(buildTarget)?.options;
 
   if (!options) {
-    throw new SchematicsException(`Cannot determine project target configuration for: ${buildTarget}.`);
+    throw new SchematicsException(
+      `Cannot determine project target configuration for: ${buildTarget}.`
+    );
   }
 
   return options;
 }
 
 /** Gets all of the default CLI-provided build targets in a project. */
-export function getProjectBuildTargets(project: workspaces.ProjectDefinition): workspaces.TargetDefinition[] {
+export function getProjectBuildTargets(
+  project: ProjectDefinition
+): TargetDefinition[] {
   return getTargetsByBuilderName(
     project,
-    builder =>
-      builder === '@angular-devkit/build-angular:application' ||
-      builder === '@angular-devkit/build-angular:browser' ||
-      builder === '@angular-devkit/build-angular:browser-esbuild'
+    (builder) =>
+      builder === "@angular-devkit/build-angular:application" ||
+      builder === "@angular-devkit/build-angular:browser" ||
+      builder === "@angular-devkit/build-angular:browser-esbuild"
   );
 }
 
 /** Gets all of the default CLI-provided testing targets in a project. */
-export function getProjectTestTargets(project: workspaces.ProjectDefinition): workspaces.TargetDefinition[] {
-  return getTargetsByBuilderName(project, builder => builder === '@angular-devkit/build-angular:karma');
+export function getProjectTestTargets(
+  project: ProjectDefinition
+): TargetDefinition[] {
+  return getTargetsByBuilderName(
+    project,
+    (builder) => builder === "@angular-devkit/build-angular:karma"
+  );
 }
 
 /** Gets all targets from the given project that pass a predicate check. */
 function getTargetsByBuilderName(
-  project: workspaces.ProjectDefinition,
+  project: ProjectDefinition,
   // eslint-disable-next-line no-unused-vars
-  predicate: (name: string | undefined) => boolean
-): workspaces.TargetDefinition[] {
+  predicate: (_name: string | undefined) => boolean
+): TargetDefinition[] {
   return Array.from(project.targets.keys())
-    .filter(name => predicate(project.targets.get(name)?.builder))
-    .map(name => project.targets.get(name)!);
+    .filter((name) => predicate(project.targets.get(name as string)?.builder))
+    .map((name) => project.targets.get(name as string)!);
 }
 
 /** Looks for the main TypeScript file in the given project and returns its path. */
-export function getProjectMainFile(project: workspaces.ProjectDefinition): Path {
-  const buildOptions = getProjectTargetOptions(project, 'build');
+export function getProjectMainFile(
+  project: ProjectDefinition
+): Path {
+  const buildOptions = getProjectTargetOptions(project, "build");
 
   // `browser` is for the `@angular-devkit/build-angular:application` builder while
   // `main` is for the `@angular-devkit/build-angular:browser` builder.
-  const mainPath = (buildOptions['browser'] || buildOptions['main']) as Path | undefined;
+  const mainPath = (buildOptions["browser"] || buildOptions["main"]) as
+    | Path
+    | undefined;
 
   if (!mainPath) {
     throw new SchematicsException(
-      `Could not find the project main file inside of the ` + `workspace config (${project.sourceRoot})`
+      `Could not find the project main file inside of the ` +
+        `workspace config (${project.sourceRoot})`
     );
   }
 
@@ -64,20 +79,23 @@ export function getProjectMainFile(project: workspaces.ProjectDefinition): Path 
  * couldn't be found.
  */
 export function getProjectFromWorkspace(
-  workspace: workspaces.WorkspaceDefinition,
+  workspace: WorkspaceDefinition,
   projectName: string | undefined
-): workspaces.ProjectDefinition {
+): ProjectDefinition {
   if (!projectName) {
     // TODO(crisbeto): some schematics APIs have the project name as optional so for now it's
     // simpler to allow undefined and checking it at runtime. Eventually we should clean this up.
-    throw new SchematicsException('Project name is required.');
+    throw new SchematicsException("Project name is required.");
   }
 
   const project = workspace.projects.get(projectName);
 
   if (!project) {
-    throw new SchematicsException(`Could not find project in workspace: ${projectName}`);
+    throw new SchematicsException(
+      `Could not find project in workspace: ${projectName}`
+    );
   }
 
   return project;
 }
+
