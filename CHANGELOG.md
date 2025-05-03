@@ -1,3 +1,13 @@
+# [1.7.0-beta.0](https://github.com/damingerdai/angular-toaster/compare/v1.6.1...v1.7.0-beta.0) (2025-05-03)
+
+
+### Features
+
+* bump @ng-bootstrap/ng-bootstrap to v18 ([ff2a8fb](https://github.com/damingerdai/angular-toaster/commit/ff2a8fbea8b47b6fa698afd02bbd82315aaaca90))
+* bump angular v19 ([239f40a](https://github.com/damingerdai/angular-toaster/commit/239f40a342e83488da5964a6fc35af23c3164965))
+
+
+
 ## [1.6.1](https://github.com/damingerdai/angular-toaster/compare/v1.6.0...v1.6.1) (2024-08-11)
 
 
