@@ -1,76 +1,91 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { ToasterContainerComponent } from './angular-toaster-container.component';
-import { BodyOutputType, IToasterConfig, Toast, ToastType, ToasterConfig } from './angular-toaster-config';
-import { Component, NgModule } from '@angular/core';
-import { ToasterModule } from './angular-toaster.module';
-import { ToasterService } from './angular-toaster.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { ToasterContainerComponent } from "./angular-toaster-container.component";
+import {
+  BodyOutputType,
+  IToasterConfig,
+  Toast,
+  ToastType,
+  ToasterConfig,
+} from "./angular-toaster-config";
+import { Component, NgModule } from "@angular/core";
+import { ToasterModule } from "./angular-toaster.module";
+import { ToasterService } from "./angular-toaster.service";
+import { BrowserModule } from "@angular/platform-browser";
 
-type ExtendedToastType = ('customtype' | '') & ToastType;
-
+type ExtendedToastType = ("customtype" | "") & ToastType;
 
 @Component({
-    selector: 'test-component',
-    template: '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
-    standalone: false
+  selector: "test-component",
+  template:
+    '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
 })
 export class TestComponent {
   toasterService: ToasterService;
 
-  public toasterconfig: IToasterConfig =
-    { showCloseButton: true, tapToDismiss: false, timeout: 0, toastContainerId: 1 };
-  public toasterconfig2: IToasterConfig =
-    { showCloseButton: true, tapToDismiss: false, timeout: 0, toastContainerId: 2 };
+  public toasterconfig: IToasterConfig = {
+    showCloseButton: true,
+    tapToDismiss: false,
+    timeout: 0,
+    toastContainerId: 1,
+  };
+  public toasterconfig2: IToasterConfig = {
+    showCloseButton: true,
+    tapToDismiss: false,
+    timeout: 0,
+    toastContainerId: 2,
+  };
 
   constructor(toasterService: ToasterService) {
     this.toasterService = toasterService;
   }
 }
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    ToasterModule.forRoot()
-  ],
-  declarations: [TestComponent]
+  imports: [BrowserAnimationsModule, ToasterModule.forRoot()],
+  declarations: [TestComponent],
 })
-export class TestComponentModule { }
+export class TestComponentModule {}
 
 @Component({
-    selector: 'test-dynamic-component',
-    template: `<div>loaded via component</div>`,
-    standalone: false
+  selector: "test-dynamic-component",
+  template: `<div>loaded via component</div>`,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
 })
-export class TestDynamicComponent { }
+export class TestDynamicComponent {}
 @NgModule({
   imports: [ToasterModule.forChild()],
   bootstrap: [TestDynamicComponent],
-  declarations: [TestDynamicComponent]
+  declarations: [TestDynamicComponent],
 })
-export class TestDynamicComponentModule { }
+export class TestDynamicComponentModule {}
 
 @Component({
-    selector: 'bound-dynamic-component',
-    template: '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click"></button></div>',
-    standalone: false
+  selector: "bound-dynamic-component",
+  template:
+    '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click"></button></div>',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
 })
 export class TestBoundDynamicComponent {
-  someValue = 'Some value';
+  someValue = "Some value";
   public toast: Toast = null as unknown as Toast;
 
   clickHandler() {
-    this.toast.title = 'updated title';
+    this.toast.title = "updated title";
   }
 }
 @NgModule({
   bootstrap: [TestBoundDynamicComponent],
-  declarations: [TestBoundDynamicComponent]
+  declarations: [TestBoundDynamicComponent],
 })
 export class TestBoundDynamicComponentModule {}
 
-describe('ToasterContainerComponent with sync ToasterService', () => {
+describe("ToasterContainerComponent with sync ToasterService", () => {
   let toasterService: ToasterService,
     toasterContainer: ToasterContainerComponent,
     fixture: ComponentFixture<TestComponent>;
@@ -78,7 +93,11 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [BrowserModule, BrowserAnimationsModule, ToasterModule.forRoot()]
+      imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        ToasterModule.forRoot(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent<TestComponent>(TestComponent);
@@ -87,21 +106,23 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     return fixture;
   });
 
-
-  it('should pop toast synchronously', () => {
+  it("should pop toast synchronously", () => {
     toasterContainer.ngOnInit();
-    toasterService.pop('success', 'test', 'test');
+    toasterService.pop("success", "test", "test");
 
     expect(toasterContainer.toasts.length).toBe(1);
   });
 
-  it('should pop toast asynchronously', async (done) => {
+  it("should pop toast asynchronously", async (done) => {
     // create test-specific fixture to protect against
     // container being overwritten by other tests since this
     // test now executes fully asynchronously
-    const fixtureInstance = TestBed.createComponent<TestComponent>(TestComponent);
-    const toasterContainerInstance = fixtureInstance.debugElement.children[0].componentInstance;
-    const toasterServiceInstance = fixtureInstance.componentInstance.toasterService;
+    const fixtureInstance =
+      TestBed.createComponent<TestComponent>(TestComponent);
+    const toasterContainerInstance =
+      fixtureInstance.debugElement.children[0].componentInstance;
+    const toasterServiceInstance =
+      fixtureInstance.componentInstance.toasterService;
 
     fixtureInstance.detectChanges();
 
@@ -109,26 +130,31 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     // a call to ngOnInit is redundant.
     await fixtureInstance.whenStable();
 
-    toasterServiceInstance.popAsync('success', 'test', 'test')
-      .subscribe(toast => {
+    toasterServiceInstance.popAsync("success", "test", "test").subscribe(
+      (toast) => {
         expect(toast).toBeDefined();
-        expect(toast.type).toBe('success');
+        expect(toast.type).toBe("success");
         expect(toasterContainerInstance.toasts.length).toBe(1);
         expect(toast.toastId).toBe(toasterContainerInstance.toasts[0].toastId);
 
         done();
-      }, () => {
+      },
+      () => {
         done();
-      });
+      }
+    );
   });
 
-  it('should pop toast asynchronously multiple times', async (done) => {
+  it("should pop toast asynchronously multiple times", async (done) => {
     // create test-specific fixture to protect against
     // container being overwritten by other tests since this
     // test now executes fully asynchronously
-    const fixtureInstance = TestBed.createComponent<TestComponent>(TestComponent);
-    const toasterContainerInstance = fixtureInstance.debugElement.children[0].componentInstance;
-    const toasterServiceInstance = fixtureInstance.componentInstance.toasterService;
+    const fixtureInstance =
+      TestBed.createComponent<TestComponent>(TestComponent);
+    const toasterContainerInstance =
+      fixtureInstance.debugElement.children[0].componentInstance;
+    const toasterServiceInstance =
+      fixtureInstance.componentInstance.toasterService;
 
     fixtureInstance.detectChanges();
 
@@ -136,12 +162,13 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     // a call to ngOnInit is redundant.
     await fixtureInstance.whenStable();
 
-    toasterServiceInstance.popAsync('success', 'test1', 'test1');
-    toasterServiceInstance.popAsync('success', 'test2', 'test2');
-    toasterServiceInstance.popAsync('success', 'test3', 'test3')
-      .subscribe(toast => {
+    toasterServiceInstance.popAsync("success", "test1", "test1");
+    toasterServiceInstance.popAsync("success", "test2", "test2");
+    toasterServiceInstance
+      .popAsync("success", "test3", "test3")
+      .subscribe((toast) => {
         expect(toast).toBeDefined();
-        expect(toast.type).toBe('success');
+        expect(toast.type).toBe("success");
 
         let locatedToast;
         for (let i = 0; i < toasterContainerInstance.toasts.length; i++) {
@@ -157,11 +184,11 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
       });
   });
 
-  it('should retrieve toast instance from pop observer', () => {
+  it("should retrieve toast instance from pop observer", () => {
     toasterContainer.ngOnInit();
     let toast: Toast = {
-      type: 'success',
-      title: 'observer toast'
+      type: "success",
+      title: "observer toast",
     };
 
     expect(toasterContainer.toasts.length).toBe(0);
@@ -174,46 +201,48 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toast.toastId).toBe(toasterContainer.toasts[0].toastId);
   });
 
-  it('should clear toast synchronously', () => {
+  it("should clear toast synchronously", () => {
     toasterContainer.ngOnInit();
 
-    toasterService.pop('success', 'test', 'test');
+    toasterService.pop("success", "test", "test");
     expect(toasterContainer.toasts.length).toBe(1);
 
     toasterService.clear();
     expect(toasterContainer.toasts.length).toBe(0);
   });
 
-  it('should throw exception if toast is popped without any subscribers being registered', () => {
+  it("should throw exception if toast is popped without any subscribers being registered", () => {
     let hasError = false;
 
     try {
-      toasterService.pop('success', 'test', 'test');
+      toasterService.pop("success", "test", "test");
     } catch (e) {
       hasError = true;
-      expect((e as Error).message).toBe('No Toaster Containers have been initialized to receive toasts.');
+      expect((e as Error).message).toBe(
+        "No Toaster Containers have been initialized to receive toasts."
+      );
     }
 
     expect(toasterContainer.toasts.length).toBe(0);
     expect(hasError).toBe(true);
   });
 
-  it('should remove subscribers when ngOnDestroy is called', () => {
+  it("should remove subscribers when ngOnDestroy is called", () => {
     toasterContainer.ngOnInit();
 
-    toasterService.pop('success', 'test', 'test');
+    toasterService.pop("success", "test", "test");
     expect(toasterContainer.toasts.length).toBe(1);
 
     toasterContainer.ngOnDestroy();
 
-    toasterService.pop('success', 'test 2', 'test 2');
+    toasterService.pop("success", "test 2", "test 2");
     toasterService.clear();
     expect(toasterContainer.toasts.length).toBe(1);
   });
 
-  it('will not attempt to remove subscribers when ngOnDestroy is called if ngOnInit is not called', () => {
-    spyOn(toasterContainer, 'ngOnInit').and.callThrough();
-    spyOn(toasterContainer, 'ngOnDestroy').and.callThrough();
+  it("will not attempt to remove subscribers when ngOnDestroy is called if ngOnInit is not called", () => {
+    spyOn(toasterContainer, "ngOnInit").and.callThrough();
+    spyOn(toasterContainer, "ngOnDestroy").and.callThrough();
     expect(toasterContainer.ngOnInit).not.toHaveBeenCalled();
 
     toasterContainer.ngOnDestroy();
@@ -221,9 +250,9 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.ngOnDestroy).toHaveBeenCalled();
   });
 
-  it('addToast should not add toast if toasterContainerId is provided and it does not match', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ toastContainerId: 2 })
-    const toast: Toast = { type: 'success', toastContainerId: 1 };
+  it("addToast should not add toast if toasterContainerId is provided and it does not match", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({ toastContainerId: 2 });
+    const toast: Toast = { type: "success", toastContainerId: 1 };
     toasterContainer.ngOnInit();
 
     toasterService.pop(toast);
@@ -231,20 +260,23 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts.length).toBe(0);
   });
 
-  it('addToast should use defaultTypeClass if type is empty string', () => {
+  it("addToast should use defaultTypeClass if type is empty string", () => {
     toasterContainer.ngOnInit();
 
-    toasterService.pop(<ExtendedToastType>'', '', '');
+    toasterService.pop(<ExtendedToastType>"", "", "");
 
-    expect(toasterContainer.toasterconfig.defaultToastType).toBe('info');
+    expect(toasterContainer.toasterconfig.defaultToastType).toBe("info");
     expect(toasterContainer.toasts.length).toBe(1);
-    expect(toasterContainer.toasts[0].type).toBe('info');
+    expect(toasterContainer.toasts[0].type).toBe("info");
   });
 
-  it('addToast should not add toast if preventDuplicates and the same toastId exists', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ preventDuplicates: true, toastContainerId: 30 });
+  it("addToast should not add toast if preventDuplicates and the same toastId exists", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({
+      preventDuplicates: true,
+      toastContainerId: 30,
+    });
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info', toastContainerId: 30 };
+    const toast: Toast = { type: "info", toastContainerId: 30 };
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
@@ -252,12 +284,14 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts.length).toBe(1);
   });
 
-  it('addToast should not add toast if preventDuplicates and toastId does not exist and the same body exists', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ preventDuplicates: true });
+  it("addToast should not add toast if preventDuplicates and toastId does not exist and the same body exists", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({
+      preventDuplicates: true,
+    });
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info', body: 'test' };
-    const toast2: Toast = { type: 'info', body: 'test2' };
-    const toast3: Toast = { type: 'info', body: 'test2' };
+    const toast: Toast = { type: "info", body: "test" };
+    const toast2: Toast = { type: "info", body: "test2" };
+    const toast3: Toast = { type: "info", body: "test2" };
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
@@ -267,9 +301,9 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts.length).toBe(2);
   });
 
-  it('addToast uses toast.showCloseButton if defined', () => {
+  it("addToast uses toast.showCloseButton if defined", () => {
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info', showCloseButton: true };
+    const toast: Toast = { type: "info", showCloseButton: true };
 
     toasterService.pop(toast);
 
@@ -278,157 +312,193 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts[0].showCloseButton).toBe(true);
   });
 
-  it('addToast uses toasterconfig.showCloseButton object if defined and toast.showCloseButton is undefined', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ showCloseButton: { 'info': true } });
+  it("addToast uses toasterconfig.showCloseButton object if defined and toast.showCloseButton is undefined", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({
+      showCloseButton: { info: true },
+    });
 
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info' };
-    const toast2: Toast = { type: 'success' };
+    const toast: Toast = { type: "info" };
+    const toast2: Toast = { type: "success" };
 
     toasterService.pop(toast);
     toasterService.pop(toast2);
 
-    const infoToast = toasterContainer.toasts.filter(t => t.type === 'info')[0];
-    const successToast = toasterContainer.toasts.filter(t => t.type === 'success')[0];
+    const infoToast = toasterContainer.toasts.filter(
+      (t) => t.type === "info"
+    )[0];
+    const successToast = toasterContainer.toasts.filter(
+      (t) => t.type === "success"
+    )[0];
 
     expect(infoToast.showCloseButton).toBe(true);
     expect(successToast.showCloseButton).toBeUndefined();
   });
 
-  it('addToast uses toast.showCloseButton if defined as an empty string', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ showCloseButton: false });
-    (<any>toasterContainer.toasterconfig.showCloseButton) = '';
+  it("addToast uses toast.showCloseButton if defined as an empty string", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({
+      showCloseButton: false,
+    });
+    (<any>toasterContainer.toasterconfig.showCloseButton) = "";
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info' };
+    const toast: Toast = { type: "info" };
 
     toasterService.pop(toast);
     expect(toasterContainer.toasts[0].showCloseButton).toBeUndefined();
   });
 
-  it('addToast removes toast from bottom if toasterconfig.newestOnTop and limit exceeded', () => {
+  it("addToast removes toast from bottom if toasterconfig.newestOnTop and limit exceeded", () => {
     toasterContainer.toasterconfig = new ToasterConfig({ limit: 2 });
     toasterContainer.ngOnInit();
 
     expect(toasterContainer.toasterconfig.newestOnTop).toBe(true);
     expect(toasterContainer.toasterconfig.limit).toBe(2);
 
-    const toast1: Toast = { type: 'info', title: '1', body: '1' };
-    const toast2: Toast = { type: 'info', title: '2', body: '2' };
-    const toast3: Toast = { type: 'info', title: '3', body: '3' };
-    const toast4: Toast = { type: 'info', title: '4', body: '4' };
+    const toast1: Toast = { type: "info", title: "1", body: "1" };
+    const toast2: Toast = { type: "info", title: "2", body: "2" };
+    const toast3: Toast = { type: "info", title: "3", body: "3" };
+    const toast4: Toast = { type: "info", title: "4", body: "4" };
 
     toasterService.pop(toast1);
     toasterService.pop(toast2);
     toasterService.pop(toast3);
     toasterService.pop(toast4);
     expect(toasterContainer.toasts.length).toBe(2);
-    expect(toasterContainer.toasts[0].title).toBe('4');
+    expect(toasterContainer.toasts[0].title).toBe("4");
     expect(toasterContainer.toasts[0]).toBe(toast4);
   });
 
-  it('addToast will not populate body with TrustedHtml if body is null', () => {
+  it("addToast will not populate body with TrustedHtml if body is null", () => {
     toasterContainer.toasterconfig = new ToasterConfig();
     toasterContainer.ngOnInit();
-    const testSvg = '<svg width="400" height="110"><rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect></svg>';
+    const testSvg =
+      '<svg width="400" height="110"><rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect></svg>';
     const toast1: Toast = {
-      type: 'info',
-      title: '1',
+      type: "info",
+      title: "1",
       body: testSvg,
-      bodyOutputType: BodyOutputType.TrustedHtml
+      bodyOutputType: BodyOutputType.TrustedHtml,
     };
 
     toasterService.pop(toast1);
     fixture.detectChanges();
-    const closeButtonEle = fixture.nativeElement.querySelector('.angular-toast-message');
+    const closeButtonEle = fixture.nativeElement.querySelector(
+      ".angular-toast-message"
+    );
     expect(closeButtonEle.innerHTML).toContain(testSvg);
   });
 
-  it('addToast will not populate safeCloseHtml if closeHtml is null', () => {
+  it("addToast will not populate safeCloseHtml if closeHtml is null", () => {
     toasterContainer.toasterconfig = new ToasterConfig();
-    toasterContainer.toasterconfig.closeHtml = '';
+    toasterContainer.toasterconfig.closeHtml = "";
     toasterContainer.ngOnInit();
 
-    const toast1: Toast = { type: 'info', title: '1', body: '1', showCloseButton: true };
+    const toast1: Toast = {
+      type: "info",
+      title: "1",
+      body: "1",
+      showCloseButton: true,
+    };
 
     toasterService.pop(toast1);
     fixture.detectChanges();
 
-    const closeButtonEle = fixture.nativeElement.querySelector('.angular-toast-close-button');
-    expect(closeButtonEle.innerHTML).toBe('');
+    const closeButtonEle = fixture.nativeElement.querySelector(
+      ".angular-toast-close-button"
+    );
+    expect(closeButtonEle.innerHTML).toBe("");
   });
 
-  it('addToast will populate safeCloseHtml with default html', () => {
+  it("addToast will populate safeCloseHtml with default html", () => {
     toasterContainer.toasterconfig = new ToasterConfig();
     toasterContainer.ngOnInit();
 
-    const toast1: Toast = { type: 'info', title: '1', body: '1', showCloseButton: true };
+    const toast1: Toast = {
+      type: "info",
+      title: "1",
+      body: "1",
+      showCloseButton: true,
+    };
     toasterService.pop(toast1);
 
     fixture.detectChanges();
 
-    const closeButtonEle = fixture.nativeElement.querySelector('.angular-toast-close-button');
-    expect(closeButtonEle.innerHTML).toBe('<span>×</span>');
+    const closeButtonEle = fixture.nativeElement.querySelector(
+      ".angular-toast-close-button"
+    );
+    expect(closeButtonEle.innerHTML).toBe("<span>×</span>");
   });
 
-  it('addToast removes toast from top if !toasterconfig.newestOnTop and limit exceeded', () => {
-    toasterContainer.toasterconfig = new ToasterConfig({ newestOnTop: false, limit: 2 });
+  it("addToast removes toast from top if !toasterconfig.newestOnTop and limit exceeded", () => {
+    toasterContainer.toasterconfig = new ToasterConfig({
+      newestOnTop: false,
+      limit: 2,
+    });
     toasterContainer.ngOnInit();
     expect(toasterContainer.toasterconfig.newestOnTop).toBe(false);
     expect(toasterContainer.toasterconfig.limit).toBe(2);
 
-    const toast1: Toast = { type: 'info', title: '1', body: '1' };
-    const toast2: Toast = { type: 'info', title: '2', body: '2' };
-    const toast3: Toast = { type: 'info', title: '3', body: '3' };
-    const toast4: Toast = { type: 'info', title: '4', body: '4' };
+    const toast1: Toast = { type: "info", title: "1", body: "1" };
+    const toast2: Toast = { type: "info", title: "2", body: "2" };
+    const toast3: Toast = { type: "info", title: "3", body: "3" };
+    const toast4: Toast = { type: "info", title: "4", body: "4" };
 
     toasterService.pop(toast1);
     toasterService.pop(toast2);
     toasterService.pop(toast3);
     toasterService.pop(toast4);
     expect(toasterContainer.toasts.length).toBe(2);
-    expect(toasterContainer.toasts[0].title).toBe('3');
+    expect(toasterContainer.toasts[0].title).toBe("3");
     expect(toasterContainer.toasts[0]).toBe(toast3);
   });
 
-  it('addToast calls onShowCallback if it exists', () => {
+  it("addToast calls onShowCallback if it exists", () => {
     toasterContainer.ngOnInit();
 
-    const toast: Toast = { type: 'info', title: 'default', onShowCallback: (toaster) => toaster.title = 'updated' };
+    const toast: Toast = {
+      type: "info",
+      title: "default",
+      onShowCallback: (toaster) => (toaster.title = "updated"),
+    };
     toasterService.pop(toast);
 
-    expect(toasterContainer.toasts[0].title).toBe('updated');
+    expect(toasterContainer.toasts[0].title).toBe("updated");
   });
 
-  it('removeToast will not remove the toast if it is not found in the toasters array', () => {
+  it("removeToast will not remove the toast if it is not found in the toasters array", () => {
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info' };
+    const toast: Toast = { type: "info" };
 
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
 
-    toasterService.clear('faketoastid');
+    toasterService.clear("faketoastid");
     expect(toasterContainer.toasts.length).toBe(1);
   });
 
-  it('removeToast calls onHideCallback if it exists', () => {
+  it("removeToast calls onHideCallback if it exists", () => {
     toasterContainer.ngOnInit();
 
-    let status = 'not updated';
-    const toast: Toast = { type: 'info', title: 'default', onHideCallback: () => status = 'updated' };
+    let status = "not updated";
+    const toast: Toast = {
+      type: "info",
+      title: "default",
+      onHideCallback: () => (status = "updated"),
+    };
     toasterService.pop(toast);
     toasterService.clear(toast.toastId);
 
-    expect(status).toBe('updated');
+    expect(status).toBe("updated");
   });
 
-  it('removeToast notifies the removeToast subscribers', (done) => {
+  it("removeToast notifies the removeToast subscribers", (done) => {
     toasterContainer.ngOnInit();
 
-    const toast: Toast = { type: 'info', title: 'default' };
+    const toast: Toast = { type: "info", title: "default" };
     toasterService.pop(toast);
 
-    toasterService.removeToast.subscribe(t => {
+    toasterService.removeToast.subscribe((t) => {
       expect(t.toastId).toEqual(toast.toastId);
       expect(t.toastContainerId).toEqual(toast.toastContainerId);
       done();
@@ -437,10 +507,10 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     toasterService.clear(toast.toastId);
   });
 
-  it('clearToasts will clear toasts from all containers if toastContainerId is undefined', () => {
+  it("clearToasts will clear toasts from all containers if toastContainerId is undefined", () => {
     toasterContainer.ngOnInit();
 
-    const toast: Toast = { type: 'info' };
+    const toast: Toast = { type: "info" };
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
@@ -449,11 +519,11 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts.length).toBe(0);
   });
 
-  it('clearToasts will clear toasts from specified container if toastContainerId is number', () => {
+  it("clearToasts will clear toasts from specified container if toastContainerId is number", () => {
     toasterContainer.toasterconfig = new ToasterConfig({ toastContainerId: 1 });
     toasterContainer.ngOnInit();
 
-    const toast: Toast = { type: 'info', toastContainerId: 1 };
+    const toast: Toast = { type: "info", toastContainerId: 1 };
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
@@ -462,14 +532,14 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     expect(toasterContainer.toasts.length).toBe(0);
   });
 
-  it('createGuid should create unique Guids', () => {
+  it("createGuid should create unique Guids", () => {
     toasterContainer.toasterconfig = new ToasterConfig({ toastContainerId: 1 });
     toasterContainer.ngOnInit();
 
     let toastIds = [];
 
     for (let i = 0; i < 10000; i++) {
-      const toast = toasterService.pop('success', 'toast');
+      const toast = toasterService.pop("success", "toast");
       toastIds.push(toast.toastId);
       toasterService.clear();
     }
@@ -493,40 +563,44 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     valuesSoFar = null;
   });
 
-  it('toastIdOrDefault should return empty string if toast.toastId is null', () => {
-    let toast: Toast = { type: 'info', toastId: undefined };
-    const toastId = toasterContainer['toastIdOrDefault'](toast);
+  it("toastIdOrDefault should return empty string if toast.toastId is null", () => {
+    let toast: Toast = { type: "info", toastId: undefined };
+    const toastId = toasterContainer["toastIdOrDefault"](toast);
 
-    expect(toastId).toBe('');
+    expect(toastId).toBe("");
   });
 
-  it('toastIdOrDefault should return empty string if toast.toastId is undefined', () => {
-    let toast: Toast = { type: 'info', toastId: undefined };
-    const toastId = toasterContainer['toastIdOrDefault'](toast);
+  it("toastIdOrDefault should return empty string if toast.toastId is undefined", () => {
+    let toast: Toast = { type: "info", toastId: undefined };
+    const toastId = toasterContainer["toastIdOrDefault"](toast);
 
-    expect(toastId).toBe('');
+    expect(toastId).toBe("");
   });
 
-  it('toastIdOrDefault should return empty string if toast.toastId is empty string', () => {
-    let toast: Toast = { type: 'info', toastId: '' };
-    const toastId = toasterContainer['toastIdOrDefault'](toast);
+  it("toastIdOrDefault should return empty string if toast.toastId is empty string", () => {
+    let toast: Toast = { type: "info", toastId: "" };
+    const toastId = toasterContainer["toastIdOrDefault"](toast);
 
-    expect(toastId).toBe('');
+    expect(toastId).toBe("");
   });
 
-  it('should use toast.toastId parameter if passed', () => {
+  it("should use toast.toastId parameter if passed", () => {
     toasterContainer.ngOnInit();
 
-    let toast: Toast = { type: 'success', title: '', body: '', toastId: '12345' };
+    let toast: Toast = {
+      type: "success",
+      title: "",
+      body: "",
+      toastId: "12345",
+    };
     toasterService.pop(toast);
 
     expect(toasterContainer.toasts.length).toBe(1);
-    expect(toasterContainer.toasts[0].toastId).toBe('12345');
+    expect(toasterContainer.toasts[0].toastId).toBe("12345");
   });
 });
 
-
-describe('ToasterContainerComponent with sync ToasterService', () => {
+describe("ToasterContainerComponent with sync ToasterService", () => {
   let toasterService: ToasterService,
     toasterContainer: ToasterContainerComponent,
     fixture: ComponentFixture<TestComponent>;
@@ -534,7 +608,11 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ToasterModule.forRoot(), BrowserModule, BrowserAnimationsModule]
+      imports: [
+        ToasterModule.forRoot(),
+        BrowserModule,
+        BrowserAnimationsModule,
+      ],
     });
 
     fixture = TestBed.createComponent<TestComponent>(TestComponent);
@@ -543,29 +621,31 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
     return fixture;
   });
 
-  it('addToast does not populate data if not not defined', () => {
+  it("addToast does not populate data if not not defined", () => {
     toasterContainer.toasterconfig = {} as Required<IToasterConfig>;
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info' };
+    const toast: Toast = { type: "info" };
 
     toasterService.pop(toast);
     expect(toasterContainer.toasts[0].data).toBeUndefined();
   });
 
-  it('addToast sets data if type number', () => {
+  it("addToast sets data if type number", () => {
     toasterContainer.toasterconfig = {} as Required<IToasterConfig>;
     toasterContainer.ngOnInit();
-    const toast: Toast = { type: 'info', data: 1 };
+    const toast: Toast = { type: "info", data: 1 };
 
     toasterService.pop(toast);
     expect(toasterContainer.toasts[0].data).toBe(1);
   });
 
-  it('clearToasts will not clear toasts from specified container if toastContainerId does not match', () => {
-    toasterContainer.toasterconfig = { toastContainerId: 1 } as Required<IToasterConfig>;
+  it("clearToasts will not clear toasts from specified container if toastContainerId does not match", () => {
+    toasterContainer.toasterconfig = {
+      toastContainerId: 1,
+    } as Required<IToasterConfig>;
     toasterContainer.ngOnInit();
 
-    const toast: Toast = { type: 'info', toastContainerId: 1 };
+    const toast: Toast = { type: "info", toastContainerId: 1 };
 
     toasterService.pop(toast);
 
@@ -576,19 +656,23 @@ describe('ToasterContainerComponent with sync ToasterService', () => {
   });
 });
 
-describe('ToasterContainerComponent when included as a component', () => {
+describe("ToasterContainerComponent when included as a component", () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ToasterModule.forRoot(), TestDynamicComponentModule, BrowserAnimationsModule]
+      imports: [
+        ToasterModule.forRoot(),
+        TestDynamicComponentModule,
+        BrowserAnimationsModule,
+      ],
     });
 
     fixture = TestBed.createComponent<TestComponent>(TestComponent);
   });
 
-  it('should use the bound toasterconfig object if provided', () => {
+  it("should use the bound toasterconfig object if provided", () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance).toBeDefined();
@@ -602,23 +686,23 @@ describe('ToasterContainerComponent when included as a component', () => {
     expect(container.toasterconfig.timeout).toBe(0);
   });
 
-  it('should invoke the click event when a toast is clicked but not remove toast if !tapToDismiss', () => {
+  it("should invoke the click event when a toast is clicked but not remove toast if !tapToDismiss", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     expect(container.toasterconfig.tapToDismiss).toBe(false);
 
-    fixture.componentInstance.toasterService.pop('success', 'test', 'test');
+    fixture.componentInstance.toasterService.pop("success", "test", "test");
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const toast = fixture.nativeElement.querySelector('div.angular-toast');
+    const toast = fixture.nativeElement.querySelector("div.angular-toast");
 
     toast.click();
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
   });
 
-  it('should invoke the click event when a toast is clicked and remove toast if tapToDismiss', () => {
+  it("should invoke the click event when a toast is clicked and remove toast if tapToDismiss", () => {
     fixture.componentInstance.toasterconfig.tapToDismiss = true;
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeDefined();
@@ -626,30 +710,32 @@ describe('ToasterContainerComponent when included as a component', () => {
 
     expect(container.toasterconfig.tapToDismiss).toBe(true);
 
-    fixture.componentInstance.toasterService.pop('success', 'test', 'test');
+    fixture.componentInstance.toasterService.pop("success", "test", "test");
 
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const toast = fixture.nativeElement.querySelector('div.angular-toast');
+    const toast = fixture.nativeElement.querySelector("div.angular-toast");
 
     toast.click();
     fixture.detectChanges();
     expect(container.toasts.length).toBe(0);
   });
 
-  it('should invoke the click event when the close button is clicked even if !tapToDismiss', () => {
+  it("should invoke the click event when the close button is clicked even if !tapToDismiss", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
 
     expect(container.toasterconfig.tapToDismiss).toBe(false);
 
-    fixture.componentInstance.toasterService.pop('success', 'test', 'test');
+    fixture.componentInstance.toasterService.pop("success", "test", "test");
 
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const toastButton = fixture.nativeElement.querySelector('.angular-toast-close-button');
+    const toastButton = fixture.nativeElement.querySelector(
+      ".angular-toast-close-button"
+    );
 
     toastButton.click();
     fixture.detectChanges();
@@ -657,23 +743,23 @@ describe('ToasterContainerComponent when included as a component', () => {
     expect(container.toasts.length).toBe(0);
   });
 
-  it('should call onClickHandler if it exists on toast', () => {
+  it("should call onClickHandler if it exists on toast", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
+      type: "success",
       onClickCallback: () => {
         return true;
       },
-      tapToDismiss: false
+      tapToDismiss: false,
     };
 
-    spyOn(toast, 'onClickCallback' as keyof Toast);
+    spyOn(toast, "onClickCallback" as keyof Toast);
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
-    const toastButton = fixture.nativeElement.querySelector('.angular-toast');
+    const toastButton = fixture.nativeElement.querySelector(".angular-toast");
 
     toastButton.click();
     fixture.detectChanges();
@@ -682,24 +768,26 @@ describe('ToasterContainerComponent when included as a component', () => {
     expect(toast.onClickCallback).toHaveBeenCalled();
   });
 
-  it('should call onClickHandler if it exists on toast before closing toast', () => {
+  it("should call onClickHandler if it exists on toast before closing toast", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
+      type: "success",
       onClickCallback: () => {
         return true;
       },
-      tapToDismiss: false
+      tapToDismiss: false,
     };
 
-    spyOn(toast, 'onClickCallback' as keyof Toast);
+    spyOn(toast, "onClickCallback" as keyof Toast);
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const toastButton = fixture.nativeElement.querySelector('.angular-toast-close-button');
+    const toastButton = fixture.nativeElement.querySelector(
+      ".angular-toast-close-button"
+    );
 
     toastButton.click();
     fixture.detectChanges();
@@ -708,19 +796,19 @@ describe('ToasterContainerComponent when included as a component', () => {
     expect(toast.onClickCallback).toHaveBeenCalled();
   });
 
-  it('should not call onClickHandler if it does not exist on toast', () => {
+  it("should not call onClickHandler if it does not exist on toast", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      tapToDismiss: false
+      type: "success",
+      tapToDismiss: false,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const toastButton = fixture.nativeElement.querySelector('.angular-toast');
+    const toastButton = fixture.nativeElement.querySelector(".angular-toast");
 
     toastButton.click();
     fixture.detectChanges();
@@ -729,14 +817,14 @@ describe('ToasterContainerComponent when included as a component', () => {
     expect(toast.onClickCallback).not.toBeNull();
   });
 
-  it('addToast should render component if it exists', () => {
+  it("addToast should render component if it exists", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
+      type: "success",
+      title: "Yay",
       body: TestDynamicComponent,
-      bodyOutputType: BodyOutputType.Component
+      bodyOutputType: BodyOutputType.Component,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
@@ -744,117 +832,128 @@ describe('ToasterContainerComponent when included as a component', () => {
 
     expect(container.toasts.length).toBe(1);
 
-    const renderedToast = fixture.nativeElement.querySelector('test-dynamic-component');
-    expect(renderedToast.innerHTML).toBe('<div>loaded via component</div>');
+    const renderedToast = fixture.nativeElement.querySelector(
+      "test-dynamic-component"
+    );
+    expect(renderedToast.innerHTML).toBe("<div>loaded via component</div>");
   });
 
-
-  it('addToast should render module if it exists', () => {
+  it("addToast should render module if it exists", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
+      type: "success",
+      title: "Yay",
       body: TestDynamicComponent,
-      bodyOutputType: BodyOutputType.Component
+      bodyOutputType: BodyOutputType.Component,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const renderedToast = fixture.nativeElement.querySelector('test-dynamic-component');
-    expect(renderedToast.innerHTML).toBe('<div>loaded via component</div>');
+    const renderedToast = fixture.nativeElement.querySelector(
+      "test-dynamic-component"
+    );
+    expect(renderedToast.innerHTML).toBe("<div>loaded via component</div>");
   });
 
-  it('addToast should render html passed in toast.body if bodyOutputType is TrustedHtml', () => {
-    const textContent = 'here is test text';
-    const htmlContent = '<h4>' + textContent + '</h4>';
+  it("addToast should render html passed in toast.body if bodyOutputType is TrustedHtml", () => {
+    const textContent = "here is test text";
+    const htmlContent = "<h4>" + textContent + "</h4>";
 
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
+      type: "success",
+      title: "Yay",
       body: htmlContent,
-      bodyOutputType: BodyOutputType.TrustedHtml
+      bodyOutputType: BodyOutputType.TrustedHtml,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const renderedToast = fixture.nativeElement.querySelector('.angular-toast-message');
-    const innerBody = renderedToast.querySelector('div');
+    const renderedToast = fixture.nativeElement.querySelector(
+      ".angular-toast-message"
+    );
+    const innerBody = renderedToast.querySelector("div");
     expect(innerBody.innerHTML).toBe(htmlContent);
     expect(innerBody.textContent).toBe(textContent);
     expect(innerBody.innerHTML).not.toBe(innerBody.textContent);
   });
 
-  it('addToast will not render html if bodyOutputType is TrustedHtml and body is empty', () => {
+  it("addToast will not render html if bodyOutputType is TrustedHtml and body is empty", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
-      body: '',
-      bodyOutputType: BodyOutputType.TrustedHtml
+      type: "success",
+      title: "Yay",
+      body: "",
+      bodyOutputType: BodyOutputType.TrustedHtml,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
-    const renderedToast = fixture.nativeElement.querySelector('.angular-toast-message');
-    const innerBody = renderedToast.querySelector('div');
-    expect(innerBody.innerHTML).toBe('');
+    const renderedToast = fixture.nativeElement.querySelector(
+      ".angular-toast-message"
+    );
+    const innerBody = renderedToast.querySelector("div");
+    expect(innerBody.innerHTML).toBe("");
   });
 
-  it('addToast will render encoded text instead of html if bodyOutputType is Default', () => {
-    const textContent = 'here is test text';
-    const htmlContent = '<h4>' + textContent + '</h4>';
-    const encodedString = '&lt;h4&gt;here is test text&lt;/h4&gt;';
+  it("addToast will render encoded text instead of html if bodyOutputType is Default", () => {
+    const textContent = "here is test text";
+    const htmlContent = "<h4>" + textContent + "</h4>";
+    const encodedString = "&lt;h4&gt;here is test text&lt;/h4&gt;";
 
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
+      type: "success",
+      title: "Yay",
       body: htmlContent,
-      bodyOutputType: BodyOutputType.Default
+      bodyOutputType: BodyOutputType.Default,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const renderedToast = fixture.nativeElement.querySelector('.angular-toast-message');
-    const innerBody = renderedToast.querySelector('div');
+    const renderedToast = fixture.nativeElement.querySelector(
+      ".angular-toast-message"
+    );
+    const innerBody = renderedToast.querySelector("div");
     expect(innerBody.innerHTML).toBe(encodedString);
     expect(innerBody.textContent).toBe(htmlContent);
   });
 });
 
-describe('Multiple ToasterContainerComponent components', () => {
+describe("Multiple ToasterContainerComponent components", () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ToasterModule.forRoot(), TestDynamicComponentModule, BrowserAnimationsModule]
+      imports: [
+        ToasterModule.forRoot(),
+        TestDynamicComponentModule,
+        BrowserAnimationsModule,
+      ],
     });
-    TestBed.overrideComponent(TestComponent,
-      {
-        set: {
-          template: `<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
-                    <toaster-container [toasterconfig]="toasterconfig2"></toaster-container>`
-        }
-      }
-    );
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+                    <toaster-container [toasterconfig]="toasterconfig2"></toaster-container>`,
+      },
+    });
 
     fixture = TestBed.createComponent<TestComponent>(TestComponent);
   });
 
-  it('should create multiple container instances', () => {
+  it("should create multiple container instances", () => {
     fixture.componentInstance.toasterconfig.toastContainerId = 1;
     fixture.componentInstance.toasterconfig2.toastContainerId = 2;
     fixture.detectChanges();
@@ -864,21 +963,21 @@ describe('Multiple ToasterContainerComponent components', () => {
     expect(fixture.componentInstance.toasterconfig2).toBeDefined();
   });
 
-  it('should only receive toasts targeted for that container', () => {
+  it("should only receive toasts targeted for that container", () => {
     fixture.componentInstance.toasterconfig.toastContainerId = 1;
     fixture.componentInstance.toasterconfig2.toastContainerId = 2;
     fixture.detectChanges();
 
     const toast1: Toast = {
-      type: 'success',
-      title: 'fixture 1',
-      toastContainerId: 1
+      type: "success",
+      title: "fixture 1",
+      toastContainerId: 1,
     };
 
     const toast2: Toast = {
-      type: 'success',
-      title: 'fixture 2',
-      toastContainerId: 2
+      type: "success",
+      title: "fixture 2",
+      toastContainerId: 2,
     };
 
     fixture.componentInstance.toasterService.pop(toast1);
@@ -891,24 +990,28 @@ describe('Multiple ToasterContainerComponent components', () => {
 
     expect(container1.toasts.length).toBe(1);
     expect(container2.toasts.length).toBe(1);
-    expect(container1.toasts[0].title).toBe('fixture 1');
-    expect(container2.toasts[0].title).toBe('fixture 2');
+    expect(container1.toasts[0].title).toBe("fixture 1");
+    expect(container2.toasts[0].title).toBe("fixture 2");
   });
 });
 
-describe('ToasterContainerComponent when included as a component with bindings', () => {
+describe("ToasterContainerComponent when included as a component with bindings", () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ToasterModule.forRoot(), TestBoundDynamicComponentModule, BrowserAnimationsModule]
+      imports: [
+        ToasterModule.forRoot(),
+        TestBoundDynamicComponentModule,
+        BrowserAnimationsModule,
+      ],
     });
 
     fixture = TestBed.createComponent<TestComponent>(TestComponent);
   });
 
-  it('should use the bound toasterconfig object if provided', () => {
+  it("should use the bound toasterconfig object if provided", () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance).toBeDefined();
@@ -922,46 +1025,49 @@ describe('ToasterContainerComponent when included as a component with bindings',
     expect(container.toasterconfig.timeout).toBe(0);
   });
 
-
-  it('should render the dynamic bound content', () => {
+  it("should render the dynamic bound content", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'Yay',
+      type: "success",
+      title: "Yay",
       body: TestBoundDynamicComponent,
-      bodyOutputType: BodyOutputType.Component
+      bodyOutputType: BodyOutputType.Component,
     };
 
     fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
     expect(container.toasts.length).toBe(1);
 
-    const renderedToast = fixture.nativeElement.querySelector('bound-dynamic-component');
-    expect(renderedToast.innerHTML).toBe('<div>Some value loaded via component<button id="click"></button></div>');
+    const renderedToast = fixture.nativeElement.querySelector(
+      "bound-dynamic-component"
+    );
+    expect(renderedToast.innerHTML).toBe(
+      '<div>Some value loaded via component<button id="click"></button></div>'
+    );
   });
 
-  it('should propagate the toast instance to the component', () => {
+  it("should propagate the toast instance to the component", () => {
     fixture.detectChanges();
     const container = fixture.debugElement.children[0].componentInstance;
     const toast: Toast = {
-      type: 'success',
-      title: 'test',
+      type: "success",
+      title: "test",
       body: TestBoundDynamicComponent,
-      bodyOutputType: BodyOutputType.Component
+      bodyOutputType: BodyOutputType.Component,
     };
 
     const toastInstance = fixture.componentInstance.toasterService.pop(toast);
     fixture.detectChanges();
 
     expect(container.toasts.length).toBe(1);
-    expect(toastInstance.title).toBe('test');
+    expect(toastInstance.title).toBe("test");
 
-    const clickButton = fixture.nativeElement.querySelector('#click');
+    const clickButton = fixture.nativeElement.querySelector("#click");
     clickButton.click();
 
     fixture.detectChanges();
 
-    expect(toastInstance.title).toBe('updated title');
+    expect(toastInstance.title).toBe("updated title");
   });
 });
