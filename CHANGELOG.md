@@ -1,3 +1,7 @@
+# [1.7.0-beta.2](https://github.com/damingerdai/angular-toaster/compare/v1.7.0-beta.1...v1.7.0-beta.2) (2025-05-05)
+
+
+
 # [1.7.0-beta.1](https://github.com/damingerdai/angular-toaster/compare/v1.7.0-beta.0...v1.7.0-beta.1) (2025-05-03)
 
 
