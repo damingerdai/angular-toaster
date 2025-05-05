@@ -44,7 +44,7 @@ export function getProjectTestTargets(
 /** Gets all targets from the given project that pass a predicate check. */
 function getTargetsByBuilderName(
   project: ProjectDefinition,
-  // eslint-disable-next-line no-unused-vars
+   
   predicate: (_name: string | undefined) => boolean
 ): TargetDefinition[] {
   return Array.from(project.targets.keys())

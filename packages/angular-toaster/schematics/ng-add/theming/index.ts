@@ -7,7 +7,7 @@ import { getProjectFromWorkspace, getProjectTargetOptions } from '../../utils/pr
 export function addThemeToAppStyles(options: Schema): Rule {
   const themePath = './node_modules/angular-toaster/toaster.css';
 
-  // eslint-disable-next-line no-unused-vars
+   
   return (_host: Tree, _context: SchematicContext) => {
     return chain([
       addThemeStyleToTarget(options.project, 'build', themePath),
@@ -31,7 +31,7 @@ function addThemeStyleToTarget(projectName: string, targetName: 'test' | 'build'
 
     const existingStyles = styles.map(s => (typeof s === 'string' ? s : s.input));
 
-    for (let [, stylePath] of existingStyles.entries()) {
+    for (const [, stylePath] of existingStyles.entries()) {
       if (stylePath === assetPath)
         return;
     }

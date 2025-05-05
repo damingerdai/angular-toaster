@@ -263,7 +263,7 @@ describe("ToasterContainerComponent with sync ToasterService", () => {
   it("addToast should use defaultTypeClass if type is empty string", () => {
     toasterContainer.ngOnInit();
 
-    toasterService.pop(<ExtendedToastType>"", "", "");
+    toasterService.pop(("" as ExtendedToastType), "", "");
 
     expect(toasterContainer.toasterconfig.defaultToastType).toBe("info");
     expect(toasterContainer.toasts.length).toBe(1);
@@ -339,7 +339,7 @@ describe("ToasterContainerComponent with sync ToasterService", () => {
     toasterContainer.toasterconfig = new ToasterConfig({
       showCloseButton: false,
     });
-    (<any>toasterContainer.toasterconfig.showCloseButton) = "";
+    (toasterContainer.toasterconfig.showCloseButton as any) = "";
     toasterContainer.ngOnInit();
     const toast: Toast = { type: "info" };
 
@@ -564,21 +564,21 @@ describe("ToasterContainerComponent with sync ToasterService", () => {
   });
 
   it("toastIdOrDefault should return empty string if toast.toastId is null", () => {
-    let toast: Toast = { type: "info", toastId: undefined };
+    const toast: Toast = { type: "info", toastId: undefined };
     const toastId = toasterContainer["toastIdOrDefault"](toast);
 
     expect(toastId).toBe("");
   });
 
   it("toastIdOrDefault should return empty string if toast.toastId is undefined", () => {
-    let toast: Toast = { type: "info", toastId: undefined };
+    const toast: Toast = { type: "info", toastId: undefined };
     const toastId = toasterContainer["toastIdOrDefault"](toast);
 
     expect(toastId).toBe("");
   });
 
   it("toastIdOrDefault should return empty string if toast.toastId is empty string", () => {
-    let toast: Toast = { type: "info", toastId: "" };
+    const toast: Toast = { type: "info", toastId: "" };
     const toastId = toasterContainer["toastIdOrDefault"](toast);
 
     expect(toastId).toBe("");
@@ -587,7 +587,7 @@ describe("ToasterContainerComponent with sync ToasterService", () => {
   it("should use toast.toastId parameter if passed", () => {
     toasterContainer.ngOnInit();
 
-    let toast: Toast = {
+    const toast: Toast = {
       type: "success",
       title: "",
       body: "",

@@ -44,7 +44,7 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
   private element: ElementRef = inject(ElementRef);
   private renderer2: Renderer2 = inject(Renderer2);
 
-  public progressBarWidth: number = -1;
+  public progressBarWidth = -1;
   public bodyOutputType = BodyOutputType;
 
   @Output()
