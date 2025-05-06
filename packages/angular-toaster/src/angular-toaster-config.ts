@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 import { InjectionToken } from "@angular/core";
 
 export type ToastType = 'success' | 'info' | 'warning' | 'wait' | 'error';
@@ -34,7 +34,7 @@ export interface Toast {
   progressBarDirection?: ProgressBarDirection
 }
 
-export const DefaultTypeClasses : { [key in ToastType]? : string } = {
+export const DefaultTypeClasses : Partial<Record<ToastType, string>> = {
   error: 'angular-toast-error',
   info: 'angular-toast-info',
   wait: 'angular-toast-wait',
@@ -42,7 +42,7 @@ export const DefaultTypeClasses : { [key in ToastType]? : string } = {
   warning: 'angular-toast-warning'
 };
 
-export const DefaultIconClasses : { [key in ToastType]? : string } = {
+export const DefaultIconClasses : Partial<Record<ToastType, string>> = {
   error: 'icon-error',
   info: 'icon-info',
   wait: 'icon-wait',
@@ -53,12 +53,12 @@ export const DefaultIconClasses : { [key in ToastType]? : string } = {
 export interface IToasterConfig {
   limit?: number|null;
   tapToDismiss?: boolean;
-  showCloseButton?: boolean|{ [key in ToastType]?: boolean};
+  showCloseButton?: boolean|Partial<Record<ToastType, boolean>>;
   closeHtml?: string;
   newestOnTop?: boolean;
-  timeout?: number|{ [key in ToastType]?: number };
-  typeClasses?: { [key in ToastType]?: string };
-  iconClasses?: { [key in ToastType]?: string };
+  timeout?: number|Partial<Record<ToastType, number>>;
+  typeClasses?: Partial<Record<ToastType, string>>;
+  iconClasses?: Partial<Record<ToastType, string>>;
   bodyOutputType?: BodyOutputType;
   bodyTemplate?: string;
   defaultToastType?: ToastType;
@@ -101,12 +101,12 @@ export const ToasterConfigInjectionToken: InjectionToken<IToasterConfig> = new I
 export class ToasterConfig implements IToasterConfig {
   limit?: number|null;
   tapToDismiss: boolean;
-  showCloseButton: boolean|{ [key in ToastType]?: boolean };
+  showCloseButton: boolean|Partial<Record<ToastType, boolean>>;
   closeHtml: string;
   newestOnTop: boolean;
-  timeout: number|{ [key in ToastType]?: number };
-  typeClasses: { [key in ToastType]?: string };
-  iconClasses: { [key in ToastType]?: string };
+  timeout: number|Partial<Record<ToastType, number>>;
+  typeClasses: Partial<Record<ToastType, string>>;
+  iconClasses: Partial<Record<ToastType, string>>;
   bodyOutputType: BodyOutputType;
   bodyTemplate: string;
   defaultToastType: ToastType;

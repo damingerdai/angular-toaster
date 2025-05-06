@@ -39,7 +39,7 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
   private clearToastsSubscriber!: Subscription;
 
   constructor(
-    // eslint-disable-next-line no-unused-vars
+     
     @Optional() @Inject(ToasterConfigInjectionToken) private _defaultToasterConfig: IToasterConfig
   ) {
     this._toasterconfig = (this._defaultToasterConfig ? { ...defaultToasterConfig, ...this._defaultToasterConfig } : defaultToasterConfig) as Required<IToasterConfig>;

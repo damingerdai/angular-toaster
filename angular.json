@@ -40,7 +40,8 @@
             "lintFilePatterns": [
               "packages/angular-toaster/**/*.ts",
               "packages/angular-toaster/**/*.html"
-            ]
+            ],
+            "eslintConfig": "packages/angular-toaster/eslint.config.js"
           }
         }
       }
@@ -142,21 +143,22 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "packages/dev-app/**/*.ts",
-              "packages/dev-app/**/*.html"
-            ]
-          }
-        },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "https://damingerdai.github.io/angular-toaster/",
             "name": "angular toaster dev app",
             "email": "mingguobin@live.com"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/dev-app/**/*.ts",
+              "packages/dev-app/**/*.html"
+            ],
+            "eslintConfig": "packages/dev-app/eslint.config.js"
           }
         }
       }
@@ -274,7 +276,8 @@
             "lintFilePatterns": [
               "packages/dev-module-app/**/*.ts",
               "packages/dev-module-app/**/*.html"
-            ]
+            ],
+            "eslintConfig": "packages/dev-module-app/eslint.config.js"
           }
         }
       }

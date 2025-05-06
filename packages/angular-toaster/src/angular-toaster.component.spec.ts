@@ -21,8 +21,8 @@ describe('ToasterComponent', () => {
 
   describe('ngOnInit', () => {
     it('should map toasterconfig.timeout object if defined and type exists', () => {
-      let fixture = TestBed.createComponent(ToasterComponent);
-      let component = fixture.componentInstance;
+      const fixture = TestBed.createComponent(ToasterComponent);
+      const component = fixture.componentInstance;
 
       component.toasterconfig = { timeout: { 'info': 10.1 } };
       component.toast = { type: 'info', title: 'test', body: 'test' };
@@ -32,8 +32,8 @@ describe('ToasterComponent', () => {
     });
 
     it('should map toasterconfig.timeout object to undefined if defined and type does not exist', () => {
-      let fixture = TestBed.createComponent(ToasterComponent);
-      let component = fixture.componentInstance;
+      const fixture = TestBed.createComponent(ToasterComponent);
+      const component = fixture.componentInstance;
       component.toasterconfig = { timeout: { 'info': 10.1 } };
       component.toast = { type: 'custom' as ExtendedToastType, title: 'test', body: 'test' };
       component.ngOnInit();
@@ -44,8 +44,8 @@ describe('ToasterComponent', () => {
 
   describe('mouseenter event', () => {
     it('should clear timer if mouseOverTimerStop is true', fakeAsync(() => {
-      let fixture = TestBed.createComponent(ToasterComponent);
-      let component = fixture.componentInstance;
+      const fixture = TestBed.createComponent(ToasterComponent);
+      const component = fixture.componentInstance;
       component.toasterconfig = { mouseoverTimerStop: true, timeout: 100 };
       component.toast = { type: 'success', title: 'test', body: 'test' };
       component.ngOnInit();
@@ -61,8 +61,8 @@ describe('ToasterComponent', () => {
     }));
 
     it('should reset progressBarWidth if mouseOverTimerStop is true', fakeAsync(() => {
-      let fixture = TestBed.createComponent(ToasterComponent);
-      let component = fixture.componentInstance;
+      const fixture = TestBed.createComponent(ToasterComponent);
+      const component = fixture.componentInstance;
       component.toasterconfig = { mouseoverTimerStop: true, timeout: 100 };
       component.toast = { type: 'success', title: 'test', body: 'test', progressBar: true };
       component.ngOnInit();
@@ -82,8 +82,8 @@ describe('ToasterComponent', () => {
     }));
 
     it('should not clear timer if mouseOverTimerStop is false', fakeAsync(() => {
-      let fixture = TestBed.createComponent(ToasterComponent);
-      let component = fixture.componentInstance;
+      const fixture = TestBed.createComponent(ToasterComponent);
+      const component = fixture.componentInstance;
       component.toasterconfig = { mouseoverTimerStop: false, timeout: 100 };
       component.toast = { type: 'success', title: 'test', body: 'test' };
       component.ngOnInit();
