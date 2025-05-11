@@ -1,4 +1,4 @@
-/* eslint-disable @angular-eslint/component-selector */
+/* eslint-disable @typescript-eslint/prefer-for-of, @typescript-eslint/no-explicit-any, @angular-eslint/component-selector */
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -67,7 +67,7 @@ export class TestDynamicComponentModule {}
 @Component({
   selector: "bound-dynamic-component",
   template:
-    '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click"></button></div>',
+    '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click">button</button></div>',
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
 })
@@ -263,7 +263,7 @@ describe("ToasterContainerComponent with sync ToasterService", () => {
   it("addToast should use defaultTypeClass if type is empty string", () => {
     toasterContainer.ngOnInit();
 
-    toasterService.pop(("" as ExtendedToastType), "", "");
+    toasterService.pop("" as ExtendedToastType, "", "");
 
     expect(toasterContainer.toasterconfig.defaultToastType).toBe("info");
     expect(toasterContainer.toasts.length).toBe(1);

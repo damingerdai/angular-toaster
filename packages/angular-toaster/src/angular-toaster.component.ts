@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ComponentRef,
   ElementRef,
   EventEmitter,
   HostListener,
@@ -13,30 +14,30 @@ import {
   Renderer2,
   ViewChild,
   ViewContainerRef,
-  inject
-} from '@angular/core';
-import { NgClass } from '@angular/common';
-import { BodyOutputType, IToasterConfig, Toast } from './angular-toaster-config';
-import { TrustHtmlPipe } from './trust-html.pipe';
-
+  inject,
+} from "@angular/core";
+import { NgClass } from "@angular/common";
+import {
+  BodyOutputType,
+  IToasterConfig,
+  Toast,
+} from "./angular-toaster-config";
+import { TrustHtmlPipe } from "./trust-html.pipe";
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: '[toastComp]',
-    templateUrl: './angular-toaster.component.html',
-    styleUrls: ['./angular-toaster.component.css'],
-    imports: [
-        NgClass,
-        TrustHtmlPipe,
-    ]
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: "[toastComp]",
+  templateUrl: "./angular-toaster.component.html",
+  styleUrls: ["./angular-toaster.component.css"],
+  imports: [NgClass, TrustHtmlPipe],
 })
 export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
-
   @Input() toasterconfig!: IToasterConfig;
   @Input() toast!: Toast;
   @Input() titleClass!: string;
   @Input() messageClass!: string;
-  @ViewChild('componentBody', { read: ViewContainerRef, static: false }) componentBody!: ViewContainerRef;
+  @ViewChild("componentBody", { read: ViewContainerRef, static: false })
+  componentBody!: ViewContainerRef;
 
   private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
   private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -59,17 +60,18 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private removeMouseOverListener!: () => void;
 
-  constructor() { }
-
   ngOnInit() {
     if (this.toast.progressBar) {
-      this.toast.progressBarDirection = this.toast.progressBarDirection || 'decreasing';
+      this.toast.progressBarDirection =
+        this.toast.progressBarDirection || "decreasing";
     }
 
-    let timeout = (typeof this.toast.timeout === 'number')
-      ? this.toast.timeout : this.toasterconfig.timeout;
+    let timeout =
+      typeof this.toast.timeout === "number"
+        ? this.toast.timeout
+        : this.toasterconfig.timeout;
 
-    if (typeof timeout === 'object') {
+    if (typeof timeout === "object") {
       timeout = timeout[this.toast.type];
     }
 
@@ -78,7 +80,12 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (this.toast.bodyOutputType === this.bodyOutputType.Component) {
-      const componentInstance: any = this.viewContainerRef.createComponent(this.toast.body, undefined, this.componentBody.injector)
+      const componentInstance: ComponentRef<typeof this.toast.body> =
+        this.viewContainerRef.createComponent(
+          this.toast.body,
+          undefined,
+          this.componentBody.injector
+        );
       componentInstance.instance.toast = this.toast;
       this.changeDetectorRef.detectChanges();
     }
@@ -88,7 +95,7 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
       // unnecessary event and change detection cycles.
       this.removeMouseOverListener = this.renderer2.listen(
         this.element.nativeElement,
-        'mouseenter',
+        "mouseenter",
         () => this.stopTimer()
       );
     }
@@ -106,7 +113,7 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
     this.clearTimers();
   }
 
-  @HostListener('mouseleave')
+  @HostListener("mouseleave")
   restartTimer() {
     if (this.toasterconfig.mouseoverTimerStop) {
       if (!this.timeoutId) {
@@ -157,9 +164,10 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    this.progressBarWidth = ((this.removeToastTick! - new Date().getTime()) / this.timeout!) * 100;
+    this.progressBarWidth =
+      ((this.removeToastTick! - new Date().getTime()) / this.timeout!) * 100;
 
-    if (this.toast.progressBarDirection === 'increasing') {
+    if (this.toast.progressBarDirection === "increasing") {
       this.progressBarWidth = 100 - this.progressBarWidth;
     }
     if (this.progressBarWidth < 0) {
@@ -172,7 +180,7 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private clearTimers() {
     if (this.timeoutId) {
-      window.clearTimeout(this.timeoutId)
+      window.clearTimeout(this.timeoutId);
     }
 
     if (this.progressBarIntervalId) {
@@ -186,5 +194,4 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
   private removeToast() {
     this.removeToastEvent.emit(this.toast);
   }
-
 }

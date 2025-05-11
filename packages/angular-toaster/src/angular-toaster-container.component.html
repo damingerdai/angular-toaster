@@ -1,16 +1,20 @@
 <div [ngClass]="buildPositionClass()">
   @for (toast of toasts; track $index) {
-    <div toastComp class="angular-toast"
-      [toast]="toast"
-      [toasterconfig]="toasterconfig"
-      [@toastState]="toasterconfig.animation"
-      [titleClass]="toasterconfig.titleClass!"
-      [messageClass]="toasterconfig.messageClass!"
-      [ngClass]="buildToastCompClasses(toast)"
-      (click)="click(toast)"
-      (clickEvent)="childClick($event)"
-      (removeToastEvent)="removeToast($event)"
-      >
-    </div>
+  <div
+    toastComp
+    class="angular-toast"
+    aria-hidden="true"
+    tabIndex="0"
+    [toast]="toast"
+    [toasterconfig]="toasterconfig"
+    [@toastState]="toasterconfig.animation"
+    [titleClass]="toasterconfig.titleClass!"
+    [messageClass]="toasterconfig.messageClass!"
+    [ngClass]="buildToastCompClasses(toast)"
+    (click)="click(toast)"
+    (keypress)="keypress(toast)"
+    (clickEvent)="childClick($event)"
+    (removeToastEvent)="removeToast($event)"
+  ></div>
   }
 </div>
