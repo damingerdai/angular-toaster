@@ -1,3 +1,14 @@
+# [1.8.0](https://github.com/damingerdai/angular-toaster/compare/v1.7.0...v1.8.0) (2025-05-31)
+
+
+### Features
+
+* add @angular-devkit/schematics ([08d4c91](https://github.com/damingerdai/angular-toaster/commit/08d4c91646be001ea153fa9be42ebb76d503d693))
+* bump angular to v20 ([9b93362](https://github.com/damingerdai/angular-toaster/commit/9b933622dd4f2e9dcf9d2bd4f0c1ab5082bef08d))
+* update schematics/angular@20.0.0 ([d761f40](https://github.com/damingerdai/angular-toaster/commit/d761f40540fb9eee1af7be27125e24de2931c3a6))
+
+
+
 # [1.7.0](https://github.com/damingerdai/angular-toaster/compare/v1.7.0-beta.2...v1.7.0) (2025-05-05)
 
 
