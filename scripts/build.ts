@@ -1,13 +1,14 @@
-const colors = require("colors/safe");
-const fs = require("fs/promises");
-const fsEx = require("fs-extra");
-const path = require("path");
-const shelljs = require("shelljs");
+import colors from "colors/safe";
+import fs from "fs/promises";
+import path from "path";
+import * as shelljs from "shelljs";
 
-const { fetchTargets } = require("./utils");
+import { fetchTargets } from "./utils";
 
-async function buildTarget(target) {
-  const { code } = shelljs.exec(`ng build ${target} --configuration production`);
+async function buildTarget(target: string) {
+  const { code } = shelljs.exec(
+    `ng build ${target} --configuration production`
+  );
   if (code !== 0) {
     throw new Error(`fail to compile the ${target}`);
   }
@@ -42,7 +43,7 @@ async function copyTask() {
 
 async function run() {
   await fs.rm(`${path.resolve("./dist")}`, { force: true, recursive: true });
-  const targets = await fetchTargets();
+  const targets = fetchTargets();
   await Promise.all(targets.map((target) => buildTarget(target)));
   await cssTask();
   await copyTask();

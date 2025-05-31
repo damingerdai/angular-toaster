@@ -1,13 +1,18 @@
-const args = require("minimist")(process.argv.slice(2));
-const colors = require("colors/safe");
-const semver = require("semver");
-const { exec } = require("shelljs");
-const path = require("path");
-const fs = require("fs");
-const fsEx = require("fs-extra");
-const { prompt } = require("enquirer");
-const currentVersion = require("../package.json").version;
-const { getGitRemoteRepos } = require("./git");
+import minimist from "minimist";
+import colors from "colors/safe";
+import semver from "semver";
+import shelljs from "shelljs";
+import path from "path";
+import fs from "fs";
+import fsEx from "fs-extra";
+import enquirer from "enquirer";
+import packageJson from "../package.json" assert { type: "json" };
+import { getGitRemoteRepos } from "./git";
+
+const args = minimist(process.argv.slice(2));
+const { exec } = shelljs;
+const { prompt } = enquirer;
+const currentVersion = packageJson.version;
 
 const preId =
   args.preId ||

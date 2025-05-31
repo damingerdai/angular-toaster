@@ -11,25 +11,19 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
+    "target": "esnext",
+    "module": "esnext",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "paths": {
-      "angular-toaster": [
-        "./packages/angular-toaster/src/public-api.ts"
-      ],
-      "angular-toaster/*": [
-        "./packages/angular-toasters/src/*"
-      ]
+      "angular-toaster": ["./packages/angular-toaster/src/public-api.ts"],
+      "angular-toaster/*": ["./packages/angular-toasters/src/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,7 +1,6 @@
-const path = require("path");
-const fs = require("fs-extra");
+import fs from "fs-extra";
 
-function fetchTargets() {
+export function fetchTargets(): string[] {
   const json = fs.readJSONSync("angular.json");
   const { projects } = json;
   const keys = Object.keys(projects);
@@ -34,8 +33,3 @@ function fetchTargets() {
 
 //   return nodes;
 // }
-
-module.exports = {
-  fetchTargets,
-  // fetchTopologicalSorting,
-};
