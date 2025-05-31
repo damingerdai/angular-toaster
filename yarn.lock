@@ -82,17 +82,6 @@
     rxjs "7.8.2"
     source-map "0.7.4"
 
-"@angular-devkit/schematics@19.2.10", "@angular-devkit/schematics@>= 19.0.0 < 20.0.0":
-  version "19.2.10"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-19.2.10.tgz#0cd3f1470df574ad82d76116ac7722658e47295d"
-  integrity sha512-S+7Mvi9GMiJu3BY0Dpa7TrrAiFIwGwCIKLpO0IgGLUDh9fVLIlcIC/PZgU+L46gEpRwPZfrfMbDFKIlGGz/eQQ==
-  dependencies:
-    "@angular-devkit/core" "19.2.10"
-    jsonc-parser "3.3.1"
-    magic-string "0.30.17"
-    ora "5.4.1"
-    rxjs "7.8.1"
-
 "@angular-devkit/schematics@20.0.0":
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-20.0.0.tgz#99adcf950201266a3497ec2fabfb87d8bb325574"
@@ -103,6 +92,17 @@
     magic-string "0.30.17"
     ora "8.2.0"
     rxjs "7.8.2"
+
+"@angular-devkit/schematics@>= 19.0.0 < 20.0.0":
+  version "19.2.10"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-19.2.10.tgz#0cd3f1470df574ad82d76116ac7722658e47295d"
+  integrity sha512-S+7Mvi9GMiJu3BY0Dpa7TrrAiFIwGwCIKLpO0IgGLUDh9fVLIlcIC/PZgU+L46gEpRwPZfrfMbDFKIlGGz/eQQ==
+  dependencies:
+    "@angular-devkit/core" "19.2.10"
+    jsonc-parser "3.3.1"
+    magic-string "0.30.17"
+    ora "5.4.1"
+    rxjs "7.8.1"
 
 "@angular-devkit/schematics@^17.0.0":
   version "17.3.17"
@@ -1994,22 +1994,13 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@20.0.0":
+"@schematics/angular@20.0.0", "@schematics/angular@^20.0.0":
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-20.0.0.tgz#8768c43bdf332eb901161bb1f0b1f2ae7169ba97"
   integrity sha512-lK5TvxEoeaoPnxM31qeNWhHUJ3kKMnRHknYhOfOmS8xfme78nS01FdU7TODLkg2p4GNEVVtXoxhj3FmrG3srKw==
   dependencies:
     "@angular-devkit/core" "20.0.0"
     "@angular-devkit/schematics" "20.0.0"
-    jsonc-parser "3.3.1"
-
-"@schematics/angular@^19.2.10":
-  version "19.2.10"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-19.2.10.tgz#c40d5b975811bba4d626a45f1002a16953df55c7"
-  integrity sha512-ZcsS3FyYdSkV6Br+vtYvn0eQP/H3AAZI4aBg3XVbIxRbWG5rChTqN5J9C8Ncl0VET7OAj+PeQwoFH6jFenVw0A==
-  dependencies:
-    "@angular-devkit/core" "19.2.10"
-    "@angular-devkit/schematics" "19.2.10"
     jsonc-parser "3.3.1"
 
 "@sigstore/bundle@^3.1.0":
