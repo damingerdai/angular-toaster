@@ -168,7 +168,7 @@ async function main() {
   updatePackages(targetVersion, targets);
 
   step("\n run build");
-  run("node scripts/build.js");
+  run("yarn build");
 
   step("\n generate changelog");
   run("yarn changelog");
