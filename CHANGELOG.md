@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/damingerdai/angular-toaster/compare/v1.7.0...v1.7.1) (2025-06-07)
+
+
+### Features
+
+* set angular min supported version v19 ([d7befeb](https://github.com/damingerdai/angular-toaster/commit/d7befeb02146183e205eb14f1a99ac8b186bea3a))
+
+
+
 # [1.7.0](https://github.com/damingerdai/angular-toaster/compare/v1.7.0-beta.2...v1.7.0) (2025-05-05)
 
 
