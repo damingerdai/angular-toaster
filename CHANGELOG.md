@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/damingerdai/angular-toaster/compare/v1.8.0...v1.8.1) (2025-06-07)
+
+
+### Features
+
+* bump angular min supported version to v20 ([05c1f8f](https://github.com/damingerdai/angular-toaster/commit/05c1f8f46786227deb5b00c642dc17479c0632ee))
+
+
+
 # [1.8.0](https://github.com/damingerdai/angular-toaster/compare/v1.7.0...v1.8.0) (2025-05-31)
 
 
