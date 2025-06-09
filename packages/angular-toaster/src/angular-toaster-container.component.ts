@@ -1,12 +1,4 @@
-import {
-  Component,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Optional,
-  inject,
-} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
 import { NgClass } from "@angular/common";
 import { Subscription } from "rxjs";
 import {
@@ -29,6 +21,8 @@ import { ToasterComponent } from "./angular-toaster.component";
   imports: [NgClass, ToasterComponent],
 })
 export class ToasterContainerComponent implements OnInit, OnDestroy {
+  private _defaultToasterConfig = inject<IToasterConfig>(ToasterConfigInjectionToken, { optional: true });
+
   private _toasterconfig: IToasterConfig;
 
   @Input() public set toasterconfig(_toasterconfig: IToasterConfig) {
@@ -54,11 +48,7 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
   private addToastSubscriber!: Subscription;
   private clearToastsSubscriber!: Subscription;
 
-  constructor(
-    @Optional()
-    @Inject(ToasterConfigInjectionToken)
-    private _defaultToasterConfig: IToasterConfig
-  ) {
+  constructor() {
     this._toasterconfig = (
       this._defaultToasterConfig
         ? { ...defaultToasterConfig, ...this._defaultToasterConfig }

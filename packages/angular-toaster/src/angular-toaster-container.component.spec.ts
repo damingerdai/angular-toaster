@@ -10,7 +10,7 @@ import {
   ToastType,
   ToasterConfig,
 } from "./angular-toaster-config";
-import { Component, NgModule } from "@angular/core";
+import { Component, NgModule, inject } from "@angular/core";
 import { ToasterModule } from "./angular-toaster.module";
 import { ToasterService } from "./angular-toaster.service";
 import { BrowserModule } from "@angular/platform-browser";
@@ -40,7 +40,9 @@ export class TestComponent {
     toastContainerId: 2,
   };
 
-  constructor(toasterService: ToasterService) {
+  constructor() {
+    const toasterService = inject(ToasterService);
+
     this.toasterService = toasterService;
   }
 }
