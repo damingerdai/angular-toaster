@@ -1,3 +1,15 @@
+## [1.8.2](https://github.com/damingerdai/angular-toaster/compare/v1.8.1...v1.8.2) (2025-06-09)
+
+
+### Features
+
+* bump @schematics/angular from 20.0.0 to 20.0.1 ([f9add81](https://github.com/damingerdai/angular-toaster/commit/f9add8168e5b81a81a72547764672797f43be21a))
+* bump angular cli from 20.0.0 to 20.0.1 ([40466db](https://github.com/damingerdai/angular-toaster/commit/40466dbebbba79af71c2f82ef476b2e4bd3629cf))
+* bump angular eslint to v20 ([d0f4006](https://github.com/damingerdai/angular-toaster/commit/d0f4006284d0d4d6bfa377a2e222e492b531b14f))
+* bump angular from 20.0.0 to 20.0.2 ([2336db8](https://github.com/damingerdai/angular-toaster/commit/2336db81701d1906a139cd1da9612f404581bb78))
+
+
+
 ## [1.7.1](https://github.com/damingerdai/angular-toaster/compare/v1.7.0...v1.7.1) (2025-06-07)
 
 ### Features
