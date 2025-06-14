@@ -82,23 +82,23 @@
     rxjs "7.8.2"
     source-map "0.7.4"
 
-"@angular-devkit/schematics@20.0.1", "@angular-devkit/schematics@>= 20.0.0 < 21.0.0":
-  version "20.0.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-20.0.1.tgz#e77f0f2405651b572f34d5788e73123d0b4eef78"
-  integrity sha512-bSr/5YIdjtwKYqylkYrlOVP+tuFz+tfOldmLfWHAsDGnJUznb5t4ckx6yyROp+iDQfu2Aez09p+l4KfUBq+H9A==
-  dependencies:
-    "@angular-devkit/core" "20.0.1"
-    jsonc-parser "3.3.1"
-    magic-string "0.30.17"
-    ora "8.2.0"
-    rxjs "7.8.2"
-
 "@angular-devkit/schematics@20.0.2", "@angular-devkit/schematics@^20.0.2":
   version "20.0.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-20.0.2.tgz#43ffec2c26387b340ef803a28c095d99175edde9"
   integrity sha512-r1aSZhcadLtUMhzUUfy+pkJdZW93z8WQtpGR24y88yFpPgDL5kY85VSlOzjGgo1vEs8Dd7ADcOcsVsUW8MxQ3A==
   dependencies:
     "@angular-devkit/core" "20.0.2"
+    jsonc-parser "3.3.1"
+    magic-string "0.30.17"
+    ora "8.2.0"
+    rxjs "7.8.2"
+
+"@angular-devkit/schematics@>= 20.0.0 < 21.0.0":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-20.0.1.tgz#e77f0f2405651b572f34d5788e73123d0b4eef78"
+  integrity sha512-bSr/5YIdjtwKYqylkYrlOVP+tuFz+tfOldmLfWHAsDGnJUznb5t4ckx6yyROp+iDQfu2Aez09p+l4KfUBq+H9A==
+  dependencies:
+    "@angular-devkit/core" "20.0.1"
     jsonc-parser "3.3.1"
     magic-string "0.30.17"
     ora "8.2.0"
@@ -1757,22 +1757,13 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@20.0.2":
+"@schematics/angular@20.0.2", "@schematics/angular@^20.0.2":
   version "20.0.2"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-20.0.2.tgz#6e6e6783f430d6c82a56b8622c2393f9440440b0"
   integrity sha512-TyF+/hV+8flAa/Vu8xOQF241Syg9rdbZD1dARdm6edbLo8nwxmHdRsIulRektb7oD5CpTnxpvrcNJjX77nhv6A==
   dependencies:
     "@angular-devkit/core" "20.0.2"
     "@angular-devkit/schematics" "20.0.2"
-    jsonc-parser "3.3.1"
-
-"@schematics/angular@^20.0.1":
-  version "20.0.1"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-20.0.1.tgz#3771d6d881964b3060f7cdc968662c621e24060e"
-  integrity sha512-29T9vUAjZnbXM+vImIQcdqG/ibdcfj5+pybo5cbiMSwVPVyerXgnD0HKC4dyZ34V2RFZa8cmyCLe/5bYoPQ+0g==
-  dependencies:
-    "@angular-devkit/core" "20.0.1"
-    "@angular-devkit/schematics" "20.0.1"
     jsonc-parser "3.3.1"
 
 "@sigstore/bundle@^3.1.0":
