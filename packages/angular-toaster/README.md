@@ -22,7 +22,7 @@ A dynamic Angular and Typescript demo can be found at
 
 Use the Angular CLI's install [schematics](https://angular.io/guide/schematics) to set up [angular-toaster](https://www.npmjs.com/package/angular-toaster) by running the following command:
 
-```
+```bash
 ng add angular-toaster
 ```
 
@@ -201,16 +201,14 @@ updates.
 
 
 ## Customize Toast arguments in pop
-```typescript
 
+```typescript
 var toast: Toast = {
     type: 'success',
     title: 'close button',
     showCloseButton: true
 };
-
 this.toasterService.pop(toast);
-
 ```
 
 ## Clear Existing Toast
