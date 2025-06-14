@@ -1,0 +1,60 @@
+<div class="content" role="main">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i>Angular-Toaster
+          <div class="card-header-actions">
+            <a
+              href="https://github.com/damingerdai/angular-toaster"
+              class="card-header-action"
+              target="_blank"
+              >doc</a
+            >
+          </div>
+        </div>
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-success px-2"
+            (click)="show('success')"
+          >
+            Try success
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning px-2"
+            (click)="show('warning')"
+          >
+            Try warning
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary px-2"
+            (click)="show('wait')"
+          >
+            Try wait
+          </button>
+          <button
+            type="button"
+            class="btn btn-info px-2"
+            (click)="show('info')"
+          >
+            Try info
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger px-2"
+            (click)="show('error')"
+          >
+            Try error
+          </button>
+          <button type="button" class="btn btn-info px-2" (click)="clear()">
+            clear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<toaster-container [toasterconfig]="config"></toaster-container>

@@ -1,0 +1,9 @@
+@if (loading) {
+    <div  class="loading">
+    loading
+</div>
+} @else {
+    <div class="container m-auto">
+        <div [innerHTML]="markdownContent"></div>
+    </div>
+}

@@ -5,12 +5,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAngularToaster } from 'angular-toaster';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     provideRouter(routes),
     provideAngularToaster(),
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
   ]
 };
