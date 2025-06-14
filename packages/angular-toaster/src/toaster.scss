@@ -50,181 +50,175 @@ $toaster-margin: 12px !default;
   justify-content: center;
   position: relative;
   background-color: $toaster-default;
-}
 
-@each $color, $value in $toaster-colors {
-  .angular-toast-#{$color} {
-    background-color: $value;
+  @each $color, $value in $toaster-colors {
+    &.angular-toast-#{$color} {
+      background-color: $value;
+    }
   }
-}
 
-@each $color, $value in $toaster-icons {
-  .icon-#{$color} {
-    background-repeat: no-repeat;
-    background-image: url($value) !important;
+  @each $color, $value in $toaster-icons {
+    .icon-#{$color} {
+      background-repeat: no-repeat;
+      background-image: url($value) !important;
+    }
   }
-}
 
-.angular-toaster-icon {
-  font-weight: normal;
-  color: $toaster-text-color;
-}
-
-.angular-toast-content {
-  flex-grow: 1;
-  padding: 15px 15px 15px 50px;
-}
-
-.angular-toast-title {
-  font-weight: bold;
-}
-
-.angular-toast-message {
-  word-wrap: break-word;
-
-  & a,
-  & label {
+  .angular-toaster-icon {
+    font-weight: normal;
     color: $toaster-text-color;
   }
 
-  & a:hover {
-    color: #cccccc;
-    text-decoration: none;
+  .angular-toast-content {
+    flex-grow: 1;
+    padding: 15px 15px 15px 50px;
   }
-}
 
-.angular-toast-close-button {
-  align-self: flex-start;
-  padding: 3px;
-  font-size: 23px;
-  line-height: 90%;
-  font-weight: bold;
-  color: $toaster-text-color;
-  text-shadow: 0 1px 0 $toaster-text-color;
-  opacity: 0.7;
-  z-index: 999;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
+  .angular-toast-title {
+    font-weight: bold;
+  }
 
-  &:hover,
-  &:focus {
-    color: #000000;
-    text-decoration: none;
+  .angular-toast-message {
+    word-wrap: break-word;
+
+    a,
+    label {
+      color: $toaster-text-color;
+    }
+
+    a:hover {
+      color: #cccccc;
+      text-decoration: none;
+    }
+  }
+
+  .angular-toast-close-button,
+  button.angular-toast-close-button {
+    align-self: flex-start;
+    padding: 3px;
+    font-size: 23px;
+    line-height: 90%;
+    font-weight: bold;
+    color: $toaster-text-color;
+    text-shadow: 0 1px 0 $toaster-text-color;
+    opacity: 0.7;
+    z-index: 999;
     cursor: pointer;
+    background: transparent;
+    border: 0;
+
+    &:hover,
+    &:focus {
+      color: #000000;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 0.4;
+      border: none;
+    }
+
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .angular-toast-progress-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000000;
     opacity: 0.4;
-    border: none;
   }
-
-  span {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-.angular-toast-progress-bar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  background-color: #000000;
-  opacity: 0.4;
-}
-
-/*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
- If you want the anchor version, it requires `href="#"`.*/
-button.angular-toast-close-button {
-  @extend .angular-toast-close-button;
 }
 
 // Toast Container styles
 .angular-toast-container {
   position: fixed;
   z-index: 999999;
-  /*overrides*/
   pointer-events: auto;
-}
-.angular-toast-container.angular-toast-center,
-.angular-toast-container.angular-toast-top-center,
-.angular-toast-container.angular-toast-bottom-center {
-  width: 100%;
-  pointer-events: none;
-  left: 0;
-  right: 0;
-}
-.angular-toast-container.angular-toast-center > div,
-.angular-toast-container.angular-toast-top-center > div,
-.angular-toast-container.angular-toast-bottom-center > div {
-  margin: 6px auto;
-  pointer-events: auto;
-}
-.angular-toast-container.angular-toast-center > button,
-.angular-toast-container.angular-toast-top-center > button,
-.angular-toast-container.angular-toast-bottom-center > button {
-  pointer-events: auto;
-}
-.angular-toast-container * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.angular-toast-container > div {
-  margin: 0 0 6px;
-  width: 300px;
-  border-radius: 3px 3px 3px 3px;
-  background-position: 15px center;
-  background-repeat: no-repeat;
-  box-shadow: 0 0 12px #999999;
-  color: $toaster-text-color;
-  opacity: 0.8;
-}
-.angular-toast-container > :hover {
-  box-shadow: 0 0 12px #000000;
-  opacity: 1;
-  cursor: pointer;
-}
 
-.angular-toast-container.angular-toast-top-full-width > div,
-.angular-toast-container.angular-toast-bottom-full-width > div {
-  width: 96%;
-  margin: auto;
-}
+  &.angular-toast-center,
+  &.angular-toast-top-center,
+  &.angular-toast-bottom-center {
+    width: 100%;
+    pointer-events: none;
+    left: 0;
+    right: 0;
 
-// Toast Container Positions
-.angular-toast-top-full-width {
-  top: 0;
-  right: 0;
-  width: 100%;
-}
-.angular-toast-bottom-full-width {
-  bottom: 0;
-  right: 0;
-  width: 100%;
-}
-.angular-toast-top-left {
-  top: $toaster-margin;
-  left: $toaster-margin;
-}
-.angular-toast-top-center {
-  top: $toaster-margin;
-}
-.angular-toast-top-right {
-  top: $toaster-margin;
-  right: $toaster-margin;
-}
-.angular-toast-bottom-right {
-  right: $toaster-margin;
-  bottom: $toaster-margin;
-}
-.angular-toast-bottom-center {
-  bottom: $toaster-margin;
-}
-.angular-toast-bottom-left {
-  bottom: $toaster-margin;
-  left: $toaster-margin;
-}
-.angular-toast-center {
-  top: 45%;
+    > div {
+      margin: 6px auto;
+      pointer-events: auto;
+    }
+    > button {
+      pointer-events: auto;
+    }
+  }
+
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  > div {
+    margin: 0 0 6px;
+    width: 300px;
+    border-radius: 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 12px #999999;
+    color: $toaster-text-color;
+    opacity: 0.8;
+  }
+
+  > :hover {
+    box-shadow: 0 0 12px #000000;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &.angular-toast-top-full-width > div,
+  &.angular-toast-bottom-full-width > div {
+    width: 96%;
+    margin: auto;
+  }
+
+  // Toast Container Positions
+  &.angular-toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+  &.angular-toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+  }
+  &.angular-toast-top-left {
+    top: $toaster-margin;
+    left: $toaster-margin;
+  }
+  &.angular-toast-top-center {
+    top: $toaster-margin;
+  }
+  &.angular-toast-top-right {
+    top: $toaster-margin;
+    right: $toaster-margin;
+  }
+  &.angular-toast-bottom-right {
+    right: $toaster-margin;
+    bottom: $toaster-margin;
+  }
+  &.angular-toast-bottom-center {
+    bottom: $toaster-margin;
+  }
+  &.angular-toast-bottom-left {
+    bottom: $toaster-margin;
+    left: $toaster-margin;
+  }
+  &.angular-toast-center {
+    top: 45%;
+  }
 }
