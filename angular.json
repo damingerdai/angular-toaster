@@ -28,10 +28,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "packages/angular-toaster/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
@@ -63,24 +60,18 @@
             "outputPath": "dist/dev-app",
             "index": "packages/dev-app/src/index.html",
             "browser": "packages/dev-app/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "packages/dev-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "packages/dev-app/src/favicon.ico",
               "packages/dev-app/src/assets"
             ],
-            "styles": [
-              "packages/dev-app/src/styles.scss"
-            ],
+            "styles": ["packages/dev-app/src/styles.scss"],
             "scripts": [],
             "server": "packages/dev-app/src/main.server.ts",
             "prerender": false,
-            "ssr": {
-              "entry": "packages/dev-app/server.ts"
-            }
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -127,19 +118,14 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "packages/dev-app/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "packages/dev-app/src/favicon.ico",
               "packages/dev-app/src/assets"
             ],
-            "styles": [
-              "packages/dev-app/src/styles.scss"
-            ],
+            "styles": ["packages/dev-app/src/styles.scss"],
             "scripts": []
           }
         },
@@ -187,18 +173,14 @@
             "outputPath": "dist/dev-module-app",
             "index": "packages/dev-module-app/src/index.html",
             "browser": "packages/dev-module-app/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "packages/dev-module-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "packages/dev-module-app/src/favicon.ico",
               "packages/dev-module-app/src/assets"
             ],
-            "styles": [
-              "packages/dev-module-app/src/styles.scss"
-            ],
+            "styles": ["packages/dev-module-app/src/styles.scss"],
             "scripts": [],
             "server": "packages/dev-module-app/src/main.server.ts",
             "prerender": false,
@@ -254,19 +236,14 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "packages/dev-module-app/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "packages/dev-module-app/src/favicon.ico",
               "packages/dev-module-app/src/assets"
             ],
-            "styles": [
-              "packages/dev-module-app/src/styles.scss"
-            ],
+            "styles": ["packages/dev-module-app/src/styles.scss"],
             "scripts": []
           }
         },
@@ -285,9 +262,7 @@
   },
   "cli": {
     "analytics": "10a22c2d-0a0a-46ae-a82a-cd74f58ee60e",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   },
   "schematics": {
     "@angular-eslint/schematics:application": {
