@@ -77,7 +77,7 @@
             ],
             "scripts": [],
             "server": "packages/dev-app/src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": {
               "entry": "packages/dev-app/server.ts"
             }
@@ -201,7 +201,7 @@
             ],
             "scripts": [],
             "server": "packages/dev-module-app/src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": {
               "entry": "packages/dev-module-app/server.ts"
             }
