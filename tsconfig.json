@@ -20,7 +20,6 @@
     "target": "esnext",
     "module": "esnext",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"],
     "paths": {
       "angular-toaster": ["./packages/angular-toaster/src/public-api.ts"],
       "angular-toaster/*": ["./packages/angular-toasters/src/*"]
