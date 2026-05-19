@@ -1,3 +1,12 @@
+# [1.9.0](https://github.com/damingerdai/angular-toaster/compare/v1.8.2...v1.9.0) (2026-05-19)
+
+
+### Features
+
+* bump angular 21 ([#15](https://github.com/damingerdai/angular-toaster/issues/15)) ([276d358](https://github.com/damingerdai/angular-toaster/commit/276d358f82bf0773de2e3d9aa465c8dc4dd4bad7))
+
+
+
 ## [1.8.2](https://github.com/damingerdai/angular-toaster/compare/v1.8.1...v1.8.2) (2025-06-09)
 
 
