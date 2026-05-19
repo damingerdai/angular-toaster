@@ -32,9 +32,9 @@
     "copystyles": "cpx \"packages/angular-toaster/src/lib/*.{css,css.map,min.css,scss}\" dist/angular-toaster",
     "package": "npm run clean && npm run build:lib && npm run sass && npm run uglifycss && npm run copy && npm run build:schematics",
     "prerelease": "npm run clean && npm run build:lib && npm run sass && npm run uglifycss && npm run copy && npm run build:dev-app",
-    "release": "tsx scripts/release.js",
-    "release:alpha": "tsx scripts/release.js --preId alpha",
-    "release:beta": "tsx scripts/release.js --preId beta",
+    "release": "tsx scripts/release.ts",
+    "release:alpha": "tsx scripts/release.ts --preId alpha",
+    "release:beta": "tsx scripts/release.ts --preId beta",
     "prepare": "husky || true",
     "serve:ssr:dev-module-app": "node dist/dev-module-app/server/server.mjs"
   },
