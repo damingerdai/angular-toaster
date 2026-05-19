@@ -37,7 +37,7 @@ The `ng add` command will install [angular-toaster](https://www.npmjs.com/packag
 ## Installation:
 
 ```bash
-npm install angular-toaster (or yarn add angular-toaster)
+npm install angular-toaster
 ```
 
 ## Import CSS
@@ -591,12 +591,12 @@ git clone https://github.com/damingerdai/angular-toaster.git
 
 In the cloned directory, run:
 ```bash
-yarn
+npm install
 ```
 
 Run Angular AoT compiler:
 ```bash
-yarn build
+npm run build
 ```
 
 Run Karma test instance with coverage report:

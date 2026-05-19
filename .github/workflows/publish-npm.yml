@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install -g yarn
-      - run: yarn
-      - run: yarn lint
-      - run: yarn package
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run package
 
   publish-npm:
     needs: tests
@@ -29,10 +29,10 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
-      - run: npm install -g yarn
-      - run: yarn
-      - run: yarn package
-      - run: yarn copyfile
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run package
+      - run: npm run copyfile
       - run: cd dist/angular-toaster && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -59,10 +59,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 22.X
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      - run: npm install yarn -g
-      - run: yarn && yarn ng deploy
+      - run: npm ci
+      - run: npm run ng deploy

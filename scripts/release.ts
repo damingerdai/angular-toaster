@@ -162,16 +162,16 @@ async function main() {
     return;
   }
   //   step("\n run unit test");
-  //   run("yarn test:lib:ci");
+  //   run("npm run test:lib:ci");
 
   step("\n update version");
   updatePackages(targetVersion, targets);
 
   step("\n run build");
-  run("yarn build");
+  run("npm run build");
 
   step("\n generate changelog");
-  run("yarn changelog");
+  run("npm run changelog");
 
   step("\n commit");
   run("git add package.json");
