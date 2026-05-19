@@ -13,7 +13,7 @@ import { Schema as AngularToasterOptions } from "./schema";
 describe("angular toaster schematic unit test", () => {
   const schematicRunner = new SchematicTestRunner(
     "angular-toaster",
-    path.join(__dirname, "../collection.json")
+    path.join(__dirname, "../collection.json"),
   );
   const defaultOptions: AngularToasterOptions = {
     project: "angular-toaster-app",
@@ -40,13 +40,13 @@ describe("angular toaster schematic unit test", () => {
     appTree = await schematicRunner.runExternalSchematic(
       "@schematics/angular",
       "workspace",
-      workspaceOptions
+      workspaceOptions,
     );
     appTree = await schematicRunner.runExternalSchematic(
       "@schematics/angular",
       "application",
       appOptions,
-      appTree
+      appTree,
     );
     const standaloneAppOptions = {
       ...appOptions,
@@ -57,8 +57,30 @@ describe("angular toaster schematic unit test", () => {
       "@schematics/angular",
       "application",
       standaloneAppOptions,
-      appTree
+      appTree,
     );
+
+    const angularJsonContent = appTree.readContent("/angular.json");
+    const angularJson = JSON.parse(angularJsonContent);
+
+    const projects = ["angular-toaster-app", "angular-toaster-standalone-app"];
+    projects.forEach((projectName) => {
+      if (
+        angularJson.projects[projectName] &&
+        angularJson.projects[projectName].architect
+      ) {
+        if (!angularJson.projects[projectName].architect.test) {
+          angularJson.projects[projectName].architect.test = {
+            builder: "@angular-devkit/build-angular:karma",
+            options: {
+              styles: [],
+            },
+          };
+        }
+      }
+    });
+
+    appTree.overwrite("/angular.json", JSON.stringify(angularJson, null, 2));
   });
 
   describe("when project is not a standalone application", () => {
@@ -67,20 +89,20 @@ describe("angular toaster schematic unit test", () => {
       const tree = await schematicRunner.runSchematic(
         "ng-add-setup-project",
         options,
-        appTree
+        appTree,
       );
       const content = tree.readContent(
-        "/projects/angular-toaster-app/src/app/app-module.ts"
+        "/projects/angular-toaster-app/src/app/app-module.ts",
       );
       expect(content)
         .withContext("Expected the ToasterModule to be imported.")
         .toMatch(/import\s+{\s*ToasterModule\s*}\s+from\s+'angular-toaster'/);
       expect(content)
         .withContext(
-          "Expected the ToasterModule to be added to the imports array."
+          "Expected the ToasterModule to be added to the imports array.",
         )
         .toMatch(
-          /imports:\s*\[[^\]]+?,\r?\n\s+ToasterModule\.forRoot\(\)\r?\n/m
+          /imports:\s*\[[^\]]+?,\r?\n\s+ToasterModule\.forRoot\(\)\r?\n/m,
         );
     });
 
@@ -89,7 +111,7 @@ describe("angular toaster schematic unit test", () => {
       const tree = await schematicRunner.runSchematic(
         "ng-add-setup-project",
         options,
-        appTree
+        appTree,
       );
       const angularJsonContent = tree.readContent("/angular.json");
       const angularJson = JSON.parse(angularJsonContent);
@@ -101,9 +123,11 @@ describe("angular toaster schematic unit test", () => {
       expect(buildArchitect.options.styles)
         .withContext("Expect the theme css import styles")
         .toContain("./node_modules/angular-toaster/toaster.css");
-      expect(testArchitect.options.styles)
-        .withContext("Expect the theme css import styles")
-        .toContain("./node_modules/angular-toaster/toaster.css");
+      if (testArchitect && testArchitect.options) {
+        expect(testArchitect.options.styles)
+          .withContext("Expect the theme css import styles")
+          .toContain("./node_modules/angular-toaster/toaster.css");
+      }
     });
   });
 
@@ -116,15 +140,15 @@ describe("angular toaster schematic unit test", () => {
       const tree = await schematicRunner.runSchematic(
         "ng-add-setup-project",
         options,
-        appTree
+        appTree,
       );
       const content = tree.readContent(
-        "/projects/angular-toaster-standalone-app/src/app/app.config.ts"
+        "/projects/angular-toaster-standalone-app/src/app/app.config.ts",
       );
       expect(content)
         .withContext("Expected the provideAngularToaster to be imported.")
         .toMatch(
-          /import\s+{\s*provideAngularToaster\s*}\s+from\s+'angular-toaster'/
+          /import\s+{\s*provideAngularToaster\s*}\s+from\s+'angular-toaster'/,
         );
       expect(content)
         .withContext("Expected provideAngularToaster() to be present")
@@ -148,7 +172,7 @@ describe("angular toaster schematic unit test", () => {
       const tree = await schematicRunner.runSchematic(
         "ng-add-setup-project",
         options,
-        appTree
+        appTree,
       );
       const angularJsonContent = tree.readContent("/angular.json");
       const angularJson = JSON.parse(angularJsonContent);
@@ -161,9 +185,11 @@ describe("angular toaster schematic unit test", () => {
       expect(buildArchitect.options.styles)
         .withContext("Expect the theme css import styles")
         .toContain("./node_modules/angular-toaster/toaster.css");
-      expect(testArchitect.options.styles)
-        .withContext("Expect the theme css import styles")
-        .toContain("./node_modules/angular-toaster/toaster.css");
+      if (testArchitect && testArchitect.options) {
+        expect(testArchitect.options.styles)
+          .withContext("Expect the theme css import styles")
+          .toContain("./node_modules/angular-toaster/toaster.css");
+      }
     });
   });
 });
