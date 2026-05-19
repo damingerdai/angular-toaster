@@ -22,7 +22,7 @@
     "copyfile:schema": "copyfiles -f ./packages/angular-toaster/schematics/ng-add/schema.json ./dist/angular-toaster/schematics/ng-add",
     "copyfile:collection": "copyfiles -f ./packages/angular-toaster/schematics/collection.json ./dist/angular-toaster/schematics",
     "copyfile": "npm run copyfile:schema && npm run copyfile:collection",
-    "test:schematics": "ts-node --project packages/angular-toaster/schematics/tsconfig.spec.json node_modules/jasmine/bin/jasmine.js packages/angular-toaster/schematics/**/*.spec.ts",
+      "test:schematics": "TS_NODE_PROJECT=packages/angular-toaster/schematics/tsconfig.spec.json node -r ts-node/register ./node_modules/jasmine/bin/jasmine.js --config=packages/angular-toaster/schematics/jasmine.json",
     "test:lib": "ng test angular-toaster",
     "test:lib:ci": "ng test angular-toaster  --browsers=ChromeHeadless --watch=false --code-coverage && cat ./coverage/angular-toaster/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "clean": "rimraf dist",
