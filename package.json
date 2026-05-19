@@ -71,7 +71,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^22.15.29",
     "@types/shelljs": "^0.8.16",
-    "angular-cli-ghpages": "^2.0.3",
+    "angular-cli-ghpages": "^3.0.3",
     "angular-eslint": "21.4.0",
     "colors": "^1.4.0",
     "conventional-changelog-cli": "^2.2.2",
