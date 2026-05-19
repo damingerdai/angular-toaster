@@ -2,7 +2,8 @@ import { chain, Rule, Tree, SchematicContext } from '@angular-devkit/schematics'
 import { getAppModulePath, isStandaloneApp } from '@schematics/angular/utility/ng-ast-utils';
 import { addRootProvider } from '@schematics/angular/utility';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
-import { ProjectDefinition, getWorkspace } from '@schematics/angular/utility/workspace';
+import { ProjectDefinition } from '@schematics/angular/utility/workspace';
+import { readWorkspace } from '@schematics/angular/utility';
 import { Schema } from './schema';
 import { addThemeToAppStyles } from './theming';
 import { addModuleImportToRootModule } from '../utils/ast';
@@ -13,7 +14,7 @@ import { hasNgModuleImport } from '../utils/ng-module-imports';
 
 export default function (options: Schema): Rule {
   return async (host: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(host);
+    const workspace = await readWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions['projectType'] !== ProjectType.Application) {
@@ -28,7 +29,7 @@ export default function (options: Schema): Rule {
 
 function addAngularToaster(options: Schema) {
   return async (host: Tree) => {
-    const workspace = await getWorkspace(host);
+    const workspace = await readWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     const mainFilePath = getProjectMainFile(project);
     if (isStandaloneApp(host, mainFilePath)) {

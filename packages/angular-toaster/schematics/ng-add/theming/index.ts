@@ -29,26 +29,34 @@ function addThemeStyleToTarget(
   assetPath: string
 ): Rule {
   return updateWorkspace((workspace) => {
-    // TODO: Types have separate declarations of a private property '_validateNam
     const project = getProjectFromWorkspace(workspace, projectName);
 
-    // Do not update the builder options in case the target does not use the default CLI builder.
-    // if (!validateDefaultTargetBuilder(project, targetName, logger)) {
-    //   return
-    // }
+    let targetOptions;
+    try {
+      targetOptions = getProjectTargetOptions(project, targetName);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      return;
+    }
 
-    const targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = targetOptions!["styles"] as (string | { input: string })[];
+    if (!targetOptions) {
+      return;
+    }
+
+    if (!targetOptions["styles"]) {
+      targetOptions["styles"] = [];
+    }
+    
+    const styles = targetOptions["styles"] as (string | { input: string })[];
 
     const existingStyles = styles.map((s) =>
       typeof s === "string" ? s : s.input
     );
 
-    for (const [, stylePath] of existingStyles.entries()) {
-      if (stylePath === assetPath) return;
+    if (existingStyles.includes(assetPath)) {
+      return;
     }
 
     styles.push(assetPath);
   });
 }
-
