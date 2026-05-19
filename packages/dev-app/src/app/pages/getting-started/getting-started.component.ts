@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { afterNextRender, Component, inject } from '@angular/core';
+import { afterNextRender, Component, inject, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Marked } from 'marked';
 import { markedHighlight } from "marked-highlight";
@@ -24,7 +24,7 @@ hljs.registerLanguage('bash', bash);
   templateUrl: './getting-started.component.html',
   styleUrl: './getting-started.component.scss'
 })
-export class GettingStartedComponent {
+export class GettingStartedComponent implements OnDestroy {
 
   private readonly docs = 'https://raw.githubusercontent.com/damingerdai/angular-toaster/refs/heads/develop/packages/angular-toaster/README.md';
   private readonly chinaDocs = 'https://gh-proxy.com/raw.githubusercontent.com/damingerdai/angular-toaster/refs/heads/develop/packages/angular-toaster/README.md';
