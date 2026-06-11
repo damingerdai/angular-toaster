@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { NgClass } from "@angular/common";
 import { Subscription } from "rxjs";
 import {
@@ -18,10 +25,14 @@ import { ToasterComponent } from "./angular-toaster.component";
   templateUrl: "./angular-toaster-container.component.html",
   styleUrl: "./angular-toaster-container.component.css",
   animations: Transitions,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, ToasterComponent],
 })
 export class ToasterContainerComponent implements OnInit, OnDestroy {
-  private _defaultToasterConfig = inject<IToasterConfig>(ToasterConfigInjectionToken, { optional: true });
+  private _defaultToasterConfig = inject<IToasterConfig>(
+    ToasterConfigInjectionToken,
+    { optional: true }
+  );
 
   private _toasterconfig: IToasterConfig;
 

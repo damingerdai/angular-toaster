@@ -1,25 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ToasterModule } from 'angular-toaster';
+import { NgModule } from "@angular/core";
+import {
+  BrowserModule,
+  provideClientHydration,
+  withNoIncrementalHydration,
+} from "@angular/platform-browser";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { ToasterModule } from "angular-toaster";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ToasterModule.forRoot(),
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, ToasterModule.forRoot()],
   providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
+    provideClientHydration(withNoIncrementalHydration()),
+    provideAnimationsAsync(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

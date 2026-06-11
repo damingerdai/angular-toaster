@@ -15,6 +15,7 @@ import {
   ViewChild,
   ViewContainerRef,
   inject,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { NgClass } from "@angular/common";
 import {
@@ -29,6 +30,7 @@ import { TrustHtmlPipe } from "./trust-html.pipe";
   selector: "[toastComp]",
   templateUrl: "./angular-toaster.component.html",
   styleUrls: ["./angular-toaster.component.css"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, TrustHtmlPipe],
 })
 export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {

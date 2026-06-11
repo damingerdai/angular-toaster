@@ -10,7 +10,12 @@ import {
   ToastType,
   ToasterConfig,
 } from "./angular-toaster-config";
-import { Component, NgModule, inject } from "@angular/core";
+import {
+  Component,
+  NgModule,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import { ToasterModule } from "./angular-toaster.module";
 import { ToasterService } from "./angular-toaster.service";
 import { BrowserModule } from "@angular/platform-browser";
@@ -22,6 +27,7 @@ type ExtendedToastType = ("customtype" | "") & ToastType;
   template:
     '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
   // eslint-disable-next-line @angular-eslint/prefer-standalone
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TestComponent {
@@ -56,6 +62,7 @@ export class TestComponentModule {}
   selector: "test-dynamic-component",
   template: `<div>loaded via component</div>`,
   // eslint-disable-next-line @angular-eslint/prefer-standalone
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TestDynamicComponent {}
@@ -71,6 +78,7 @@ export class TestDynamicComponentModule {}
   template:
     '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click">button</button></div>',
   // eslint-disable-next-line @angular-eslint/prefer-standalone
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TestBoundDynamicComponent {

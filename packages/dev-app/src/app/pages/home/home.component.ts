@@ -1,5 +1,9 @@
-
-import { AfterViewInit, Component, inject } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 import {
   DefaultTypeClasses,
   DefaultIconClasses,
@@ -14,13 +18,14 @@ import {
 type ExtendedToastType = ("customtype" | "bad value") & ToastType;
 
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   imports: [ToasterContainerComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: "./home.component.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: "./home.component.scss",
 })
 export class HomeComponent implements AfterViewInit {
-title = "dev-app";
+  title = "dev-app";
 
   extendedTypeClasses = {
     ...DefaultTypeClasses,

@@ -1,18 +1,21 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig } from "@angular/core";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { provideRouter } from "@angular/router";
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
-import { provideAngularToaster } from 'angular-toaster';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { routes } from "./app.routes";
+import {
+  provideClientHydration,
+  withNoIncrementalHydration,
+} from "@angular/platform-browser";
+import { provideAngularToaster } from "angular-toaster";
+import { provideHttpClient, withFetch } from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     provideRouter(routes),
     provideAngularToaster(),
-    provideClientHydration(),
+    provideClientHydration(withNoIncrementalHydration()),
     provideHttpClient(withFetch()),
-  ]
+  ],
 };
