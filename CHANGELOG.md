@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/damingerdai/angular-toaster/compare/v1.9.1...v2.0.0) (2026-06-12)
+
+
+### Bug Fixes
+
+* fix createComponent signature and update internal typescript path ([ef470b2](https://github.com/damingerdai/angular-toaster/commit/ef470b22335b0c1e365af9b0b77cc3e1c2bc0517))
+
+
+### Features
+
+* bump angular 22 ([5dbabfe](https://github.com/damingerdai/angular-toaster/commit/5dbabfe07aa4d47dd82f33656bd5c61ed10fdf50))
+* migrate container animations to Angular 22 animate.enter/leave ([78db487](https://github.com/damingerdai/angular-toaster/commit/78db487249e5a32508f0dd6b1db9562e92e1c832))
+
+
+
 ## [1.9.1](https://github.com/damingerdai/angular-toaster/compare/v1.9.0...v1.9.1) (2026-05-21)
 
 
