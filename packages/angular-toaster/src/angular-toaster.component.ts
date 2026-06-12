@@ -83,11 +83,11 @@ export class ToasterComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (this.toast.bodyOutputType === this.bodyOutputType.Component) {
       const componentInstance: ComponentRef<typeof this.toast.body> =
-        this.viewContainerRef.createComponent(
-          this.toast.body,
-          undefined,
-          this.componentBody.injector
-        );
+        this.viewContainerRef.createComponent(this.toast.body, {
+          index: undefined,
+          injector: this.componentBody.injector
+        });
+
       componentInstance.instance.toast = this.toast;
       this.changeDetectorRef.detectChanges();
     }
