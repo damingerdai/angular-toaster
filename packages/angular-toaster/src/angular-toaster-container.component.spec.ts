@@ -26,8 +26,8 @@ type ExtendedToastType = ("customtype" | "") & ToastType;
   selector: "test-component",
   template:
     '<toaster-container [toasterconfig]="toasterconfig"></toaster-container>',
-  // eslint-disable-next-line @angular-eslint/prefer-standalone
   changeDetection: ChangeDetectionStrategy.Eager,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
 })
 export class TestComponent {
@@ -61,8 +61,8 @@ export class TestComponentModule {}
 @Component({
   selector: "test-dynamic-component",
   template: `<div>loaded via component</div>`,
-  // eslint-disable-next-line @angular-eslint/prefer-standalone
   changeDetection: ChangeDetectionStrategy.Eager,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
 })
 export class TestDynamicComponent {}
@@ -77,8 +77,8 @@ export class TestDynamicComponentModule {}
   selector: "bound-dynamic-component",
   template:
     '<div>{{someValue}} loaded via component<button (click)="clickHandler()" id="click">button</button></div>',
-  // eslint-disable-next-line @angular-eslint/prefer-standalone
   changeDetection: ChangeDetectionStrategy.Eager,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
 })
 export class TestBoundDynamicComponent {
