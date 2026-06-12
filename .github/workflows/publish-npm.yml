@@ -23,6 +23,9 @@ jobs:
   publish-npm:
     needs: tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -34,11 +37,9 @@ jobs:
       - run: npm run package
       - run: npm run copyfile
       - run: cd dist/angular-toaster && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+ 
   release:
     needs: publish-npm
-    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
