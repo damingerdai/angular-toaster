@@ -16,7 +16,6 @@ import {
   defaultToasterConfig,
 } from "./angular-toaster-config";
 import { ToasterService } from "./angular-toaster.service";
-import { Transitions } from "./angular-toaster-animations";
 import { ToasterComponent } from "./angular-toaster.component";
 
 @Component({
@@ -24,11 +23,26 @@ import { ToasterComponent } from "./angular-toaster.component";
   selector: `toaster-container, angular-toaster-container, div[toaster-container], div[angular-toaster-container]`,
   templateUrl: "./angular-toaster-container.component.html",
   styleUrl: "./angular-toaster-container.component.css",
-  animations: Transitions,
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass, ToasterComponent],
 })
 export class ToasterContainerComponent implements OnInit, OnDestroy {
+  private static readonly enterAnimationClasses: Record<string, string> = {
+    flyRight: "angular-toast-anim-enter-fly-right",
+    flyLeft: "angular-toast-anim-enter-fly-left",
+    slideDown: "angular-toast-anim-enter-slide-down",
+    slideUp: "angular-toast-anim-enter-slide-up",
+    fade: "angular-toast-anim-enter-fade",
+  };
+
+  private static readonly leaveAnimationClasses: Record<string, string> = {
+    flyRight: "angular-toast-anim-leave-fly-right",
+    flyLeft: "angular-toast-anim-leave-fly-left",
+    slideDown: "angular-toast-anim-leave-slide-down",
+    slideUp: "angular-toast-anim-leave-slide-up",
+    fade: "angular-toast-anim-leave-fade",
+  };
+
   private _defaultToasterConfig = inject<IToasterConfig>(
     ToasterConfigInjectionToken,
     { optional: true }
@@ -148,6 +162,18 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
     return classes;
   }
 
+  protected getEnterAnimationClass(): string {
+    return this.resolveAnimationClass(
+      ToasterContainerComponent.enterAnimationClasses
+    );
+  }
+
+  protected getLeaveAnimationClass(): string {
+    return this.resolveAnimationClass(
+      ToasterContainerComponent.leaveAnimationClasses
+    );
+  }
+
   // private functions
   private registerSubscribers() {
     this.addToastSubscriber = this.toasterService.addToast.subscribe(
@@ -257,6 +283,11 @@ export class ToasterContainerComponent implements OnInit, OnDestroy {
 
   private toastIdOrDefault(toast: Toast) {
     return toast.toastId || "";
+  }
+
+  private resolveAnimationClass(classMap: Record<string, string>): string {
+    const animationName = this.toasterconfig.animation || "";
+    return classMap[animationName] || "";
   }
 
   private isNullOrUndefined(value: unknown): boolean {

@@ -2,6 +2,9 @@ import {
   trigger, state, style, animate, transition, group
 } from '@angular/animations';
 
+/**
+ * @deprecated since remove of animation support in v2.0.0. This export will be removed in a future major version.
+ */
 export const Transitions = [
   trigger('toastState', [
       state('flyRight, flyLeft, slideDown, slideDown, slideUp, slideUp, fade',
